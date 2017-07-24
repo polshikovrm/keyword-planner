@@ -1,0 +1,7 @@
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+googleads-php-lib/vendor
+composer.lock
