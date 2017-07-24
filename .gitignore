@@ -5,3 +5,4 @@
 *.sln
 googleads-php-lib/vendor
 composer.lock
+vendor

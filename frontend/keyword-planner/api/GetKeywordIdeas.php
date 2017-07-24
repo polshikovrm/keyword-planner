@@ -100,7 +100,9 @@ class GetKeywordIdeas {
 
     $selector->setSearchParameters($searchParameters);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
-
+      header('Content-Type: application/json');
+      header("HTTP/1.1 200 OK");
+    $dataJson=null;
     $totalNumEntries = 0;
     do {
       // Retrieve targeting ideas one page at a time, continuing to request
@@ -121,13 +123,15 @@ class GetKeywordIdeas {
                   === null)
               ? $categoryIds = '' : implode(', ', $data[
                   AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
-          printf(
-              "Keyword idea with text '%s', category IDs (%d) and average "
-                  . "monthly search volume %d was found.\n",
-              $keyword,
-              $categoryIds,
-              $searchVolume
-          );
+//          printf(
+//              "Keyword idea with text '%s', category IDs (%d) and average "
+//                  . "monthly search volume %d was found.\n",
+//              $keyword,
+//              $categoryIds,
+//              $searchVolume
+//          );
+            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume];
+
         }
       }
 
@@ -135,7 +139,10 @@ class GetKeywordIdeas {
           $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
     } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
-    printf("Number of results found: %d\n", $totalNumEntries);
+      echo json_encode($dataJson);
+      die();
+
+//    printf("Number of results found: %d\n", $totalNumEntries);
   }
 
   public static function main() {
