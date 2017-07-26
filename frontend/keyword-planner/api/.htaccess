@@ -2,13 +2,17 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
-<Files *.*>
-    Order Deny,Allow
-    Deny from all
-#    Allow from 127.0.0.1
-</Files>
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+Header set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,OPTIONS"
+Header set Access-Control-Allow-Credentials "true"
+#<Files *.*>
+#    Order Deny,Allow
+#    Deny from all
+##    Allow from 127.0.0.1
+#</Files>
 
-<Files index.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
+#<Files index.php>
+#    Order Allow,Deny
+#    Allow from all
+#</Files>

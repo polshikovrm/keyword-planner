@@ -28,11 +28,13 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201705\cm\Keyword;
 use Google\AdsApi\AdWords\v201705\cm\Language;
+use Google\AdsApi\AdWords\v201705\cm\Location;
 use Google\AdsApi\AdWords\v201705\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201705\cm\Paging;
 use Google\AdsApi\AdWords\v201705\o\AttributeType;
 use Google\AdsApi\AdWords\v201705\o\IdeaType;
 use Google\AdsApi\AdWords\v201705\o\LanguageSearchParameter;
+use Google\AdsApi\AdWords\v201705\o\LocationSearchParameter;
 use Google\AdsApi\AdWords\v201705\o\NetworkSearchParameter;
 use Google\AdsApi\AdWords\v201705\o\RelatedToQuerySearchParameter;
 use Google\AdsApi\AdWords\v201705\o\RequestType;
@@ -60,9 +62,9 @@ class GetKeywordIdeas {
     $selector->setRequestedAttributeTypes([
 //        AttributeType::UNKNOWN,
         AttributeType::CATEGORY_PRODUCTS_AND_SERVICES,
-//        AttributeType::COMPETITION,
-//        AttributeType::EXTRACTED_FROM_WEBPAGE,
-//        AttributeType::IDEA_TYPE,
+        AttributeType::COMPETITION,
+        AttributeType::EXTRACTED_FROM_WEBPAGE,
+        AttributeType::IDEA_TYPE,
         AttributeType::KEYWORD_TEXT,
         AttributeType::SEARCH_VOLUME,
         AttributeType::AVERAGE_CPC,
@@ -97,6 +99,11 @@ class GetKeywordIdeas {
     $networkSearchParameter = new NetworkSearchParameter();
     $networkSearchParameter->setNetworkSetting($networkSetting);
     $searchParameters[] = $networkSearchParameter;
+    $location = new Location(1012852);
+//      $location->id = 1012852; //2040
+    $LocationSearchParameter = new LocationSearchParameter();
+    $LocationSearchParameter->setLocations([$location]);
+    $searchParameters[] = $LocationSearchParameter;
 
     $selector->setSearchParameters($searchParameters);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
