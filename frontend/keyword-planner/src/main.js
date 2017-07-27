@@ -12,8 +12,8 @@ Vue.use(VueCookie);
 
 const routes = {
     '/': App,
-    '/target-locations': TargetLocations,
-    '/find-keywords': FindKeywords
+    '/targetLocations': TargetLocations,
+    '/findKeywords': FindKeywords
 }
 
 Vue.mixin({
@@ -35,7 +35,7 @@ new Vue({
             if(this.currentRoute =='/' && token==null){
                 return routes[this.currentRoute] || Page404
             }else if(this.currentRoute =='/' && token!==null){
-               return location.href = '/target-locations';
+               return window.location.href = '/targetLocations';
             }
              if(this.currentRoute !=='/' && token!==null){
                  return routes[this.currentRoute] || Page404

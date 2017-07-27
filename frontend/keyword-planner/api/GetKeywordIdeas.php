@@ -17,9 +17,6 @@
 
 
 namespace keyword_planner\api;
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -52,8 +49,34 @@ class GetKeywordIdeas {
 
   public static function runExample(AdWordsServices $adWordsServices,
       AdWordsSession $session) {
-    $targetingIdeaService =
-        $adWordsServices->get($session, TargetingIdeaService::class);
+    $targetingIdeaService = $adWordsServices->get($session, TargetingIdeaService::class);
+
+      $post = json_decode(file_get_contents('php://input'), true);
+      $keywords='';
+      if (!empty($post['keyword'])) {
+          $keywords = explode(',',$post['keyword']) ;
+          $keywords = array_map('trim', $keywords);
+      }
+      $locations=[];
+      if(!empty($post['locations'])){
+            foreach ( $post['locations'] as $location ){
+
+                $location = new Location(
+                    $id = $location['criteria_id'],
+                    $type = null,
+                    $CriterionType = null,
+                    $locationName = $location['name'],
+                    $displayType = $location['target_type'],
+                    $targetingStatus = $location['status'],
+                    $parentLocations =[$location['parent_id']]
+                );
+                $locations[]=$location;
+            }
+      }
+      $page = 0;
+      if (!empty($post['page'])) {
+          $page = $post['page'];
+      }
 
     // Create selector.
     $selector = new TargetingIdeaSelector();
@@ -74,10 +97,10 @@ class GetKeywordIdeas {
 
     $searchParameters = [];
     // Create seed keyword.
-    $keyword = 'tattoo designs';
+    $keyword = 'tattoo';
     // Create related to query search parameter.
     $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
-    $relatedToQuerySearchParameter->setQueries([$keyword]);
+    $relatedToQuerySearchParameter->setQueries($keywords);
     $searchParameters[] = $relatedToQuerySearchParameter;
 
     // Create language search parameter (optional).
@@ -102,16 +125,17 @@ class GetKeywordIdeas {
     $location = new Location(1012852);
 //      $location->id = 1012852; //2040
     $LocationSearchParameter = new LocationSearchParameter();
-    $LocationSearchParameter->setLocations([$location]);
+    $LocationSearchParameter->setLocations($locations);
     $searchParameters[] = $LocationSearchParameter;
 
     $selector->setSearchParameters($searchParameters);
-    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+//    $selector->setPaging(new Paging(0, 30/*self::PAGE_LIMIT*/));
+    $selector->setPaging(new Paging($page, 30/*self::PAGE_LIMIT*/));
       header('Content-Type: application/json');
       header("HTTP/1.1 200 OK");
     $dataJson=null;
     $totalNumEntries = 0;
-    do {
+//    do {
       // Retrieve targeting ideas one page at a time, continuing to request
       // pages until all of them have been retrieved.
       $page = $targetingIdeaService->get($selector);
@@ -126,25 +150,19 @@ class GetKeywordIdeas {
               ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)
               ? $data[AttributeType::SEARCH_VOLUME]->getValue() : 0;
           $categoryIds =
-              ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue()
-                  === null)
-              ? $categoryIds = '' : implode(', ', $data[
-                  AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
-//          printf(
-//              "Keyword idea with text '%s', category IDs (%d) and average "
-//                  . "monthly search volume %d was found.\n",
-//              $keyword,
-//              $categoryIds,
-//              $searchVolume
-//          );
+              ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue() === null)
+              ? $categoryIds = '' : implode(', ', $data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
             $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume];
-
         }
       }
-
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+//echo '<pre>';
+//var_dump($selector->getPaging()->getStartIndex());
+//var_dump($page->getEntries());
+//echo '</pre>';
+//die();
+//      $selector->getPaging()->setStartIndex(
+//          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+//    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
       echo json_encode($dataJson);
       die();

@@ -6,15 +6,27 @@
  * Time: 14:38
  */
 header('Content-Type: application/json');
-$serverName = "localhost";
-$username = "root";
-$password = "root";
-$db = 'keyword-planner';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'conf.php';
+$host = $GLOBALS['PDOconnect']['host'];
+$dbname = $GLOBALS['PDOconnect']['dbname'];
+$username = $GLOBALS['PDOconnect']['username'];
+$password = $GLOBALS['PDOconnect']['password'];
+//echo '<pre>';
+////print_r($_SESSION);
+////print_r($_COOKIE);
+//print_r(session_id());
+//echo '</pre>';
+//die();
 if($_SERVER['REQUEST_METHOD']=='OPTIONS'){
     die('ok');
 }
 try {
-    $conn = new PDO("mysql:host=$serverName;dbname=$db", $username, $password);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //    echo "Connected successfully";
@@ -23,12 +35,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
     die();
 }
-$GLOBALS['PDOconnect']=[
-    'host'=>'localhost',
-    'username'=>'root',
-    'password'=>'root',
-    'dbname'=>'keyword-planner',
-];
+
 
 if (isset($_GET['action'])) {
 
@@ -39,8 +46,7 @@ if (isset($_GET['action'])) {
         case 'login':
             require_once 'login.php';
             break;
-        case 2:
-            echo "i equals 2";
+        case 'target_locations':
             break;
         default:
             echo "404";

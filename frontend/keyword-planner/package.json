@@ -12,7 +12,12 @@
     "axios": "^0.16.2",
     "vue": "^2.3.3",
     "vue-axios": "^2.0.2",
-    "vue-cookie": "^1.1.4"
+    "vue-cookie": "^1.1.4",
+    "vue-google-maps": "^0.1.21",
+    "vue-localstorage": "^0.3.0",
+    "vue2-autocomplete-js": "0.0.4",
+    "vue2-google-maps": "^0.7.10",
+    "vuejs-autocomplete": "^0.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

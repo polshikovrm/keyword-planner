@@ -36,10 +36,13 @@ try {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($row) {
         unset($_COOKIE['PHPSESSID']);
-        session_destroy();
+        if(session_id()){
+            session_destroy();
+        }
         session_start();
 
         $token = session_id();
+        setcookie("PHPSESSID", $token, 0, "/", "localhost", 1);
         $sql = "UPDATE user SET user.token = :token WHERE user.id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $row['id']);
