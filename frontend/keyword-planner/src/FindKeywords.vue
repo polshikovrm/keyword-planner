@@ -113,10 +113,10 @@
          console.log(GoogleCharts.api.visualization);
         debugger
 
-        var chart = new GoogleCharts.api.visualization.Bar(document.getElementById('chart_div'));
+//        var chart = new GoogleCharts.api.visualization.Bar(document.getElementById('chart_div'));
         // Convert the Classic options to Material options.
 //        chart.draw(data, GoogleCharts.api.Bar.convertOptions(options));
-        chart.draw(data, options);
+//        chart.draw(data, options);
 
 
 //
