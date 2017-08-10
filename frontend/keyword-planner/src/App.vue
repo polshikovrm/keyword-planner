@@ -42,7 +42,7 @@
                     axios.post(this.$config.api+'?action=login',
                         {email: this.email, password: this.password},
                     ).then((response) => {
-                         console.log('response',response.data);
+//                         console.log('response',response.data);
                         this.loading = false;
                         if (200 === response.status){
                             if(response.data.successfully){
