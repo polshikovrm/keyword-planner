@@ -52,9 +52,9 @@ class GetKeywordIdeas {
     $targetingIdeaService = $adWordsServices->get($session, TargetingIdeaService::class);
 
       $post = json_decode(file_get_contents('php://input'), true);
-      $keywords='';
+      $keywords = [];
       if (!empty($post['keyword'])) {
-          $keywords = explode(',',$post['keyword']) ;
+          $keywords = explode(',', $post['keyword']);
           $keywords = array_map('trim', $keywords);
       }
       $locations=[];
@@ -97,7 +97,7 @@ class GetKeywordIdeas {
 
     $searchParameters = [];
     // Create seed keyword.
-    $keyword = 'tattoo';
+//    $keywords = ['tattoo'];
     // Create related to query search parameter.
     $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
     $relatedToQuerySearchParameter->setQueries($keywords);
@@ -122,20 +122,20 @@ class GetKeywordIdeas {
     $networkSearchParameter = new NetworkSearchParameter();
     $networkSearchParameter->setNetworkSetting($networkSetting);
     $searchParameters[] = $networkSearchParameter;
-    $location = new Location(1012852);
+//    $location = new Location(1012852);
 //      $location->id = 1012852; //2040
     $LocationSearchParameter = new LocationSearchParameter();
     $LocationSearchParameter->setLocations($locations);
     $searchParameters[] = $LocationSearchParameter;
 
     $selector->setSearchParameters($searchParameters);
-//    $selector->setPaging(new Paging(0, 30/*self::PAGE_LIMIT*/));
-    $selector->setPaging(new Paging($page, 30/*self::PAGE_LIMIT*/));
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+//    $selector->setPaging(new Paging($page, 30/*self::PAGE_LIMIT*/));
       header('Content-Type: application/json');
       header("HTTP/1.1 200 OK");
     $dataJson=null;
     $totalNumEntries = 0;
-//    do {
+    do {
       // Retrieve targeting ideas one page at a time, continuing to request
       // pages until all of them have been retrieved.
       $page = $targetingIdeaService->get($selector);
@@ -145,6 +145,15 @@ class GetKeywordIdeas {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $targetingIdea) {
           $data = MapEntries::toAssociativeArray($targetingIdea->getData());
+            $targeted_monthly_searches = $data[AttributeType::TARGETED_MONTHLY_SEARCHES]->getValue();
+            $tms = [];
+            foreach ($targeted_monthly_searches as $item) {
+                $tms[] = [
+                    'year' => $item->getYear(),
+                    'month' => $item->getMonth(),
+                    'count' => $item->getCount()
+                ];
+            }
           $keyword = $data[AttributeType::KEYWORD_TEXT]->getValue();
           $searchVolume =
               ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)
@@ -152,17 +161,14 @@ class GetKeywordIdeas {
           $categoryIds =
               ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue() === null)
               ? $categoryIds = '' : implode(', ', $data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
-            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume];
+
+            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume,'targetedMonthlySearches'=>$tms];
         }
       }
-//echo '<pre>';
-//var_dump($selector->getPaging()->getStartIndex());
-//var_dump($page->getEntries());
-//echo '</pre>';
-//die();
-//      $selector->getPaging()->setStartIndex(
-//          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-//    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
       echo json_encode($dataJson);
       die();

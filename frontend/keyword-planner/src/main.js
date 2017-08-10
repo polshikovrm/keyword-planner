@@ -35,7 +35,8 @@ new Vue({
             if(this.currentRoute =='/' && token==null){
                 return routes[this.currentRoute] || Page404
             }else if(this.currentRoute =='/' && token!==null){
-               return window.location.href = '/targetLocations';
+                window.location.href = '/targetLocations';
+                return;
             }
              if(this.currentRoute !=='/' && token!==null){
                  return routes[this.currentRoute] || Page404
