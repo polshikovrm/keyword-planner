@@ -46,7 +46,6 @@
                         this.loading = false;
                         if (200 === response.status){
                             if(response.data.successfully){
-                                debugger
                                 this.$cookie.set('PHPSESSID', response.data.successfully.token, 1);
                                 window.location.href = '/targetLocations';
                             }

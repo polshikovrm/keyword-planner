@@ -54,7 +54,7 @@
     Vue.use(VueGoogleMaps, {
         load: {
             key: 'AIzaSyBoV5tHJ4v6pQVp0xSx8NdipvhZe3ECEA8',
-            v: '',
+            v: '3',
             // libraries: 'places', //// If you need to use place input
         }
     });
@@ -64,6 +64,7 @@
         components: { Autocomplete},
         data(){
             return {
+                loading: false,
                 locations:this.getlocations(),
                 center:this.getCentreDefoult(),
                 infoOptions: {
@@ -100,6 +101,7 @@
                     return item.criteria_id == id;
                 }).pop();
                 if (!item) {
+                    this.loading=true;
                     axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
                         params: {
                             address: obj.canonical_name,
@@ -125,9 +127,11 @@
                             obj.marker = marker;
                             this.locations.push(obj);
                             localStorage.setItem('locations', JSON.stringify(this.locations));
+                            this.loading=true;
                         }
                     }).catch(e => {
                          console.log('error',e);
+                        this.loading=true;
                     })
                 }
             },
