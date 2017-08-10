@@ -1,18 +1,29 @@
 <template>
     <div id="app">
-        <div class="wrapper">
-            home
-            <form class="form-inline" v-on:submit.prevent="login()">
-                <div class="input-group col-12">
-                    <input autocomplete="off" v-model="email" autofocus="autofocus" class="form-control form-control-lg"
-                           placeholder="email@company.com" required="required" type="email">
-                    <input autocomplete="off" v-model="password" autofocus="autofocus"
-                           class="form-control form-control-lg" placeholder="password" required="required"
-                           type="password">
-                    <span class="input-group-btn">
-                                <button type="submit" class="btn  btn-success">
-                                    <i v-if="loading" class="fa fa-spinner fa-spin"> </i> login</button>
-                            </span>
+        <div class="login-frame">
+            <div class="text-holder">
+                <div class="text">
+                    <h1>Adwords ROI Calculator</h1>
+                    <p>Predictable Growth made easy.</p>
+                    <p>Calculate the return on investment you can expect from an Adwords campaign, based on keyword data from Google and conversion data from ClientFlo.</p>
+                </div>
+                <div class="copyright">
+                    <p>powered by <a href="#" class="logo-copyright"><img src="src/assets/copyright-logo.png" alt="ClientFlo"></a></p>
+                </div>
+            </div>
+            <form class="login-form" v-on:submit.prevent="login()">
+                <div class="input-group">
+                    <div class="input-row">
+                        <input autocomplete="off" v-model="email" autofocus="autofocus" class="form-control form-control-lg"
+                               placeholder="Username" required="required" type="email">
+                    </div>
+                    <div class="input-row">
+                        <input autocomplete="off" v-model="password" autofocus="autofocus"
+                               class="form-control form-control-lg" placeholder="Password" required="required" type="password">
+                    </div>
+                    <div class="input-row">
+                        <button type="submit" class="btn gray">Login <span class="arrow-left"></span></button>
+                    </div>
                 </div>
             </form>
         </div>

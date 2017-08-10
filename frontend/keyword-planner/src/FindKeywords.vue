@@ -111,7 +111,7 @@
             bar: { groupWidth: "90%" }
         };
          console.log(GoogleCharts.api.visualization);
-        debugger
+        /*debugger*/
 
 //        var chart = new GoogleCharts.api.visualization.Bar(document.getElementById('chart_div'));
         // Convert the Classic options to Material options.
