@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div>
+        <div class="wrapper">
             home
             <form class="form-inline" v-on:submit.prevent="login()">
                 <div class="input-group col-12">

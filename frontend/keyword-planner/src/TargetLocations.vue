@@ -10,9 +10,11 @@
                 :on-select="getData"
         >
         </autocomplete>
-        <li v-for="(item, index) in locations">
-            <p>{{ item.canonical_name }} -{{ item.target_type }} <b  v-on:click="remove(index)">Remove</b> <b  v-on:click="setCentre(index)">Nearby</b> </p>
-        </li>
+        <ul>
+            <li v-for="(item, index) in locations">
+                <p>{{ item.canonical_name }} -{{ item.target_type }} <b  v-on:click="remove(index)">Remove</b> <b  v-on:click="setCentre(index)">Nearby</b> </p>
+            </li>
+        </ul>
         <div >
             <gmap-map
                     :center="center"
@@ -37,7 +39,6 @@
                         @click="m.marker.ifw=!m.marker.ifw">
                 </gmap-marker>
             </gmap-map>
-
         </div>
     </div>
 </template>
@@ -77,7 +78,8 @@
             getCentreDefoult(){
                 var center = {lat: 10.0, lng: 10.0};
                 var location = JSON.parse(localStorage.getItem('locations'));
-                if (location[location.length - 1]) {
+                debugger;
+                if (location !==null && location[location.length - 1]) {
                     center = location[location.length - 1].marker.position;
                 }
                 return center;
