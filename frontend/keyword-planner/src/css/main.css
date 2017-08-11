@@ -140,6 +140,7 @@ input[type=url], input[type=search], input[type=tel], input[type=email], input[t
 }
 input[type="search"]::-webkit-search-cancel-button{-webkit-appearance: none;}
 input:-webkit-autofill {
+    background: #fcce01 !important;
     -webkit-box-shadow:  0 0 0 50px #fcce01 inset !important;
     -webkit-text-fill-color: #666;
 }
@@ -343,7 +344,7 @@ p{
         height: 22px;
     }
 }
-@media only screen and (max-width: 992px) and (orientation: portrait){
+@media only screen and (max-width: 1100px) and (orientation: portrait){
     p{
         margin: 0 0 14px;
     }
@@ -360,11 +361,11 @@ p{
         -webkit-background-size: 446px 363px;
         background-size: 446px 363px;
         background-position: 77% 55%;
-        max-width: 80%;
     }
     .login-frame .text{
         font-size:30px;
         line-height: 1.17;
+        max-width: 80%;
     }
     .login-frame .copyright{
         bottom: auto;
@@ -388,9 +389,26 @@ p{
     }
 
 }
+@media only screen and (max-width: 992px) and (orientation: landscape){
+
+}
 @media only screen and (max-width: 767px) and (orientation: portrait){
     .login-frame .text-holder{
         flex-basis: 62.2%;
+    }
+    .login-frame .copyright{
+        right: 10px;
+        top: 11px;
+    }
+    .login-form{
+        flex-basis: 37.8%;
+        padding: 10px 20px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .login-frame .text-holder{
+        -webkit-background-size: 270px 220px;
+        background-size: 270px 220px;
     }
     .login-frame h1{
         font-size:52px;
@@ -402,17 +420,10 @@ p{
     }
     .login-frame .copyright{
         font-size:11px;
-        right: 10px;
-        top: 11px;
     }
     .logo-copyright img{
         width: 92px;
         height: 12px;
-    }
-
-    .login-form{
-        flex-basis: 37.8%;
-        padding: 10px 20px;
     }
     .login-form input{
         font-size:15px;

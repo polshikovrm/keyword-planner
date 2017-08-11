@@ -1,15 +1,30 @@
 <template>
     <div id="app">
-        <div>
-            target Locations
+        <div class="content-holder">
+            <div class="title-block">
+                <h1><span class="number">1</span>Target Locations</h1>
+            </div>
+            <div class="clearfix">
+                <div class="location-content">
+                    <form action="#" class="search-form">
+                        <fieldset>
+                            <div class="search-input">
+                                <autocomplete
+                                        v-bind:url="getUrl()"
+                                        anchor="canonical_name"
+                                        label="target_type"
+                                        :on-select="getData"
+                                >
+                                </autocomplete>
+                            </div>
+                            <input type="submit" value="Search">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
-        <autocomplete
-                v-bind:url="getUrl()"
-                anchor="canonical_name"
-                label="target_type"
-                :on-select="getData"
-        >
-        </autocomplete>
+
+
         <ul>
             <li v-for="(item, index) in locations">
                 <p>{{ item.canonical_name }} -{{ item.target_type }} <b  v-on:click="remove(index)">Remove</b> <b  v-on:click="setCentre(index)">Nearby</b> </p>
