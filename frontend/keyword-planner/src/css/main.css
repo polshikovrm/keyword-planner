@@ -443,6 +443,8 @@ p{
     left: 26px;
     right: 26px;
 }
+/*----------- RoiCalculator page styles --------------*/
+
 @media only screen and (max-width: 2060px){
     .content-holder{
         max-width: none;

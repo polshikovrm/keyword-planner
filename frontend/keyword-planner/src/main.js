@@ -3,6 +3,7 @@ import App from './App.vue'
 import Page404 from './404.vue'
 import TargetLocations from './TargetLocations.vue'
 import FindKeywords from './FindKeywords.vue'
+import RoiCalculator from './RoiCalculator.vue'
 
 var VueCookie = require('vue-cookie');
 // Tell Vue to use the plugin
@@ -13,7 +14,8 @@ Vue.use(VueCookie);
 const routes = {
     '/': App,
     '/targetLocations': TargetLocations,
-    '/findKeywords': FindKeywords
+    '/findKeywords': FindKeywords,
+    '/roi-calculator': RoiCalculator
 }
 
 Vue.mixin({
