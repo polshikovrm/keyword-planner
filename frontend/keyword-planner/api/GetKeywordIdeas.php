@@ -73,14 +73,15 @@ class GetKeywordIdeas {
                 $locations[]=$location;
             }
       }
-      $page = 0;
-      if (!empty($post['page'])) {
-          $page = $post['page'];
+      $RequestType = RequestType::IDEAS;
+      if (!empty($post['requestType']) && ($post['requestType'] == 'STATS'|| $post['requestType'] == 'IDEAS')) {
+          $RequestType =  $post['requestType'];
       }
+
 
     // Create selector.
     $selector = new TargetingIdeaSelector();
-    $selector->setRequestType(RequestType::IDEAS);
+    $selector->setRequestType($RequestType);
     $selector->setIdeaType(IdeaType::KEYWORD);
     $selector->setRequestedAttributeTypes([
 //        AttributeType::UNKNOWN,
@@ -124,9 +125,11 @@ class GetKeywordIdeas {
     $searchParameters[] = $networkSearchParameter;
 //    $location = new Location(1012852);
 //      $location->id = 1012852; //2040
-    $LocationSearchParameter = new LocationSearchParameter();
-    $LocationSearchParameter->setLocations($locations);
-    $searchParameters[] = $LocationSearchParameter;
+      if (count($locations) != 0) {
+          $LocationSearchParameter = new LocationSearchParameter();
+          $LocationSearchParameter->setLocations($locations);
+          $searchParameters[] = $LocationSearchParameter;
+      }
 
     $selector->setSearchParameters($searchParameters);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
