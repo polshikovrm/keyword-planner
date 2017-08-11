@@ -162,6 +162,11 @@ button[type="submit"]{
 p{
     margin: 0 0 13px;
 }
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
 .login-frame{
     display: flex;
     justify-content: space-between;
@@ -272,6 +277,178 @@ p{
 .btn .arrow-left{
     margin: 0 0 0 16px;
 }
+/*----------- targetLocations styles ----------------*/
+.content-holder h1{
+    font: 58px/1 'flamabook', Arial, Helvetica, sans-serif;
+    color: #333;
+    margin: 0 0 38px;
+}
+.number{
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 56px;
+    vertical-align: top;
+    text-align: center;
+    background: #fcce01;
+    border-radius: 50%;
+    margin: 0 47px 0 0;
+}
+.content-holder{
+    max-width: 2052px;
+    margin: 0 auto;
+    padding: 33px 0;
+}
+.title-block{
+    padding: 0 0 40px;
+}
+.location-content{
+    margin: 0 -26px;
+    font-family: 'flamabook', Arial, Helvetica, sans-serif;
+}
+.location-holder{
+    padding: 0 26px;
+    width: 50%;
+    float: left;
+}
+.search-form{
+    background: #f2f2f2;
+    margin: 0 0 45px;
+}
+.autocomplete-wrapper{
+    position: relative;
+}
+.search-form .autocomplete-input{
+    color: #b3b3b3;
+    width: 100%;
+    height: 107px;
+    display: block;
+    border: none;
+    font:33px/1.3 'flamabook', Arial, Helvetica, sans-serif;
+    padding: 27px 112px 38px 27px;
+}
+.search-form .autocomplete-input:-moz-placeholder{
+    color: #b3b3b3;
+}
+.search-form .autocomplete-input::-webkit-input-placeholder{
+    color: #b3b3b3;
+}
+.search-form .autocomplete-input:-ms-input-placeholder{
+    color: #b3b3b3;
+
+}
+.search-form .autocomplete-input::-moz-placeholder{
+    color: #b3b3b3;
+    opacity: 1;
+}
+.autocomplete-wrapper .autocomplete-list{
+    position: absolute;
+    top: 100%;
+    left:0;
+    right:0;
+    background: #f2f2f2;
+    color: #b3b3b3;
+    border-top: 1px solid #b3b3b3;
+    font-size:20px;
+    z-index: 9;
+}
+.autocomplete-wrapper .autocomplete-list ul{
+    margin: 0;
+    padding: 27px 0;
+    list-style: none;
+
+}
+.autocomplete-wrapper .autocomplete-list a{
+    color: #b3b3b3;
+    display: block;
+    padding: 10px 27px;
+}
+.autocomplete-wrapper .autocomplete-list a:hover{
+    background: #b3b3b3;
+    text-decoration: none;
+    color: #f2f2f2;
+}
+.search-form input[type='submit']{
+    float: right;
+    width: 107px;
+    background:#fcce01 url(../assets/sprite.png) no-repeat 31px -72px;
+    text-indent: -9999px;
+    border: none;
+    height: 107px;
+    margin: -107px 0 0;
+    cursor: pointer;
+}
+.results-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid #f2f2f2;
+    font-size:33px;
+    color: #00b3e3;
+}
+.results-list .title{
+    background: #f2f2f2;
+    color: #808080;
+    font-family: 'flamalight', Arial, Helvetica, sans-serif;
+    padding: 20px 26px 29px;
+}
+.results-list li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 16px 25px 12px;
+}
+.results-list li:last-child{
+    border: none;
+}
+.results-list .width1{
+    width: calc(100% - 255px);
+}
+.results-list p{
+    margin: 0;
+}
+.results-list .width2{
+    width: 250px;
+    font-size:26px;
+    text-align: right;
+}
+.results-list .func{
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    padding: 0 10px 13px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.results-list .func:hover{
+    color: #fcce01;
+}
+.results-list .func:last-child{
+    border: none;
+}
+.map-holder{
+    float: left;
+    width: 50%;
+    padding: 48.8% 26px 0;
+    position: relative;
+}
+.vue-map-container{
+    width: calc(100% - 52px) !important;
+    height:  100% !important;
+    position: absolute !important;
+    top: 0;
+    left: 26px;
+    right: 26px;
+}
+@media only screen and (max-width: 2060px){
+    .content-holder{
+        max-width: none;
+        padding: 33px 113px;
+    }
+}
 @media only screen and (max-width: 1800px){
     .login-frame h1{
         font-size:87px;
@@ -282,7 +459,71 @@ p{
     .login-frame .copyright{
         left: 44px;
     }
+    /*----------- targetLocations styles ----------------*/
+    .content-holder{
+        padding: 60px 80px;
+    }
+    .content-holder h1{
+        font-size:37px;
+    }
+    .number{
+        width: 38px;
+        height: 38px;
+        font-size:20px;
+        line-height: 36px;
+        margin: 0 30px 0 0;
+    }
+    .search-form .autocomplete-input{
+        font-size:20px;
+        padding: 20px 72px 24px 22px;
+        height: 70px;
+    }
+    .search-form input[type="submit"]{
+        width: 70px;
+        height: 70px;
+        margin: -70px 0 0;
+        background-position: -54px 17px;
+    }
+    .location-content{
+        margin: 0 -17px;
+    }
+    .location-holder{
+        padding: 0 17px;
+    }
+    .map-holder{
+        padding: 54.3% 17px 0;
+    }
+    .results-list{
+        font-size:21px;
+    }
+    .results-list .width2{
+        font-size:17px;
+    }
 
+}
+@media only screen and (max-width: 1500px){
+    /*----------- targetLocations styles ----------------*/
+    .title-block{
+        text-align: center;
+    }
+    .search-form{
+        margin: 0 0 27px;
+    }
+    .results-list li{
+        padding: 9px 10px 15px 17px;
+    }
+    .results-list .title{
+        padding: 13px 20px 18px;
+    }
+    .results-list .width1{
+        width: calc(100% - 162px);
+    }
+    .results-list .width2{
+        width: 162px;
+    }
+    .results-list .func{
+        padding: 0 4px 6px;
+    }
 }
 @media only screen and (max-width: 1120px){
     p{
@@ -342,6 +583,18 @@ p{
     .logo-copyright img{
         width: 168px;
         height: 22px;
+    }
+    /*----------- targetLocations styles ----------------*/
+    .content-holder{
+        padding: 31px 20px;
+    }
+    .results-list .width1{
+        width: calc(100% - 133px);
+        padding: 0 10px 0 0;
+        word-wrap: break-word;
+    }
+    .results-list .width2{
+        width: 133px;
     }
 }
 @media only screen and (max-width: 1100px) and (orientation: portrait){
@@ -440,5 +693,81 @@ p{
     }
     .login-form button[type="submit"]{
         padding: 4px 13px 6px 22px;
+    }
+    /*----------- targetLocations styles ----------------*/
+    .title-block{
+        text-align: left;
+        padding: 0;
+    }
+    .content-holder h1{
+        font-size:25px;
+        margin: 0 0 26px;
+    }
+    .number{
+        font-size:13px;
+        line-height: 23px;
+        width: 25px;
+        height: 25px;
+        margin: 0 20px 0 0;
+    }
+    .location-content{
+        margin: 0;
+    }
+    .location-holder{
+        float: none;
+        width: 100%;
+        padding: 0 0 10px;
+    }
+    .search-form{
+        margin: 0 0 19px;
+    }
+    .search-form .autocomplete-input{
+        height: 43px;
+        font-size:13px;
+        padding: 8px 50px 10px 10px;
+    }
+    .search-form input[type="submit"]{
+        height: 43px;
+        width: 43px;
+        margin: -43px 0 0;
+        background-position: -79px -53px;
+    }
+    .autocomplete-wrapper .autocomplete-list{
+        font-size:13px;
+    }
+    .autocomplete-wrapper .autocomplete-list ul{
+        padding: 10px 0;
+    }
+    .autocomplete-wrapper .autocomplete-list a{
+        padding: 5px 10px;
+    }
+    .results-list{
+        font-size:11px;
+    }
+    .results-list .width1{
+        width: auto;
+    }
+    .results-list .width2{
+        font-size:10px;
+        width: auto;
+    }
+    .results-list li{
+        padding: 7px 6px 8px;
+    }
+    .results-list .title{
+        padding: 7px 8px 9px;
+    }
+    .results-list .func{
+        padding: 0 4px;
+    }
+    .map-holder{
+        float: none;
+        width: 100%;
+        padding: 79% 0 0;
+    }
+    .vue-map-container{
+        left:0;
+        right:0;
+        width: 100% !important;
     }
 }

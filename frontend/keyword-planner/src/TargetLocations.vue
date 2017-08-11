@@ -4,12 +4,12 @@
             <div class="title-block">
                 <h1><span class="number">1</span>Target Locations</h1>
             </div>
-            <div class="clearfix">
-                <div class="location-content">
+            <div class="clearfix location-content">
+                <div class="location-holder">
                     <form action="#" class="search-form">
                         <fieldset>
                             <div class="search-input">
-                                <autocomplete
+                                <autocomplete class="input" placeholder="Enter a location to target"
                                         v-bind:url="getUrl()"
                                         anchor="canonical_name"
                                         label="target_type"
@@ -20,41 +20,51 @@
                             <input type="submit" value="Search">
                         </fieldset>
                     </form>
+
+                    <ul class="results-list" v-if="locations.length!==0">
+                        <li class="title">Locations</li>
+                        <li v-for="(item, index) in locations">
+                            <div class="width1">
+                                <p>{{ item.canonical_name }} -{{ item.target_type }}</p>
+                            </div>
+                            <div class="width2">
+                                <span v-on:click="remove(index)" class="func">Remove</span>
+                                <span v-on:click="setCentre(index)" class="func">Nearby</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="map-holder">
+                    <gmap-map
+                            :center="center"
+                            :zoom="5"
+                            style="width: 100%; height: 100%"
+                    >
+                        <gmap-info-window
+                                :key="index"
+                                v-for="(m, index) in locations"
+                                :position="m.marker.position"
+                                :options="infoOptions"
+                                :content="m.marker.ifw2text"
+                                :opened="m.marker.ifw"
+                                @closeclick="m.marker.ifw=false"
+                        ></gmap-info-window>
+                        <gmap-marker
+                                :key="index"
+                                v-for="(m, index) in locations"
+                                :position="m.marker.position"
+                                :clickable="true"
+                                :draggable="false"
+                                @click="m.marker.ifw=!m.marker.ifw">
+                        </gmap-marker>
+                    </gmap-map>
                 </div>
             </div>
         </div>
 
 
-        <ul>
-            <li v-for="(item, index) in locations">
-                <p>{{ item.canonical_name }} -{{ item.target_type }} <b  v-on:click="remove(index)">Remove</b> <b  v-on:click="setCentre(index)">Nearby</b> </p>
-            </li>
-        </ul>
-        <div >
-            <gmap-map
-                    :center="center"
-                    :zoom="5"
-                    style="width: 700px; height: 500px"
-            >
-                <gmap-info-window
-                        :key="index"
-                        v-for="(m, index) in locations"
-                        :position="m.marker.position"
-                        :options="infoOptions"
-                        :content="m.marker.ifw2text"
-                        :opened="m.marker.ifw"
-                        @closeclick="m.marker.ifw=false"
-                ></gmap-info-window>
-                <gmap-marker
-                        :key="index"
-                        v-for="(m, index) in locations"
-                        :position="m.marker.position"
-                        :clickable="true"
-                        :draggable="false"
-                        @click="m.marker.ifw=!m.marker.ifw">
-                </gmap-marker>
-            </gmap-map>
-        </div>
+
     </div>
 </template>
 <script src="https://vuejs.org/js/vue.min.js"></script>
