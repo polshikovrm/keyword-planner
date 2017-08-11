@@ -1,0 +1,433 @@
+@font-face {
+    font-family: 'flamabasic';
+    src: url('../fonts/flama-basic-webfont.eot');
+    src: url('../fonts/flama-basic-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-basic-webfont.woff2') format('woff2'),
+        url('../fonts/flama-basic-webfont.woff') format('woff'),
+        url('../fonts/flama-basic-webfont.ttf') format('truetype'),
+        url('../fonts/flama-basic-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamabook';
+    src: url('../fonts/flama-book-webfont.eot');
+    src: url('../fonts/flama-book-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-book-webfont.woff2') format('woff2'),
+        url('../fonts/flama-book-webfont.woff') format('woff'),
+        url('../fonts/flama-book-webfont.ttf') format('truetype'),
+        url('../fonts/flama-book-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamabook_italic';
+    src: url('../fonts/flama-bookitalic-webfont.eot');
+    src: url('../fonts/flama-bookitalic-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-bookitalic-webfont.woff2') format('woff2'),
+        url('../fonts/flama-bookitalic-webfont.woff') format('woff'),
+        url('../fonts/flama-bookitalic-webfont.ttf') format('truetype'),
+        url('../fonts/flama-bookitalic-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamalight';
+    src: url('../fonts/flama-light-webfont.eot');
+    src: url('../fonts/flama-light-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-light-webfont.woff2') format('woff2'),
+        url('../fonts/flama-light-webfont.woff') format('woff'),
+        url('../fonts/flama-light-webfont.ttf') format('truetype'),
+        url('../fonts/flama-light-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamalight_italic';
+    src: url('../fonts/flama-lightitalic-webfont.eot');
+    src: url('../fonts/flama-lightitalic-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-lightitalic-webfont.woff2') format('woff2'),
+        url('../fonts/flama-lightitalic-webfont.woff') format('woff'),
+        url('../fonts/flama-lightitalic-webfont.ttf') format('truetype'),
+        url('../fonts/flama-lightitalic-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamabasic_italic';
+    src: url('../fonts/flama-basicitalic-webfont.eot');
+    src: url('../fonts/flama-basicitalic-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-basicitalic-webfont.woff2') format('woff2'),
+        url('../fonts/flama-basicitalic-webfont.woff') format('woff'),
+        url('../fonts/flama-basicitalic-webfont.ttf') format('truetype'),
+        url('../fonts/flama-basicitalic-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamamedium';
+    src: url('../fonts/flama-medium-webfont.eot');
+    src: url('../fonts/flama-medium-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-medium-webfont.woff2') format('woff2'),
+        url('../fonts/flama-medium-webfont.woff') format('woff'),
+        url('../fonts/flama-medium-webfont.ttf') format('truetype'),
+        url('../fonts/flama-medium-webfont.svg') format('svg');
+}
+@font-face {
+    font-family: 'flamamedium_italic';
+    src: url('../fonts/flama-mediumitalic-webfont.eot');
+    src: url('../fonts/flama-mediumitalic-webfont.eot') format('embedded-opentype'),
+        url('../fonts/flama-mediumitalic-webfont.woff2') format('woff2'),
+        url('../fonts/flama-mediumitalic-webfont.woff') format('woff'),
+        url('../fonts/flama-mediumitalic-webfont.ttf') format('truetype'),
+        url('../fonts/flama-mediumitalic-webfont.svg') format('svg');
+}
+*{max-height:10000px;}
+html{box-sizing:border-box;}
+*, *:before, *:after{box-sizing:inherit;}
+body{
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:none;
+    margin:0;
+    min-width:320px;
+    font:20px/1 'flamalight', Arial, Helvetica, sans-serif;
+    color:#666;
+    background:#fff;
+}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section{display:block;}
+figure{
+    margin:0;
+    padding:0;
+}
+img{
+    vertical-align:top;
+    max-width:100%;
+    border:0;
+}
+a{
+    color:#000;
+    text-decoration:none;
+    outline:none;
+}
+a:hover{text-decoration:underline;}
+button::-moz-focus-inner{
+    padding:0;
+    border:0;
+}
+form,
+fieldset{
+    margin:0;
+    padding:0;
+    border:0;
+}
+input,
+textarea,
+select{
+    font:12px Arial, Helvetica, sans-serif;
+    vertical-align:middle;
+    outline:none;
+}
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+:-moz-placeholder{
+    color: #666;
+}
+::-webkit-input-placeholder{
+    color: #666;
+}
+:-ms-input-placeholder{
+    color: #666;
+
+}
+::-moz-placeholder{
+    color: #666;
+    opacity: 1;
+}
+input[type="image"]{padding:0;border:none;}
+input[type=url], input[type=search], input[type=tel], input[type=email], input[type=text], input[type=password], input[type=file], input[type=submit], textarea{
+    -webkit-appearance:none;
+    background: transparent;
+}
+input[type="search"]::-webkit-search-cancel-button{-webkit-appearance: none;}
+input:-webkit-autofill {
+    -webkit-box-shadow:  0 0 0 50px #fcce01 inset !important;
+    -webkit-text-fill-color: #666;
+}
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder{
+    color:transparent;
+}
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder{
+    color:transparent;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder{
+    color:transparent;
+}
+button[type="submit"]{
+    cursor: pointer;
+}
+p{
+    margin: 0 0 13px;
+}
+.login-frame{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 100vh;
+}
+.login-frame .text-holder{
+    background: #515c63 url(../assets/login-bg.png) no-repeat 87% 75%;
+    width: 67%;
+    color: #fff;
+    padding: 52px 40px 98px 110px;
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-frame h1{
+    margin: 0 0 47px -12px;
+    color: #ffce00;
+    font: 166px/1 'flamabasic', Arial, Helvetica, sans-serif;
+}
+.login-frame .text{
+    max-width: 960px;
+    font-size:44px;
+    line-height: 1.15;
+}
+.login-frame .copyright{
+    position: absolute;
+    bottom: 50px;
+    padding: 0 0 0 11px;
+    color: #b3b3b3;
+    font-size:35px;
+    left: 110px;
+}
+.login-form{
+    padding: 52px 75px 52px 71px;
+    width: 33%;
+    background: #fcce01;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+}
+.login-form .input-group{
+    width: 100%;
+}
+.login-form .input-row{
+    margin: 67px 0 0;
+    overflow: hidden;
+}
+.login-form .input-row:first-child{
+    margin: 0;
+}
+.login-form .input-row:last-child{
+    margin: 56px 0 0;
+}
+.login-form input{
+    width: 100%;
+    display: block;
+    font-size:27px;
+    padding: 13px 0;
+    border: solid #515c63;
+    border-width: 0 0 1px;
+    background: transparent;
+    box-shadow: none;
+}
+.login-form button[type="submit"]{
+    float: right;
+    padding: 11px 27px 11px 36px;
+    cursor: pointer;
+}
+.btn{
+    display: inline-block;
+    vertical-align: top;
+    font-size:24px;
+    color: #fff;
+    text-align: center;
+    border-radius: 26px;
+    background: #ffce00;
+    border: 1px solid #ffce00;
+    padding: 10px 15px;
+    transition: all 0.3s ease-out;
+}
+.btn:hover{
+    background: #fff;
+    color: #ffce00;
+}
+.btn.gray{
+    background: #515c63;
+    border: 1px solid #515c63;
+}
+.btn.gray:hover{
+    background: transparent;
+    color: #515c63;
+    border-color: #515c63;
+}
+.btn:hover .arrow-left{
+    background-position: 0 -39px;
+}
+.arrow-left{
+    background: url(../assets/sprite.png) no-repeat;
+    width: 11px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn .arrow-left{
+    margin: 0 0 0 16px;
+}
+@media only screen and (max-width: 1800px){
+    .login-frame h1{
+        font-size:87px;
+    }
+    .login-frame .text-holder{
+        padding: 49px 44px 100px;
+    }
+    .login-frame .copyright{
+        left: 44px;
+    }
+
+}
+@media only screen and (max-width: 1120px){
+    p{
+        margin: 0 0 7px;
+    }
+    .login-frame .text-holder{
+        width: 64.6%;
+    }
+    .login-frame h1{
+        margin: 0 0 40px -5px;
+    }
+    .login-frame .text{
+        max-width: 500px;
+        font-size:22px;
+        line-height: 1.18;
+    }
+    .login-form{
+        width: 35.4%;
+        padding: 20px 30px 20px 26px;
+    }
+    .login-form input{
+        font-size:18px;
+        padding: 9px 0;
+    }
+    .login-form .input-row{
+        margin: 40px 0 0;
+    }
+    .login-form .input-row:last-child{
+        margin: 36px 0 0;
+    }
+    .btn{
+        font-size:18px;
+    }
+    .login-form .btn{
+        background: #fcce01;
+        color: #666;
+        padding: 5px 18px 6px 30px;
+    }
+    .login-form .btn .arrow-left{
+        background-position: -21px -42px;
+        width: 9px;
+        height: 18px;
+        margin: 0 0 0 12px;
+    }
+    .login-form .btn:hover{
+        background: #666;
+        color: #fff;
+    }
+    .login-form .btn:hover .arrow-left{
+        background-position: -38px -42px;
+    }
+    .login-frame .copyright{
+        font-size:20px;
+        padding: 0;
+        bottom:42px;
+    }
+    .logo-copyright img{
+        width: 168px;
+        height: 22px;
+    }
+}
+@media only screen and (max-width: 992px) and (orientation: portrait){
+    p{
+        margin: 0 0 14px;
+    }
+    .login-frame{
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+    }
+    .login-frame .text-holder{
+        width: 100%;
+        flex-basis: 68.45%;
+        min-height:1px;
+        padding: 50px 34px 30px;
+        -webkit-background-size: 446px 363px;
+        background-size: 446px 363px;
+        background-position: 77% 55%;
+        max-width: 80%;
+    }
+    .login-frame .text{
+        font-size:30px;
+        line-height: 1.17;
+    }
+    .login-frame .copyright{
+        bottom: auto;
+        top: 18px;
+        text-align: right;
+        right: 28px;
+        font-size:18px;
+    }
+    .login-form{
+        width: 100%;
+        flex-basis: 31.55%;
+        min-height:1px;
+        padding: 20px 38px 20px 31px;
+    }
+    .login-frame h1{
+        font-size:85px;
+        margin: 0 0 25px;
+    }
+    .login-form .btn{
+        padding: 5px 16px 8px 30px;
+    }
+
+}
+@media only screen and (max-width: 767px) and (orientation: portrait){
+    .login-frame .text-holder{
+        flex-basis: 62.2%;
+    }
+    .login-frame h1{
+        font-size:52px;
+        margin: 0 0 30px;
+    }
+    .login-frame .text{
+        font-size:18px;
+        line-height: 1.2;
+    }
+    .login-frame .copyright{
+        font-size:11px;
+        right: 10px;
+        top: 11px;
+    }
+    .logo-copyright img{
+        width: 92px;
+        height: 12px;
+    }
+
+    .login-form{
+        flex-basis: 37.8%;
+        padding: 10px 20px;
+    }
+    .login-form input{
+        font-size:15px;
+        padding: 8px 0;
+    }
+    .login-form .input-row{
+        margin: 36px 0 0;
+    }
+    .login-form .input-row:last-child{
+        margin: 30px 0 0;
+    }
+    .btn{
+        font-size:16px;
+    }
+    .login-form button[type="submit"]{
+        padding: 4px 13px 6px 22px;
+    }
+}
