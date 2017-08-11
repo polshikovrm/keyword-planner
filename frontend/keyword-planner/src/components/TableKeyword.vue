@@ -42,7 +42,13 @@
 </template>
 <script>
 export default  {
-        props: ['queryResult','queryResultPage'],
+        props: ['queryResult'],
+        watch: {
+            queryResult: function (newVal) {
+                this.queryResul=newVal
+                    this.getResult();
+            }
+        },
         data(){
             return {
                 loading: false,
@@ -51,7 +57,7 @@ export default  {
                 offsetThisPage:0,
                 limitThisPage:30,
                 page:1,
-//                queryResultPage: []
+                queryResultPage: []
             }
         },
         methods: {
@@ -67,7 +73,7 @@ export default  {
             },
             next(){
                 var count_page = Math.ceil((this.queryResult.length - 1) / this.limit);
-                if(count_page < this.page){
+                if(count_page > this.page){
                     this.page += 1;
                     this.getResult();
                 }
@@ -90,10 +96,6 @@ export default  {
                 this.offsetThisPage = offset;
                 this.limitThisPage = limit;
                 this.queryResultPage = this.queryResult.slice(offset, limit);
-            },
-            ready: function () {
-                 console.log('sdfsdfsd');
-                this.onLoad('message from child!')
             }
         }
     };

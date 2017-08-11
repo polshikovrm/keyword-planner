@@ -16,97 +16,18 @@
                 </div>
                 <button type="submit">show demand</button>
                 <button type="reset">reset</button>
-                {{keyword}}
             </form>
         </div>
-        <p v-if="loading">loading</p>
-        <div>
+        <div v-if="columnChart.length">
             <column-chart :data="columnChart" width="800px" height="500px"    ></column-chart>
         </div>
-        <app-table-keyword  :queryResult="STATSqueryResult" :queryResultPage="STATSqueryResultPage"  ></app-table-keyword>
-        <app-table-keyword  :queryResult="queryResult"  :queryResultPage="queryResultPage" ></app-table-keyword>
-        <!--<div v-if="queryResult.length!==0" >-->
-            <!--<table >-->
-                <!--<thead>-->
-                <!--<tr >-->
-                    <!--<th>Suggested</th>-->
-                    <!--<th>Average searches</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-
-                <!--<tbody>-->
-                <!--<tr v-for="(item, index) in queryResultPage">-->
-                    <!--<td>{{item.keyword}}</td>-->
-                    <!--<td>{{item.searchVolume | formatNumber}}</td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
-            <!--<div>-->
-                <!--<div>-->
-                    <!--Show rows <span>-->
-                    <!--<button class="" type="button" >{{limit}}-->
-                        <!--<span class="caret"></span></button>-->
-                    <!--<ul >-->
-                        <!--<li v-on:click="restResult(5)" ><span>5</span></li>-->
-                        <!--<li v-on:click="restResult(10)"><span>10</span></li>-->
-                        <!--<li v-on:click="restResult(20)"><span>20</span></li>-->
-                        <!--<li v-on:click="restResult(30)"><span>30</span></li>-->
-                        <!--<li v-on:click="restResult(50)"><span>50</span></li>-->
-                        <!--<li v-on:click="restResult(100)"><span>100</span></li>-->
-                    <!--</ul>-->
-                <!--</span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords-->
-                <!--</div>-->
-
-                <!--<span v-on:click="first()" > |< </span>-->
-                <!--<span v-on:click="prev()" > <  </span>-->
-                <!--<span v-on:click="next()" > >  </span>-->
-                <!--<span v-on:click="last()" > >| </span>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div v-if="queryResult.length!==0" >-->
-
-            <!--<table >-->
-                <!--<thead>-->
-                <!--<tr  >-->
-                    <!--<th>Suggested</th>-->
-                    <!--<th>Average searches</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-
-                <!--<tbody>-->
-                <!--<tr v-for="(item, index) in queryResultPage">-->
-                    <!--<td>{{item.keyword}}</td>-->
-                    <!--<td>{{item.searchVolume | formatNumber}}</td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
-            <!--<div>-->
-                <!--<div>-->
-                    <!--Show rows <span>-->
-                    <!--<button class="" type="button" >{{limit}}-->
-                        <!--<span class="caret"></span></button>-->
-                    <!--<ul >-->
-                        <!--<li v-on:click="restResult(5)" ><span>5</span></li>-->
-                        <!--<li v-on:click="restResult(10)"><span>10</span></li>-->
-                        <!--<li v-on:click="restResult(20)"><span>20</span></li>-->
-                        <!--<li v-on:click="restResult(30)"><span>30</span></li>-->
-                        <!--<li v-on:click="restResult(50)"><span>50</span></li>-->
-                        <!--<li v-on:click="restResult(100)"><span>100</span></li>-->
-                    <!--</ul>-->
-                <!--</span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords-->
-                <!--</div>-->
-
-            <!--<span v-on:click="first()" > |< </span>-->
-            <!--<span v-on:click="prev()" > <  </span>-->
-            <!--<span v-on:click="next()" > >  </span>-->
-            <!--<span v-on:click="last()" > >| </span>-->
-            <!--</div>-->
-        <!--</div>-->
+        <p v-if="loadingStats">loading Stats</p>
+        <app-table-keyword :queryResult="queryResultStats"   ></app-table-keyword>
+        <p v-if="loading">loading</p>
+        <app-table-keyword :queryResult="queryResult"   ></app-table-keyword>
 
     </div>
 </template>
-<!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
-<!--<div id="chart_div"></div>-->
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://unpkg.com/chartkick@2.2.3"></script>
@@ -120,9 +41,14 @@
     import VueChartkick from 'vue-chartkick';
     import Chart from 'chart.js';
     import tableKeyword from './components/TableKeyword.vue';
+    import moment from "moment";
+    import VueMomentJS from "vue-momentjs";
+
+    Vue.use(VueMomentJS, moment);
+
     Chartkick.options = {colors: ["rgb(66, 133, 244)"]};
 
-    Vue.use(VueChartkick, { Chartkick })
+    Vue.use(VueChartkick, { Chartkick });
 
 
 
@@ -158,57 +84,15 @@
         },
         data(){
             return {
-                columnChart:[['2050', 28], ['aug1 2016', 32], ['aug2 2016', 32],['aug3 2016', 32],['aug4 2016', 32],['aug5 2016', 32],['aug6 2016', 32],['aug7 2016', 32],['aug8 2016', 32],['aug9 2016', 32],['aug10 2016', 32],['aug11 2016', 32]],
+                columnChart:[],
                 loading: false,
-                offset:0,
-                limit:30,
-                offsetThisPage:0,
-                limitThisPage:30,
-                page:1,
+                loadingStats: false,
                 keyword: '',
                 queryResult: [],
-                STATSqueryResult: [],
-                queryResultPage: [],
-                STATSqueryResultPage: []
+                queryResultStats: [],
             }
         },
         methods: {
-            first(){
-                this.page = 1;
-                this.getResult();
-            },
-            prev(){
-                if(1<this.page){
-                    this.page -= 1;
-                    this.getResult();
-                }
-            },
-            next(){
-                var count_page = Math.ceil((this.queryResult.length - 1) / this.limit);
-                if(count_page < this.page){
-                    this.page += 1;
-                    this.getResult();
-                }
-            },
-            last(){
-                this.page = Math.ceil((this.queryResult.length - 1) / this.limit);
-                this.getResult();
-            },
-            restResult(limit){
-                this.limit = limit;
-                this.offset = 0;
-                this.getResult();
-            },
-            getResult: function () {
-                var offset = this.page * this.offset;
-                if (this.page >= 2) {
-                    offset = (this.page - 1) * this.limit;
-                }
-                var limit = offset + this.limit;
-                this.offsetThisPage = offset;
-                this.limitThisPage = limit;
-               return this.queryResultPage = this.queryResult.slice(offset, limit);
-            },
             validateForm(scope) {
                 this.$validator.validateAll(scope).then(result => {
                     if (result) {
@@ -216,6 +100,20 @@
                         this.showDemand();
                     }
                 });
+            },
+            setChart(queryResult){
+                var columnChart=[];
+                queryResult.forEach(function(value) {
+                    value.targetedMonthlySearches.forEach(function(val, ind) {
+                            var name = moment(val.year + '-' + val.month + '-01').format('MMMM YYYY');
+                            if(columnChart[ind]==undefined){
+                                columnChart.push([name, val.count]);
+                            }else{
+                                columnChart[ind][1]+=val.count;
+                            }
+                        });
+                });
+                this.columnChart=columnChart;
             },
             showDemand(){
                 this.loading = true;
@@ -227,13 +125,13 @@
                 ).then((response) => {
                     if (response.status == 200) {
                         this.queryResult = response.data;
-                        this.getResult();
-                        this.queryResultPage = this.getResult();
+
                     }
                     this.loading = false;
                 }).catch(e => {
                     this.loading = false;
                 });
+                this.loadingStats = true;
                 axios.post(this.$config.api + '?action=GetKeywordIdeas', {
                         keyword: this.keyword,
                         locations: JSON.parse(localStorage.getItem('locations')),
@@ -241,13 +139,12 @@
                     }
                 ).then((response) => {
                     if (response.status == 200) {
-                        this.STATSqueryResult = response.data;
-                        this.getResult();
-                        this.STATSqueryResultPage = this.getResult();
+                        this.queryResultStats= response.data;
+                        this.setChart(this.queryResultStats)
                     }
-                    this.loading = false;
+                    this.loadingStats = false;
                 }).catch(e => {
-                    this.loading = false;
+                    this.loadingStats = false;
                 });
             }
         }
