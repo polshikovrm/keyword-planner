@@ -21,144 +21,108 @@
         </div>
         <p v-if="loading">loading</p>
         <div>
-            <div id="chart_div"> </div>
+            <column-chart :data="columnChart" width="800px" height="500px"    ></column-chart>
         </div>
-        <div v-if="queryResult.length!==0" >
-            <table >
-                <thead>
-                <tr  >
-                    <th>Suggested</th>
-                    <th>Average searches</th>
-                </tr>
-                </thead>
+        <app-table-keyword  :queryResult="STATSqueryResult" :queryResultPage="STATSqueryResultPage"  ></app-table-keyword>
+        <app-table-keyword  :queryResult="queryResult"  :queryResultPage="queryResultPage" ></app-table-keyword>
+        <!--<div v-if="queryResult.length!==0" >-->
+            <!--<table >-->
+                <!--<thead>-->
+                <!--<tr >-->
+                    <!--<th>Suggested</th>-->
+                    <!--<th>Average searches</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
 
-                <tbody>
-                <tr v-for="(item, index) in queryResultPage">
-                    <td>{{item.keyword}}</td>
-                    <td>{{item.searchVolume | formatNumber}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <div>
-                <div>
-                    Show rows <span>
-                    <button class="" type="button" >{{limit}}
-                        <span class="caret"></span></button>
-                    <ul >
-                        <li v-on:click="restResult(5)" ><span>5</span></li>
-                        <li v-on:click="restResult(10)"><span>10</span></li>
-                        <li v-on:click="restResult(20)"><span>20</span></li>
-                        <li v-on:click="restResult(30)"><span>30</span></li>
-                        <li v-on:click="restResult(50)"><span>50</span></li>
-                        <li v-on:click="restResult(100)"><span>100</span></li>
-                    </ul>
-                </span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords
-                </div>
+                <!--<tbody>-->
+                <!--<tr v-for="(item, index) in queryResultPage">-->
+                    <!--<td>{{item.keyword}}</td>-->
+                    <!--<td>{{item.searchVolume | formatNumber}}</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--<div>-->
+                <!--<div>-->
+                    <!--Show rows <span>-->
+                    <!--<button class="" type="button" >{{limit}}-->
+                        <!--<span class="caret"></span></button>-->
+                    <!--<ul >-->
+                        <!--<li v-on:click="restResult(5)" ><span>5</span></li>-->
+                        <!--<li v-on:click="restResult(10)"><span>10</span></li>-->
+                        <!--<li v-on:click="restResult(20)"><span>20</span></li>-->
+                        <!--<li v-on:click="restResult(30)"><span>30</span></li>-->
+                        <!--<li v-on:click="restResult(50)"><span>50</span></li>-->
+                        <!--<li v-on:click="restResult(100)"><span>100</span></li>-->
+                    <!--</ul>-->
+                <!--</span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords-->
+                <!--</div>-->
 
-            <span v-on:click="first()" > |< </span>
-            <span v-on:click="prev()" > <  </span>
-            <span v-on:click="next()" > >  </span>
-            <span v-on:click="last()" > >| </span>
-            </div>
-        </div>
+                <!--<span v-on:click="first()" > |< </span>-->
+                <!--<span v-on:click="prev()" > <  </span>-->
+                <!--<span v-on:click="next()" > >  </span>-->
+                <!--<span v-on:click="last()" > >| </span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div v-if="queryResult.length!==0" >-->
+
+            <!--<table >-->
+                <!--<thead>-->
+                <!--<tr  >-->
+                    <!--<th>Suggested</th>-->
+                    <!--<th>Average searches</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+
+                <!--<tbody>-->
+                <!--<tr v-for="(item, index) in queryResultPage">-->
+                    <!--<td>{{item.keyword}}</td>-->
+                    <!--<td>{{item.searchVolume | formatNumber}}</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--<div>-->
+                <!--<div>-->
+                    <!--Show rows <span>-->
+                    <!--<button class="" type="button" >{{limit}}-->
+                        <!--<span class="caret"></span></button>-->
+                    <!--<ul >-->
+                        <!--<li v-on:click="restResult(5)" ><span>5</span></li>-->
+                        <!--<li v-on:click="restResult(10)"><span>10</span></li>-->
+                        <!--<li v-on:click="restResult(20)"><span>20</span></li>-->
+                        <!--<li v-on:click="restResult(30)"><span>30</span></li>-->
+                        <!--<li v-on:click="restResult(50)"><span>50</span></li>-->
+                        <!--<li v-on:click="restResult(100)"><span>100</span></li>-->
+                    <!--</ul>-->
+                <!--</span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords-->
+                <!--</div>-->
+
+            <!--<span v-on:click="first()" > |< </span>-->
+            <!--<span v-on:click="prev()" > <  </span>-->
+            <!--<span v-on:click="next()" > >  </span>-->
+            <!--<span v-on:click="last()" > >| </span>-->
+            <!--</div>-->
+        <!--</div>-->
+
     </div>
 </template>
 <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
 <!--<div id="chart_div"></div>-->
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://unpkg.com/chartkick@2.2.3"></script>
+<script src="https://unpkg.com/vue-chartkick@0.2.0/dist/vue-chartkick.js"></script>
 <script>
     import axios from 'axios';
     import Vue from 'vue';
     import VeeValidate from 'vee-validate';
     import numeral from 'numeral';
-    import {GoogleCharts} from 'google-charts';
+    import Chartkick from 'chartkick';
+    import VueChartkick from 'vue-chartkick';
+    import Chart from 'chart.js';
+    import tableKeyword from './components/TableKeyword.vue';
+    Chartkick.options = {colors: ["rgb(66, 133, 244)"]};
 
-    GoogleCharts.load(drawCharts,'BarChart');
-
-    /*
-     * Load a specific type(s) of chart(s). You can call this as many times as you need from anywhere in your app
-     * GoogleCharts is a singleton and will not allow the script to be loaded more than once
-     */
-//    GoogleCharts.load(drawGeoChart, 'geochart');
-
-    function drawCharts() {
-        var data = new GoogleCharts.api.visualization.arrayToDataTable([
-            ['Move', 'searches'],
-            ["1 2016", 44],
-            ["2 2016", 31],
-            ["3 2016", 12],
-            ["4 2016", 10],
-            ['5 2016', 3],
-            ["6 2016", 44],
-            ["7 2016", 31],
-            ["8 2016", 12],
-            ["9 2016", 10],
-            ['10 2016', 3],
-            ['11 2016', 3],
-            ['12 2016', 3]
-        ]);
-
-        var options = {
-//            width: 800,
-            legend: { position: 'none' },
-            chart: {
-                title: 'Average monthly searches',
-            },
-            axes: {
-                x: {
-                    0: { side: 'foot', label: 'White to move'} // Top x-axis.
-                }
-            },
-            bar: { groupWidth: "90%" }
-        };
-         console.log(GoogleCharts.api.visualization);
-        /*debugger*/
-
-//        var chart = new GoogleCharts.api.visualization.Bar(document.getElementById('chart_div'));
-        // Convert the Classic options to Material options.
-//        chart.draw(data, GoogleCharts.api.Bar.convertOptions(options));
-//        chart.draw(data, options);
-
-
-//
-//        var data = new GoogleCharts.api.visualization.DataTable();
-//        data.addColumn('timeofday', 'Time of Day');
-//        data.addColumn('number', 'Motivation Level');
-//
-//        data.addRows([
-//            [{v: [8, 0, 0], f: 'Jul 2016'}, 1],
-//            [{v: [9, 0, 0], f: 'Jul 2016'}, 2],
-//            [{v: [10, 0, 0], f:'Jul 2016'}, 3],
-//            [{v: [11, 0, 0], f: 'Jul 2016'}, 4],
-//            [{v: [12, 0, 0], f: 'Jul 2016'}, 5],
-//            [{v: [13, 0, 0], f: 'Jul 2016'}, 6],
-//            [{v: [14, 0, 0], f: 'Jul 2016'}, 7],
-//            [{v: [15, 0, 0], f: 'Jul 2016'}, 8],
-//            [{v: [16, 0, 0], f: 'Jul 2016'}, 9],
-//            [{v: [17, 0, 0], f: 'Jul 2016'}, 10],
-//            [{v: [18, 0, 0], f: 'Jul 2016'}, 11],
-//            [{v: [19, 0, 0], f: 'Jul 2016'}, 12],
-//        ]);
-//
-//        var options = {
-//            title: 'Motivation Level Throughout the Day',
-//            hAxis: {
-//                title: 'Time of Day',
-//                format: 'MM',
-//                viewWindow: {
-//                    min: [7, 30, 0],
-//                    max: [19, 30, 0]
-//                }
-//            },
-////            vAxis: {
-////                title: 'Rating (scale of 1-10)'
-////            }
-//        };
-//
-//        var chart = new GoogleCharts.api.visualization.ColumnChart(
-//            document.getElementById('chart_div'));
-//
-//        chart.draw(data, options);
-    }
+    Vue.use(VueChartkick, { Chartkick })
 
 
 
@@ -187,12 +151,14 @@
     };
 
     Vue.use(VeeValidate, config);
-
     export default {
 
-        components: {},
+        components: {
+            'app-table-keyword': tableKeyword,
+        },
         data(){
             return {
+                columnChart:[['2050', 28], ['aug1 2016', 32], ['aug2 2016', 32],['aug3 2016', 32],['aug4 2016', 32],['aug5 2016', 32],['aug6 2016', 32],['aug7 2016', 32],['aug8 2016', 32],['aug9 2016', 32],['aug10 2016', 32],['aug11 2016', 32]],
                 loading: false,
                 offset:0,
                 limit:30,
@@ -201,7 +167,9 @@
                 page:1,
                 keyword: '',
                 queryResult: [],
-                queryResultPage: []
+                STATSqueryResult: [],
+                queryResultPage: [],
+                STATSqueryResultPage: []
             }
         },
         methods: {
@@ -216,8 +184,11 @@
                 }
             },
             next(){
-                this.page += 1;
-                this.getResult();
+                var count_page = Math.ceil((this.queryResult.length - 1) / this.limit);
+                if(count_page < this.page){
+                    this.page += 1;
+                    this.getResult();
+                }
             },
             last(){
                 this.page = Math.ceil((this.queryResult.length - 1) / this.limit);
@@ -236,7 +207,7 @@
                 var limit = offset + this.limit;
                 this.offsetThisPage = offset;
                 this.limitThisPage = limit;
-                this.queryResultPage = this.queryResult.slice(offset, limit);
+               return this.queryResultPage = this.queryResult.slice(offset, limit);
             },
             validateForm(scope) {
                 this.$validator.validateAll(scope).then(result => {
@@ -250,12 +221,29 @@
                 this.loading = true;
                 axios.post(this.$config.api + '?action=GetKeywordIdeas', {
                         keyword: this.keyword,
-                        locations: JSON.parse(localStorage.getItem('locations'))
+                        locations: JSON.parse(localStorage.getItem('locations')),
+                        requestType: 'IDEAS'
                     }
                 ).then((response) => {
                     if (response.status == 200) {
                         this.queryResult = response.data;
                         this.getResult();
+                        this.queryResultPage = this.getResult();
+                    }
+                    this.loading = false;
+                }).catch(e => {
+                    this.loading = false;
+                });
+                axios.post(this.$config.api + '?action=GetKeywordIdeas', {
+                        keyword: this.keyword,
+                        locations: JSON.parse(localStorage.getItem('locations')),
+                        requestType: 'STATS'
+                    }
+                ).then((response) => {
+                    if (response.status == 200) {
+                        this.STATSqueryResult = response.data;
+                        this.getResult();
+                        this.STATSqueryResultPage = this.getResult();
                     }
                     this.loading = false;
                 }).catch(e => {
