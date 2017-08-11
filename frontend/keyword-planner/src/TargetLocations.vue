@@ -79,8 +79,7 @@
             getCentreDefoult(){
                 var center = {lat: 10.0, lng: 10.0};
                 var location = JSON.parse(localStorage.getItem('locations'));
-                debugger;
-                if (location !==null && location[location.length - 1]) {
+                if (location !== null && location[location.length - 1]) {
                     center = location[location.length - 1].marker.position;
                 }
                 return center;
