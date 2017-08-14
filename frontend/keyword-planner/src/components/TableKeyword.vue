@@ -14,7 +14,7 @@
                 <tr v-for="(item, index) in queryResultPage">
                     <td>{{item.keyword}}</td>
                     <td>{{item.searchVolume | formatNumber}}</td>
-                    <td><span v-on:click="toggleKeyword(item)" v-bind:class="{ 'plase': item.addkeyword }" >+</span></td>
+                    <td><span v-on:click="toggleKeyword(item)" v-bind:class="{ plase: item.addkeyword }" >+</span></td>
                 </tr>
                 </tbody>
             </table>
@@ -100,11 +100,8 @@ export default  {
                 this.queryResultPage = this.queryResult.slice(offset, limit);
             },
             toggleKeyword(item){
-                if (item.addkeyword == undefined || item.addkeyword == false) {
-                    item.addkeyword = true;
-                }else{
-                    item.addkeyword = false;
-                }
+                item.addkeyword = !item.addkeyword;
+                this.getResult();
             }
         }
     };

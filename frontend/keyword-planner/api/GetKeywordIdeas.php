@@ -194,4 +194,11 @@ class GetKeywordIdeas {
     self::runExample(new AdWordsServices(), $session);
   }
 }
-GetKeywordIdeas::main();
+try{
+    GetKeywordIdeas::main();
+}catch(\Exception $e){
+    header('Content-Type: application/json');
+    header("HTTP/1.1 200 OK");
+    echo json_encode(['error'=>'There was a problem retrieving ideas, please try again.']);
+}
+

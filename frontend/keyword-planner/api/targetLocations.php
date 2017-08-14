@@ -41,9 +41,9 @@ foreach ($words as $key => $word) {
     $pref = '%';
 }
 $stmt->execute();
-$data=[];
-foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
-    $data[]=$item;
+$data = [];
+foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $item) {
+    $data[] = $item;
 }
 echo json_encode($data);
 die();

@@ -88,7 +88,7 @@
 
     export default {
 
-        components: { Autocomplete},
+        components: {'Autocomplete':Autocomplete},
         data(){
             return {
                 loading: false,
@@ -120,6 +120,9 @@
                         locations = JSON.parse(localStorage.getItem('locations'));
                 }
                 return locations;
+            },
+            clear(){
+                this.$children[0].clearInput();
             },
             getData(obj){
                 var id = obj.criteria_id;
@@ -159,6 +162,7 @@
                         this.loading=true;
                     })
                 }
+                this.clear();
             },
             getUrl(){
                 return this.$config.api+'/targetLocations.php';
