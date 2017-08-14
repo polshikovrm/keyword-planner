@@ -20,6 +20,10 @@
                     <div class="input-row">
                         <input autocomplete="off" v-model="password" autofocus="autofocus"
                                class="form-control form-control-lg" placeholder="Password" required="required" type="password">
+                        <div class="error">
+
+                            <p v-for="(item, index) in errorsLogin" >{{item['emailOrPassword']}}</p>
+                        </div>
                     </div>
                     <div class="input-row">
                         <button type="submit" class="btn gray">Login <span class="arrow-left"></span></button>
@@ -39,7 +43,7 @@
                 email: '',
                 password: '',
                 data: {},
-                errors: [],
+                errorsLogin: [],
             }
         },
         methods: {
@@ -53,17 +57,18 @@
                     axios.post(this.$config.api+'?action=login',
                         {email: this.email, password: this.password},
                     ).then((response) => {
-//                         console.log('response',response.data);
                         this.loading = false;
                         if (200 === response.status){
                             if(response.data.successfully){
                                 this.$cookie.set('PHPSESSID', response.data.successfully.token, 1);
                                 window.location.href = '/targetLocations';
+                            }else if(response.data.errors){
+                                this.errorsLogin.push(response.data.errors);
                             }
                         }
                     }).catch(e => {
                             this.loading = false;
-                        this.errors.push(e)
+                        this.errorsLogin.push(e)
                     })
 
             }

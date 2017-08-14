@@ -151,10 +151,9 @@
                             obj.marker = marker;
                             this.locations.push(obj);
                             localStorage.setItem('locations', JSON.stringify(this.locations));
-                            this.loading=true;
+                            this.loading = true;
                         }
                     }).catch(e => {
-                         console.log('error',e);
                         this.loading=true;
                     })
                 }

@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <app-logout></app-logout>
         <div>
             find keywords
         </div>
@@ -41,6 +42,7 @@
     import VueChartkick from 'vue-chartkick';
     import Chart from 'chart.js';
     import tableKeyword from './components/TableKeyword.vue';
+    import logout from './components/logout.vue';
     import moment from "moment";
     import VueMomentJS from "vue-momentjs";
 
@@ -81,6 +83,7 @@
 
         components: {
             'app-table-keyword': tableKeyword,
+            'app-logout': logout,
         },
         data(){
             return {
@@ -102,18 +105,19 @@
                 });
             },
             setChart(queryResult){
-                var columnChart=[];
-                queryResult.forEach(function(value) {
-                    value.targetedMonthlySearches.forEach(function(val, ind) {
-                            var name = moment(val.year + '-' + val.month + '-01').format('MMMM YYYY');
-                            if(columnChart[ind]==undefined){
-                                columnChart.push([name, val.count]);
-                            }else{
-                                columnChart[ind][1]+=val.count;
-                            }
-                        });
+                var columnChart = [];
+                queryResult.forEach(function (value) {
+                    value.targetedMonthlySearches.forEach(function (val, ind) {
+                        var month  = val.month.toString().length==1?'0'+val.month : val.month;
+                        var name = moment(val.year + '-' + month + '-01').format('MMMM YYYY');
+                        if (columnChart[ind] == undefined) {
+                            columnChart.push([name, val.count]);
+                        } else {
+                            columnChart[ind][1] += val.count;
+                        }
+                    });
                 });
-                this.columnChart=columnChart;
+                this.columnChart = columnChart;
             },
             showDemand(){
                 this.loading = true;
