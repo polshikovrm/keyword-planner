@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <!--<div>-->
         <div v-if="queryResult.length!==0">
-            <table>
+            <table class="table result-table">
                 <thead>
                 <tr>
-                    <th>Suggested</th>
-                    <th>Average searches</th>
-                    <th>Add Keyword</th>
+                    <th class="width1">Suggested</th>
+                    <th class="width2">Average searches</th>
+                    <th class="width3">Add Keyword</th>
                 </tr>
                 </thead>
 
@@ -40,7 +40,7 @@
                 <span v-on:click="last()"> >| </span>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </template>
 <script>
 export default  {

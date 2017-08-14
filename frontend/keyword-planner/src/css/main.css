@@ -254,6 +254,7 @@ p{
 .btn:hover{
     background: #fff;
     color: #ffce00;
+    text-decoration: none;
 }
 .btn.gray{
     background: #515c63;
@@ -464,7 +465,7 @@ p{
     background: #f2f2f2;
     color: #333;
     text-align: left;
-    font-family: 'flamabasic', Arial, Helvetica, sans-serif;
+    font-family: 'flamabook', Arial, Helvetica, sans-serif;
     padding: 40px 36px 49px;
 }
 .content-holder .table th,
@@ -562,6 +563,129 @@ p{
     font: 65px/1.18 'flamabook', Arial, Helvetica, sans-serif;
     color: #333;
     padding: 0 34px;
+}
+/*----------------- find keywords page styles ----------*/
+.btn-logout{
+    float: right;
+}
+.gray-bg{
+    background: #d7dbdd;
+    padding: 10px 0;
+}
+.keyword-form{
+    padding: 4px 0 104px;
+}
+.keyword-form .buttons-holder{
+    float: right;
+    width: 24.7%;
+    margin: 0 0 0 10px;
+}
+.keyword-form .buttons-holder .btn{
+    border-radius:0;
+    text-transform: uppercase;
+    font-size:32px;
+    cursor: pointer;
+    height: 108px;
+    width: 56.8%;
+    text-align: center;
+    padding: 20px 10px;
+    margin: 0 0 0 10px;
+}
+.keyword-form .buttons-holder .btn:first-child{
+    margin: 0;
+}
+.keyword-form .buttons-holder .btn.reset{
+    width: 38.85%;
+}
+.keyword-form .search-field{
+    overflow: hidden;
+}
+.keyword-form input[type="text"]{
+    width: 100%;
+    background: #fff;
+    color: #666;
+    font: 39px/1.2 'flamabook', Arial, Helvetica, sans-serif;
+    border: none;
+    padding: 24px 35px 35px;
+}
+.keyword-form .help{
+    margin: 10px 0 0;
+    display: block;
+}
+.btn.reset{
+    background: #999;
+    border-color:#999;
+}
+.btn.reset:hover{
+    background: #fff;
+    color: #999;
+}
+.btn-next{
+    float: right;
+}
+.chart-holder{
+    border: 2px solid #f2f2f2;
+    padding: 46px 58px 242px;
+}
+.download-block{
+    padding: 78px 0 242px;
+}
+.download-block .btn-simple{
+    float: right;
+}
+.btn-simple{
+    color: #4d4d4d;
+    background: #f2f2f2;
+    border: 1px solid #ededed;
+    font-size:31px;
+    padding: 19px 29px 20px;
+}
+.btn-simple .icon-download{
+    display: inline-block;
+    vertical-align: top;
+    background: url(../assets/sprite.png) no-repeat 0 -178px;
+    width: 23px;
+    height: 35px;
+    margin: 0 19px 0 0;
+}
+.content-holder .table.result-table{
+    border: solid #f3f3f3;
+    border-width: 0 2px;
+    border-spacing: 0;
+}
+.content-holder .table.result-table th{
+    font-size:32px;
+    border: 2px solid #f3f3f3;
+}
+.content-holder .table .width1{
+     width: 51.7%;
+ }
+.content-holder .table .width2{
+    width: 27.3%;
+    text-align: right;
+}
+.content-holder .table .width3{
+    width: 15%;
+    text-align: center;
+}
+.add-btn{
+    display: block;
+    width: 51px;
+    height: 51px;
+    border: 2px solid #ffce00;
+    border-radius: 50%;
+    text-align: center;
+    background: #fff;
+    color: #ffce00;
+    font: 42px/40px 'flamabasic', Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+.add-btn:hover{
+    background: #ffce00;
+    color: #fff;
+    text-decoration: none;
 }
 @media only screen and (max-width: 2060px){
     .content-holder{
