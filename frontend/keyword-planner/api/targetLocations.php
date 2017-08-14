@@ -25,22 +25,25 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $name = '';
 if (isset($_GET['q'])) {
-    $name = $_GET['q'];
+    $name = urldecode($_GET['q']);
 }
-
+$words = array_filter(explode(' ',str_replace(',',' ',$name)));
+$where = '';
+foreach ($words as $key => $word) {
+    $where .= " and canonical_name LIKE :canonical_name_$key ";
+}
 // prepare sql and bind parameters
-$stmt = $conn->prepare('SELECT * FROM location_criteria WHERE  name LIKE :canonical_name ORDER BY  location_criteria.name,location_criteria.target_type ASC  limit 10 ');
+$stmt = $conn->prepare('SELECT * FROM location_criteria WHERE  1=1 '.$where.' ORDER BY  location_criteria.name,location_criteria.target_type ASC  limit 10 ');
+$pref='';
 
-$stmt->bindValue(':canonical_name', '%'.$name.'%',PDO::PARAM_STR);
+foreach ($words as $key => $word) {
+    $stmt->bindValue(':canonical_name_' . $key, $pref . $word . '%', PDO::PARAM_STR);
+    $pref = '%';
+}
 $stmt->execute();
-//$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $data=[];
 foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
     $data[]=$item;
 }
-//echo '<pre>';
-//var_dump($_GET);
-//echo '</pre>';
-//die();
 echo json_encode($data);
 die();

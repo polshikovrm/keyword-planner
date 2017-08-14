@@ -13,6 +13,8 @@
                                         v-bind:url="getUrl()"
                                         anchor="canonical_name"
                                         label="target_type"
+                                        :min="1"
+                                        model="search"
                                         :on-select="getData"
                                 >
                                 </autocomplete>
@@ -159,7 +161,7 @@
                 }
             },
             getUrl(){
-                return this.$config.api+'/target_locations.php';
+                return this.$config.api+'/targetLocations.php';
             },
             remove(index){
                 delete this.locations.splice(index, 1);
