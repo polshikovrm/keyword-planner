@@ -13,8 +13,8 @@ Vue.use(VueCookie);
 
 const routes = {
     '/': App,
-    '/targetLocations': TargetLocations,
-    '/findKeywords': FindKeywords,
+    '/target-locations': TargetLocations,
+    '/find-keywords': FindKeywords,
     '/roi-calculator': RoiCalculator
 }
 
@@ -37,7 +37,7 @@ new Vue({
             if(this.currentRoute =='/' && token==null){
                 return routes[this.currentRoute] || Page404
             }else if(this.currentRoute =='/' && token!==null){
-                window.location.href = '/targetLocations';
+                window.location.href = '/target-locations';
                 return;
             }
              if(this.currentRoute !=='/' && token!==null){

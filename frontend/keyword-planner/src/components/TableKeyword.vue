@@ -6,6 +6,7 @@
                 <tr>
                     <th>Suggested</th>
                     <th>Average searches</th>
+                    <th>Add Keyword</th>
                 </tr>
                 </thead>
 
@@ -13,6 +14,7 @@
                 <tr v-for="(item, index) in queryResultPage">
                     <td>{{item.keyword}}</td>
                     <td>{{item.searchVolume | formatNumber}}</td>
+                    <td><span v-on:click="toggleKeyword(item)" v-bind:class="{ 'plase': item.addkeyword }" >+</span></td>
                 </tr>
                 </tbody>
             </table>
@@ -45,8 +47,8 @@ export default  {
         props: ['queryResult'],
         watch: {
             queryResult: function (newVal) {
-                this.queryResul=newVal
-                    this.getResult();
+                this.queryResul = newVal;
+                this.getResult();
             }
         },
         data(){
@@ -96,6 +98,13 @@ export default  {
                 this.offsetThisPage = offset;
                 this.limitThisPage = limit;
                 this.queryResultPage = this.queryResult.slice(offset, limit);
+            },
+            toggleKeyword(item){
+                if (item.addkeyword == undefined || item.addkeyword == false) {
+                    item.addkeyword = true;
+                }else{
+                    item.addkeyword = false;
+                }
             }
         }
     };

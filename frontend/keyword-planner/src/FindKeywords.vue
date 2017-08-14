@@ -26,6 +26,7 @@
         <app-table-keyword :queryResult="queryResultStats"   ></app-table-keyword>
         <p v-if="loading">loading</p>
         <app-table-keyword :queryResult="queryResult"   ></app-table-keyword>
+        <div v-on:click="step2()" >step-2</div>
 
     </div>
 </template>
@@ -143,13 +144,25 @@
                     }
                 ).then((response) => {
                     if (response.status == 200) {
-                        this.queryResultStats= response.data;
+                        this.queryResultStats = response.data;
                         this.setChart(this.queryResultStats)
                     }
                     this.loadingStats = false;
                 }).catch(e => {
                     this.loadingStats = false;
                 });
+            },
+            step2(){
+                var addkeywordStats = this.queryResultStats.filter(function (elem) {
+                    if (elem.addkeyword == true) return elem;
+                });
+                var addkeyword = this.queryResult.filter(function (elem) {
+                    if (elem.addkeyword == true) return elem;
+                });
+                var allAddKeyword = addkeywordStats.concat(addkeyword);
+                debugger;
+                localStorage.setItem('addKeyword', JSON.stringify(allAddKeyword));
+                window.location.href='/roi-calculator';
             }
         }
     }

@@ -9,21 +9,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>tattoo removal</td>
-                        <td>44 000</td>
-                    </tr>
-                    <tr>
-                        <td>laser tattoo removal</td>
-                        <td>1600</td>
-                    </tr>
-                    <tr>
-                        <td>tattoo removal laser</td>
-                        <td>50</td>
+                    <tr v-for="(item, index) in planKeyword">
+                        <td>{{item.keyword}}</td>
+                        <td>{{item.searchVolume | formatNumber}}</td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><span class="total">Total</span>45650</td>
+                        <td><span class="total">Total</span>{{total}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -46,3 +38,36 @@
         </div>
     </div>
 </template>
+<script>
+    import logout from './components/logout.vue';
+    export default {
+        components: {
+            'app-logout': logout,
+        },
+        data(){
+            return {
+                planKeyword: this.getKeyword(),
+                total:this.getTotal()
+            }
+        },
+        methods: {
+            getKeyword(){
+                var keyword = [];
+                if (JSON.parse(localStorage.getItem('addKeyword'))) {
+                    keyword = JSON.parse(localStorage.getItem('addKeyword'));
+                }
+                return keyword;
+            },
+            getTotal(){
+                var addKeyword = JSON.parse(localStorage.getItem('addKeyword'));
+                var sum = 0;
+                for (var index in addKeyword) {
+                    if (addKeyword[index].hasOwnProperty('searchVolume')) {
+                        sum += parseInt(addKeyword[index]['searchVolume']) || 0;
+                    }
+                }
+                return sum;
+            }
+        }
+    }
+</script>
