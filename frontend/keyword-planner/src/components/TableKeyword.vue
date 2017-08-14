@@ -1,20 +1,20 @@
 <template>
-    <div>
+    <!--<div>-->
         <div v-if="queryResult.length!==0">
-            <table>
+            <table class="table result-table">
                 <thead>
                 <tr>
-                    <th>Suggested</th>
-                    <th>Average searches</th>
-                    <th>Add Keyword</th>
+                    <th class="width1">Suggested</th>
+                    <th class="width2">Average searches</th>
+                    <th class="width3">Add Keyword</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr v-for="(item, index) in queryResultPage">
-                    <td>{{item.keyword}}</td>
-                    <td>{{item.searchVolume | formatNumber}}</td>
-                    <td><span v-on:click="toggleKeyword(item)" v-bind:class="{ 'plase': item.addkeyword }" >+</span></td>
+                    <td class="width1">{{item.keyword}}</td>
+                    <td class="width2">{{item.searchVolume | formatNumber}}</td>
+                    <td class="width3"><span v-on:click="toggleKeyword(item)" class="add-btn" v-bind:class="{ 'plase': item.addkeyword }" >+</span></td>
                 </tr>
                 </tbody>
             </table>
@@ -40,7 +40,7 @@
                 <span v-on:click="last()"> >| </span>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 </template>
 <script>
 export default  {

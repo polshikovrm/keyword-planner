@@ -1,33 +1,51 @@
 <template>
     <div id="app">
-        <app-logout></app-logout>
-        <div>
-            find keywords
-        </div>
-        <div>
-            <form   @submit.prevent="validateForm('form-1')" data-vv-scope="form-1">
+        <div class="find-keywords">
+            <div class="gray-bg">
+                <div class="content-holder">
+                    <app-logout></app-logout>
+                    <div class="title-block">
+                        <h1><span class="number">2</span>Enter Product or Service</h1>
+                    </div>
 
-                <!--<input v-model="keyword" type="text" >-->
-                <div class="column is-12">
-                    <label class="label" for="keyword">keyword</label>
-                    <p :class="{ 'control': true }">
-                        <input v-model="keyword" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('form-1.keyword') }" name="keyword" type="text" placeholder="keyword">
-                        <span v-show="errors.has('form-1.keyword')" class="help is-danger">{{ errors.first('form-1.keyword') }}</span>
-                    </p>
+                    <form @submit.prevent="validateForm('form-1')" data-vv-scope="form-1" class="keyword-form claerfix">
+                        <div class="buttons-holder">
+                            <button type="submit" class="btn">show demand</button>
+                            <button type="reset" class="btn reset">reset</button>
+                        </div>
+                        <div class="search-field">
+                            <p :class="{ 'control': true }">
+                                <input v-model="keyword" v-validate="'required'"
+                                       :class="{'input': true, 'is-danger': errors.has('form-1.keyword') }" name="keyword"
+                                       type="text" placeholder="keyword">
+                                <span v-show="errors.has('form-1.keyword')" class="help is-danger">{{ errors.first('form-1.keyword') }}</span>
+                            </p>
+                        </div>
+
+                    </form>
+
                 </div>
-                <button type="submit">show demand</button>
-                <button type="reset">reset</button>
-            </form>
-        </div>
-        <div v-if="columnChart.length">
-            <column-chart :data="columnChart" width="800px" height="500px"    ></column-chart>
-        </div>
-        <p v-if="loadingStats">loading Stats</p>
-        <app-table-keyword :queryResult="queryResultStats"   ></app-table-keyword>
-        <p v-if="loading">loading</p>
-        <app-table-keyword :queryResult="queryResult"   ></app-table-keyword>
-        <div v-on:click="step2()" >step-2</div>
+            </div>
+            <div class="content-holder">
+                <div v-if="columnChart.length">
+                    <div class="title-block">
+                        <h1><span class="number">3</span>Results</h1>
+                    </div>
+                    <div class="chart-holder">
+                        <column-chart :data="columnChart" width="800px" height="500px"></column-chart>
 
+                        </div>
+                    </div>
+                    <div class="clearfix download-block">
+                        <a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>
+                    </div>
+                <p v-if="loadingStats">loading Stats</p>
+                <app-table-keyword :queryResult="queryResultStats"></app-table-keyword>
+                <p v-if="loading">loading</p>
+                <app-table-keyword :queryResult="queryResult"></app-table-keyword>
+                <div v-on:click="step2()" class="clearfix"><a href="#" class="btn btn-next">step-2</a></div>
+            </div>
+        </div>
     </div>
 </template>
 

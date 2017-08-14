@@ -1,7 +1,6 @@
 <template>
-    <div v-on:click="logout()" >
-        logout
-
+    <div class="clearfix">
+        <a v-on:click="logout()" class="btn btn-logout">Logout</a>
     </div>
 </template>
 <script>
