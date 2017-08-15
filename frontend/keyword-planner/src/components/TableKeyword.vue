@@ -14,7 +14,7 @@
                 <tr v-for="(item, index) in queryResultPage">
                     <td>{{item.keyword}}</td>
                     <td>{{item.searchVolume | formatNumber}}</td>
-                    <td><span v-on:click="toggleKeyword(item)" v-bind:class="{ plase: item.addkeyword }" >+</span></td>
+                    <td><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plase: item.addkeyword }" >+</span></td>
                 </tr>
                 </tbody>
             </table>
