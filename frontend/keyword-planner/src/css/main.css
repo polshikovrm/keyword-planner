@@ -306,7 +306,7 @@ p{
     padding: 0 0 40px;
 }
 .location-content{
-    margin: 0 -26px;
+    margin: 0 -26px 15px;
     font-family: 'flamabook', Arial, Helvetica, sans-serif;
 }
 .location-holder{
@@ -875,7 +875,7 @@ p{
         background-position: -54px 17px;
     }
     .location-content{
-        margin: 0 -17px;
+        margin: 0 -17px 15px;
     }
     .location-holder{
         padding: 0 17px;
@@ -1218,7 +1218,7 @@ p{
         margin: 0 20px 0 0;
     }
     .location-content{
-        margin: 0;
+        margin: 0 0 15px;
     }
     .location-holder{
         float: none;
@@ -1430,5 +1430,4 @@ p{
     .select-holder .select-list li{
         padding: 7px 5px;
     }
-
 }

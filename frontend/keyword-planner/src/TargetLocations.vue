@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <div class="content-holder">
+            <app-logout></app-logout>
             <div class="title-block">
                 <h1><span class="number">1</span>Target Locations</h1>
             </div>
@@ -63,6 +64,8 @@
                     </gmap-map>
                 </div>
             </div>
+
+            <div class="clearfix"><a href="/find-keywords" class="btn btn-next">Next</a></div>
         </div>
 
 
@@ -78,6 +81,7 @@
     import axios from 'axios';
     import * as VueGoogleMaps from 'vue2-google-maps';
     import Vue from 'vue';
+    import logout from './components/logout.vue';
     Vue.use(VueGoogleMaps, {
         load: {
             key: 'AIzaSyBoV5tHJ4v6pQVp0xSx8NdipvhZe3ECEA8',
@@ -88,7 +92,10 @@
 
     export default {
 
-        components: {'Autocomplete':Autocomplete},
+        components: {
+            'Autocomplete':Autocomplete,
+            'app-logout': logout
+        },
         data(){
             return {
                 loading: false,
