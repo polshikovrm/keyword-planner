@@ -134,8 +134,7 @@ class GetKeywordIdeas {
     $selector->setSearchParameters($searchParameters);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 //    $selector->setPaging(new Paging($page, 30/*self::PAGE_LIMIT*/));
-      header('Content-Type: application/json');
-      header("HTTP/1.1 200 OK");
+
     $dataJson=null;
     $totalNumEntries = 0;
     do {
@@ -172,7 +171,8 @@ class GetKeywordIdeas {
       $selector->getPaging()->setStartIndex(
           $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
     } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
-
+      header('Content-Type: application/json');
+      header("HTTP/1.1 200 OK");
       echo json_encode($dataJson);
       die();
 
@@ -194,11 +194,5 @@ class GetKeywordIdeas {
     self::runExample(new AdWordsServices(), $session);
   }
 }
-try{
-    GetKeywordIdeas::main();
-}catch(\Exception $e){
-    header('Content-Type: application/json');
-    header("HTTP/1.1 200 OK");
-    echo json_encode(['error'=>'There was a problem retrieving ideas, please try again.']);
-}
+GetKeywordIdeas::main();
 

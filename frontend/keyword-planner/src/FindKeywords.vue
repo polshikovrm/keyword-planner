@@ -41,8 +41,10 @@
                     <!--</div>-->
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
+                <p v-if="responseErrorStats">{{responseErrorStats}}</p>
                 <app-table-keyword :queryResult="queryResultStats"></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
+                <p v-if="responseError">{{responseError}}</p>
                 <app-table-keyword :queryResult="queryResult"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix">
@@ -117,6 +119,8 @@
                 keyword: '',
                 queryResult: [],
                 queryResultStats: [],
+                responseError:false,
+                responseErrorStats:false,
             }
         },
         methods: {
@@ -145,30 +149,36 @@
             },
             showDemand(){
                 this.loading = true;
+                this.responseError=false;
                 axios.post(this.$config.api + '?action=GetKeywordIdeas', {
                         keyword: this.keyword,
                         locations: JSON.parse(localStorage.getItem('locations')),
                         requestType: 'IDEAS'
                     }
                 ).then((response) => {
-                    if (response.status == 200) {
+                    if (response.status == 200 && Array.isArray(response.data) ) {
                         this.queryResult = response.data;
 
+                    }else{
+                        this.responseError='There was a problem retrieving ideas, please try again.'
                     }
                     this.loading = false;
                 }).catch(e => {
                     this.loading = false;
                 });
                 this.loadingStats = true;
+                this.responseErrorStats=false;
                 axios.post(this.$config.api + '?action=GetKeywordIdeas', {
                         keyword: this.keyword,
                         locations: JSON.parse(localStorage.getItem('locations')),
                         requestType: 'STATS'
                     }
                 ).then((response) => {
-                    if (response.status == 200) {
+                    if (response.status == 200 && Array.isArray(response.data) ) {
                         this.queryResultStats = response.data;
                         this.setChart(this.queryResultStats)
+                    }else{
+                         this.responseErrorStats='There was a problem retrieving ideas, please try again.'
                     }
                     this.loadingStats = false;
                 }).catch(e => {
