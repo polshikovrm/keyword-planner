@@ -26,7 +26,7 @@ Vue.mixin({
             }
         }else{
             this.$config = {
-                api: 'http://keywordplanner.sigmalion.com.ua/api/'
+                api: 'http://api.keywordplanner.sigmalion.com.ua/api/'
             }
         }
     }
