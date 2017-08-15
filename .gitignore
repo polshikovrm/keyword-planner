@@ -6,3 +6,4 @@
 googleads-php-lib/vendor
 composer.lock
 vendor
+frontend/keyword-planner/api/conf-local.php
