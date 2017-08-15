@@ -32,13 +32,13 @@
                         <h1><span class="number">3</span>Results</h1>
                     </div>
                     <div class="chart-holder">
-                        <column-chart :data="columnChart" width="800px" height="500px"></column-chart>
+                        <column-chart :data="columnChart"  height="500px"></column-chart>
 
                     </div>
 
-                    <div class="clearfix download-block">
-                        <a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>
-                    </div>
+                    <!--<div class="clearfix download-block">-->
+                        <!--<a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>-->
+                    <!--</div>-->
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <app-table-keyword :queryResult="queryResultStats"></app-table-keyword>
@@ -46,6 +46,7 @@
                 <app-table-keyword :queryResult="queryResult"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix"><a href="#" class="btn btn-next">Coming soon...</a></div>
+                <div class="clearfix"><a href="/target-locations" class="btn btn-next">Back</a></div>
             </div>
         </div>
     </div>
@@ -180,7 +181,6 @@
                     if (elem.addkeyword == true) return elem;
                 });
                 var allAddKeyword = addkeywordStats.concat(addkeyword);
-                debugger;
                 localStorage.setItem('addKeyword', JSON.stringify(allAddKeyword));
                 window.location.href='/roi-calculator';
             }

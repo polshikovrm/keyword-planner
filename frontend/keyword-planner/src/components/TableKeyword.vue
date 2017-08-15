@@ -27,8 +27,8 @@
                 </div>
                 <div class="info-block">
                     <span>Show rows </span>
-                    <span class="select-holder"  v-bind:class="{ open: selectlist }">
-                        <button class="select-button" v-on:click="selectlist=!selectlist" type="button">{{limit}}</button>
+                    <span class="select-holder"  v-bind:class="{ open: selectList }" >
+                        <button class="select-button" v-on:click="selectList=!selectList"  type="button" v-click-outside="outside">{{limit}}</button>
                         <ul class="select-list">
                             <li v-on:click="restResult(5)"><span>5</span></li>
                             <li v-on:click="restResult(10)"><span>10</span></li>
@@ -62,10 +62,45 @@ export default  {
                 limitThisPage:30,
                 page:1,
                 queryResultPage: [],
-                selectlist:false
+                selectList: false
+            }
+        },
+        directives: {
+            'click-outside': {
+                bind: function(el, binding, vNode) {
+                    // Provided expression must evaluate to a function.
+                    if (typeof binding.value !== 'function') {
+                        const compName = vNode.context.name
+                        let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
+                        if (compName) { warn += `Found in component '${compName}'` }
+
+                        console.warn(warn)
+                    }
+                    // Define Handler and cache it on the element
+                    const bubble = binding.modifiers.bubble
+                    const handler = (e) => {
+                        if (bubble || (!el.contains(e.target) && el !== e.target)) {
+                            binding.value(e)
+                        }
+                    }
+                    el.__vueClickOutside__ = handler
+
+                    // add Event Listeners
+                    document.addEventListener('click', handler)
+                },
+
+                unbind: function(el, binding) {
+                    // Remove Event Listeners
+                    document.removeEventListener('click', el.__vueClickOutside__)
+                    el.__vueClickOutside__ = null
+
+                }
             }
         },
         methods: {
+            outside: function(e) {
+                this.selectList = false;
+            },
             first(){
                 this.page = 1;
                 this.getResult();
@@ -91,6 +126,7 @@ export default  {
                 this.limit = limit;
                 this.offset = 0;
                 this.getResult();
+                this.selectList = false;
             },
             getResult: function () {
                 var offset = this.page * this.offset;
