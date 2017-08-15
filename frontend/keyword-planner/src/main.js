@@ -20,8 +20,14 @@ const routes = {
 
 Vue.mixin({
     created: function () {
-        this.$config = {
-            api: 'http://kp.dev/api/'
+        if(window.location.hostname == 'localhost' || window.location.hostname.indexOf('dev') !== -1){
+            this.$config = {
+                api: 'http://kp.dev/api/'
+            }
+        }else{
+            this.$config = {
+                api: 'http://api.keywordplanner.sigmalion.com.ua/api/'
+            }
         }
     }
 })

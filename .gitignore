@@ -5,4 +5,6 @@
 *.sln
 googleads-php-lib/vendor
 composer.lock
+composer.phar
 vendor
+frontend/keyword-planner/api/conf-local.php

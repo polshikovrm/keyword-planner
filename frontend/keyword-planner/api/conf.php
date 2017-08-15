@@ -6,8 +6,8 @@ if (file_exists($filename)) {
 } else {
     $GLOBALS['PDOconnect']=[
         'host'=>'localhost',
-        'username'=>'root',
-        'password'=>'root',
+        'username'=>'kp_user',
+        'password'=>'2G5s8Z1u',
         'dbname'=>'keyword-planner',
     ];
 }
