@@ -34,16 +34,18 @@
                     <div class="chart-holder">
                         <column-chart :data="columnChart" width="800px" height="500px"></column-chart>
 
-                        </div>
                     </div>
+
                     <div class="clearfix download-block">
                         <a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>
                     </div>
-                <p v-if="loadingStats">loading Stats</p>
+                </div>
+                <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <app-table-keyword :queryResult="queryResultStats"></app-table-keyword>
-                <p v-if="loading">loading</p>
+                <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <app-table-keyword :queryResult="queryResult"></app-table-keyword>
-                <div v-on:click="step2()" class="clearfix"><a href="#" class="btn btn-next">step-2</a></div>
+                <!--to do:  v-on:click="step2()" - go to step 2-->
+                <div class="clearfix"><a href="#" class="btn btn-next">Coming soon...</a></div>
             </div>
         </div>
     </div>

@@ -12,18 +12,24 @@
 
                 <tbody>
                 <tr v-for="(item, index) in queryResultPage">
-                    <td>{{item.keyword}}</td>
-                    <td>{{item.searchVolume | formatNumber}}</td>
-                    <td><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>
+                    <td class="width1">{{item.keyword}}</td>
+                    <td class="width2">{{item.searchVolume | formatNumber}}</td>
+                    <td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>
                 </tr>
                 </tbody>
             </table>
-            <div>
-                <div>
-                    Show rows <span>
-                        <button class="" type="button">{{limit}}
-                            <span class="caret"></span></button>
-                        <ul>
+            <div class="info-holder clearfix">
+                <div class="pagination">
+                    <span class="first-page" v-on:click="first()"> | <span class="arrow">&#8249;</span> </span>
+                    <span v-on:click="prev()"> <span class="arrow">&#8249;</span>  </span>
+                    <span v-on:click="next()"> <span class="arrow">	&#8250;</span>  </span>
+                    <span class="last-page" v-on:click="last()"> <span class="arrow">	&#8250;</span>| </span>
+                </div>
+                <div class="info-block">
+                    <span>Show rows </span>
+                    <span class="select-holder"  v-bind:class="{ open: selectlist }">
+                        <button class="select-button" v-on:click="selectlist=!selectlist" type="button">{{limit}}</button>
+                        <ul class="select-list">
                             <li v-on:click="restResult(5)"><span>5</span></li>
                             <li v-on:click="restResult(10)"><span>10</span></li>
                             <li v-on:click="restResult(20)"><span>20</span></li>
@@ -31,13 +37,9 @@
                             <li v-on:click="restResult(50)"><span>50</span></li>
                             <li v-on:click="restResult(100)"><span>100</span></li>
                         </ul>
-                    </span> {{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords
+                    </span>
+                    <span>{{offsetThisPage+1}} - {{limitThisPage}} of {{queryResult.length}} keywords</span>
                 </div>
-
-                <span v-on:click="first()"> |< </span>
-                <span v-on:click="prev()"> <  </span>
-                <span v-on:click="next()"> >  </span>
-                <span v-on:click="last()"> >| </span>
             </div>
         </div>
     <!--</div>-->
@@ -59,7 +61,8 @@ export default  {
                 offsetThisPage:0,
                 limitThisPage:30,
                 page:1,
-                queryResultPage: []
+                queryResultPage: [],
+                selectlist:false
             }
         },
         methods: {

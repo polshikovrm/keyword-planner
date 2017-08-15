@@ -242,14 +242,14 @@ p{
 .btn{
     display: inline-block;
     vertical-align: top;
-    font-size:24px;
     color: #fff;
     text-align: center;
     border-radius: 26px;
     background: #ffce00;
     border: 1px solid #ffce00;
-    padding: 10px 15px;
+    padding: 11px 27px;
     transition: all 0.3s ease-out;
+    font:24px 'flamabook', Arial, Helvetica, sans-serif;;
 }
 .btn:hover{
     background: #fff;
@@ -639,6 +639,13 @@ p{
     border: 1px solid #ededed;
     font-size:31px;
     padding: 19px 29px 20px;
+    transition: all 0.3s ease-out;
+}
+.btn-simple:hover{
+    text-decoration: none;
+    background: #4d4d4d;
+    border-color: #4d4d4d;
+    color: #f2f2f2;
 }
 .btn-simple .icon-download{
     display: inline-block;
@@ -648,14 +655,21 @@ p{
     height: 35px;
     margin: 0 19px 0 0;
 }
+.btn-simple:hover .icon-download{
+    background-position: -39px -178px;
+}
 .content-holder .table.result-table{
     border: solid #f3f3f3;
     border-width: 0 2px;
     border-spacing: 0;
+    margin: 0 0 56px;
 }
 .content-holder .table.result-table th{
     font-size:32px;
     border: 2px solid #f3f3f3;
+}
+.content-holder .table.result-table td:last-child{
+    padding-right: 36px;
 }
 .content-holder .table .width1{
      width: 51.7%;
@@ -663,6 +677,9 @@ p{
 .content-holder .table .width2{
     width: 27.3%;
     text-align: right;
+}
+.content-holder .table td.width2{
+    padding-right: 10%;
 }
 .content-holder .table .width3{
     width: 15%;
@@ -690,22 +707,136 @@ p{
 }
 .add-btn.plus{
     background: #ffce00;
-    color: #fff;
-    text-indent: -9999px;
+    color: transparent;
 }
 .add-btn.plus:before{
-    content: '-';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #fff;
+    background: #fff;
+    width: 21px;
+    height: 3px;
+}
+.info-holder{
+    padding: 0 0 74px;
+}
+.info-holder .pagination{
+    float: right;
+    color: #ccc;
     font-size:42px;
+    padding: 0 6px;
+}
+.pagination>span{
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing:-1px;
+    padding: 0 36px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.pagination>span:hover{
+    color: #fcce01;
+}
+.pagination .first-page .arrow{
+    margin: 0 0 0 -12px;
+}
+.pagination .last-page .arrow{
+    margin: 0 -5px 0 0;
+}
+.pagination .arrow{
+    font-size:80px;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 30px;
+}
+.info-holder .pagination>span:last-child{
+    padding: 0 0 0 30px;
+}
+.info-holder .info-block{
+    float: right;
+    letter-spacing:-1px;
+    padding: 0 36px 0 0;
+    font: 34px/1.2 'flamabook', Arial, Helvetica, sans-serif;
+}
+.info-block>span{
+    display: inline-block;
+    vertical-align: middle;
+}
+.select-holder{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    color: #4d4d4d;
+}
+.select-holder .select-button{
+    background: #f2f2f2;
+    border: 1px solid #ededed;
+    color: #4d4d4d;
+    font-size:27px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 18px 88px 20px 20px;
+    margin: 0 40px;
+    cursor: pointer;
+}
+.select-holder .select-button:after{
+    content: '';
+    background: url(../assets/sprite.png) no-repeat -85px -176px;
+    width: 25px;
+    height: 13px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0,-50%);
+}
+.select-holder.open .select-button:after{
+    background-position: -85px -206px;
+}
+.select-holder .select-list{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size:25px;
+    background: #f2f2f2;
+    border: 1px solid #ededed;
+    top: 100%;
+    left: 40px;
+    right:40px;
+    max-height: 0;
+    opacity:0;
+    transform: translate(0, -100%;)
+    transition: all 0.3s ease-out;
+}
+.select-holder.open .select-list{
+    max-height: 4000px;
+    opacity:1;
+    transform: translate(0, 0;)
+}
+.select-holder .select-list li{
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.select-holder .select-list li:hover{
+    background: #fcce01;
+    color: #fff;
+}
+.loading{
+    display: block;
+    margin: 0 auto;
 }
 @media only screen and (max-width: 2060px){
     .content-holder{
         max-width: none;
         padding: 33px 113px;
+    }
+    /*----------------- find keywords page styles ----------*/
+    .keyword-form .buttons-holder{
+        width: 33%;
     }
 }
 @media only screen and (max-width: 1800px){
@@ -807,7 +938,54 @@ p{
         font-size:31px;
         padding: 0 15px;
     }
-
+    /*----------------- find keywords page styles ----------*/
+    .keyword-form{
+        padding: 4px 0 50px;
+    }
+    .keyword-form input[type="text"] {
+        padding: 21px 22px 22px;
+        font-size: 20px;
+    }
+    .keyword-form .buttons-holder{
+        width: 36%;
+    }
+    .keyword-form .buttons-holder .btn {
+        font-size: 20px;
+        height: auto;
+        margin: 0;
+    }
+    .download-block{
+        padding: 30px 0 70px;
+    }
+    .content-holder .table.result-table th{
+        font-size:16px;
+    }
+    .info-holder .pagination{
+        font-size:32px;
+    }
+    .pagination .arrow{
+        font-size:52px;
+        margin-top: -3px;
+    }
+    .pagination .first-page .arrow{
+        margin: -3px 0 0 -7px;
+    }
+    .pagination .last-page .arrow{
+        margin: -3px -3px 0 0;
+    }
+    .info-holder .info-block{
+        font-size:28px;
+    }
+    .select-holder .select-button{
+        font-size:24px;
+        padding: 14px 70px 15px 15px;
+    }
+    .select-holder .select-list{
+        font-size:22px;
+    }
+    .content-holder .table td.width2{
+        padding-right: 4%;
+    }
 }
 @media only screen and (max-width: 1500px){
     /*----------- targetLocations styles ----------------*/
@@ -950,7 +1128,28 @@ p{
     }
 
 }
-@media only screen and (max-width: 992px) and (orientation: landscape){
+@media only screen and (max-width: 992px){
+    .info-holder{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .info-holder .info-block{
+        order: 1;
+        letter-spacing: 0;
+    }
+    .info-holder .pagination{
+        order: 2;
+    }
+    .select-holder .select-button{
+        text-align: left;
+    }
+    .select-holder .select-list{
+        text-align: left;
+    }
+    #chart-1{
+        width: 100% !important;
+    }
 
 }
 @media only screen and (max-width: 767px) and (orientation: portrait){
@@ -1112,4 +1311,124 @@ p{
     .calculate-text{
         font-size:20px;
     }
+
+    /*----------------- find keywords page styles ----------*/
+    .btn-logout{
+        margin: 0 0 20px;
+    }
+    .gray-bg{
+        padding: 10px 0 0;
+    }
+    .keyword-form{
+        padding: 26px 0 0;
+    }
+    .keyword-form .buttons-holder{
+        margin: 0 0 0 2px;
+        width: auto;
+    }
+    .keyword-form .buttons-holder .btn{
+        font-size:9px;
+        padding: 8px 4px 9px;
+        width: auto;
+    }
+    .keyword-form .buttons-holder .btn.reset{
+        width: auto;
+    }
+    .keyword-form input[type="text"]{
+        padding: 8px 10px 9px;
+        font-size:11px;
+    }
+    #chart-1{
+        width: 100% !important;
+        height: 300px !important;
+    }
+    .chart-holder{
+        padding: 7px 10px 5px;
+    }
+    .download-block{
+        padding: 10px 0 6px;
+    }
+    .btn-simple{
+        font-size:11px;
+        padding: 8px 10px 9px;
+    }
+    .btn-simple .icon-download{
+        background-position: 0 -235px;
+        width: 10px;
+        height: 15px;
+        margin: -3px 9px 0 0;
+    }
+    .btn-simple:hover .icon-download{
+        background-position: -23px -235px;
+    }
+    .add-btn{
+        height: 30px;
+        width: 30px;
+        font-size:24px;
+        line-height: 24px;
+        border-width: 1px;
+    }
+    .add-btn.plus:before{
+        width: 15px;
+        height: 2px;
+    }
+    .content-holder .table th,
+    .content-holder .table td{
+        padding: 15px 10px 18px;
+    }
+    .content-holder .table.result-table td:last-child{
+        padding-right: 10px;
+    }
+    .content-holder .table td.width2{
+        padding-right: 10px;
+        text-align: center;
+    }
+    .info-holder .pagination{
+        font-size:18px;
+    }
+    .pagination .arrow{
+        font-size:34px;
+        margin-top: -9px;
+    }
+    .pagination .first-page .arrow{
+        margin: -9px 0 0 -3px;
+    }
+    .pagination .last-page .arrow{
+        margin: -9px -1px 0 0;
+    }
+    .pagination > span{
+        padding: 0 10px;
+    }
+    .info-holder .pagination > span:last-child{
+        padding: 0 0 0 10px;
+    }
+    .info-holder .info-block{
+        padding: 0 0 10px;
+        font-size:16px;
+    }
+    .select-holder .select-button{
+        font-size:16px;
+        margin: 0 10px;
+        padding: 6px 43px 7px 10px;
+        text-align: left;
+    }
+    .select-holder .select-button:after{
+        background-position: -93px -110px;
+        width: 17px;
+        height: 10px;
+        right: 10px;
+    }
+    .select-holder.open .select-button:after{
+        background-position: -93px -142px;
+    }
+    .select-holder .select-list{
+        left:10px;
+        right:10px;
+        text-align: left;
+        font-size:14px;
+    }
+    .select-holder .select-list li{
+        padding: 7px 5px;
+    }
+
 }
