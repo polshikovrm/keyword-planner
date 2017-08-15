@@ -7,11 +7,10 @@
     export default  {
         methods: {
             logout(){
-                 console.log('sdfsd');
                 this.$cookie.delete('PHPSESSID');
                 localStorage.removeItem('locations');
                 localStorage.removeItem('addKeyword');
-                window.location.href='/';
+                window.location.href = '/';
             }
         }
     }

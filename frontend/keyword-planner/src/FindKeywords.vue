@@ -150,7 +150,7 @@
             showDemand(){
                 this.loading = true;
                 this.responseError=false;
-                axios.post(this.$config.api + '?action=GetKeywordIdeas', {
+                axios.post(this.$config.api + '?action=GetKeywordIdeas&token='+this.$cookie.get('PHPSESSID'), {
                         keyword: this.keyword,
                         locations: JSON.parse(localStorage.getItem('locations')),
                         requestType: 'IDEAS'
@@ -164,11 +164,15 @@
                     }
                     this.loading = false;
                 }).catch(e => {
+                    this.$cookie.delete('PHPSESSID');
+                    localStorage.removeItem('locations');
+                    localStorage.removeItem('addKeyword');
+                    window.location.href = '/';
                     this.loading = false;
                 });
                 this.loadingStats = true;
                 this.responseErrorStats=false;
-                axios.post(this.$config.api + '?action=GetKeywordIdeas', {
+                axios.post(this.$config.api + '?action=GetKeywordIdeas&&token='+this.$cookie.get('PHPSESSID'), {
                         keyword: this.keyword,
                         locations: JSON.parse(localStorage.getItem('locations')),
                         requestType: 'STATS'
@@ -182,6 +186,10 @@
                     }
                     this.loadingStats = false;
                 }).catch(e => {
+                    this.$cookie.delete('PHPSESSID');
+                    localStorage.removeItem('locations');
+                    localStorage.removeItem('addKeyword');
+                    window.location.href = '/';
                     this.loadingStats = false;
                 });
             },

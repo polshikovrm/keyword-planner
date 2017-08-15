@@ -33,14 +33,24 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    $conn
 //    echo "Connected successfully";
 } catch (PDOException $e) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
     echo "Connection failed: " . $e->getMessage();
     die();
 }
+if(isset($_GET['token']) && $_GET['action']!=='login'){
+    $stmt = $conn->prepare('SELECT * FROM user WHERE user.token=:token');
 
-
+    $stmt->bindValue(':token', $_GET['token'],PDO::PARAM_STR);
+    $row = $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($row==false){
+        header("HTTP/1.0 404 Not Found");
+        die();
+    }
+}
 if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
@@ -49,8 +59,6 @@ if (isset($_GET['action'])) {
             break;
         case 'login':
             require_once 'login.php';
-            break;
-        case 'target_locations':
             break;
         default:
             echo "404";
