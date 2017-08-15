@@ -623,6 +623,9 @@ p{
 .btn-next{
     float: right;
 }
+.btn-prev{
+    float: left;
+}
 .chart-holder{
     border: 2px solid #f2f2f2;
     padding: 46px 58px 242px;

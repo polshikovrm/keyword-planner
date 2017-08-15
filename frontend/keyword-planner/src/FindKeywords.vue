@@ -45,8 +45,10 @@
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <app-table-keyword :queryResult="queryResult"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
-                <div class="clearfix"><a href="#" class="btn btn-next">Coming soon...</a></div>
-                <div class="clearfix"><a href="/target-locations" class="btn btn-next">Back</a></div>
+                <div class="clearfix">
+                    <a href="/target-locations" class="btn btn-prev">Back</a>
+                    <a href="#" class="btn btn-next">Coming soon...</a>
+                </div>
             </div>
         </div>
     </div>
