@@ -10,7 +10,7 @@
                     <form action="#" class="search-form">
                         <fieldset>
                             <div class="search-input">
-                                <autocomplete class="input" placeholder="Enter a location to target"
+                                <autocomplete class="input" ref="autocomplete" placeholder="Enter a location to target"
                                         v-bind:url="getUrl()"
                                         anchor="canonical_name"
                                         label="target_type"
@@ -99,7 +99,7 @@
         data(){
             return {
                 loading: false,
-                locations:this.getlocations(),
+                locations:this.getLocations(),
                 center:this.getCentreDefoult(),
                 infoOptions: {
                     pixelOffset: {
@@ -121,7 +121,7 @@
             setCentre(index){
                this.center = this.locations[index].marker.position;
             },
-            getlocations(){
+            getLocations(){
                 var locations = [];
                 if (JSON.parse(localStorage.getItem('locations'))) {
                         locations = JSON.parse(localStorage.getItem('locations'));
@@ -129,7 +129,7 @@
                 return locations;
             },
             clear(){
-                this.$children[0].clearInput();
+                this.$refs.autocomplete.clearInput();
             },
             getData(obj){
                 var id = obj.criteria_id;
