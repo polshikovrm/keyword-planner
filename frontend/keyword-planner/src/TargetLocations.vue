@@ -36,7 +36,7 @@
                             </div>
                         </li>
                     </ul>
-
+                    <div class="clearfix"><a href="/find-keywords" class="btn btn-next">Next</a></div>
                 </div>
                 <div class="map-holder">
                     <gmap-map
@@ -64,8 +64,6 @@
                     </gmap-map>
                 </div>
             </div>
-
-            <div class="clearfix"><a href="/find-keywords" class="btn btn-next">Next</a></div>
         </div>
 
 
@@ -111,7 +109,7 @@
         },
         methods: {
             getCentreDefoult(){
-                var center = {lat: 10.0, lng: 10.0};
+                var center = {lat: 37.4737414, lng: -101.8170633};
                 var location = JSON.parse(localStorage.getItem('locations'));
                 if (location !== null && location[location.length - 1]) {
                     center = location[location.length - 1].marker.position;

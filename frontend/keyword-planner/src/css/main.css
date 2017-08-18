@@ -383,7 +383,7 @@ p{
 }
 .results-list{
     padding: 0;
-    margin: 0;
+    margin: 0 0 15px;
     list-style: none;
     border: 1px solid #f2f2f2;
     font-size:33px;
@@ -675,18 +675,33 @@ p{
     padding-right: 36px;
 }
 .content-holder .table .width1{
-     width: 51.7%;
+     width: 55%;
  }
 .content-holder .table .width2{
-    width: 27.3%;
+    width: 45%;
     text-align: right;
 }
 .content-holder .table td.width2{
     padding-right: 10%;
 }
-.content-holder .table .width3{
+/*.content-holder .table .width3{
     width: 15%;
     text-align: center;
+}*/
+.content-holder .table.result-table .text{
+    display: inline-block;
+    vertical-align: middle;
+}
+.content-holder .table .select-holder{
+    text-align: left;
+}
+.content-holder .table .select-holder .select-button{
+    background: #e6e6e6;
+    border-color: #c8c8c8;
+}
+.content-holder .table .select-holder .select-list{
+    background: #e6e6e6;
+    border-color: #c8c8c8;
 }
 .add-btn{
     display: block;
@@ -979,10 +994,12 @@ p{
     .info-holder .info-block{
         font-size:28px;
     }
-    .select-holder .select-button{
+    .select-holder .select-button,
+    .content .table .select-holder .select-button{
         font-size:24px;
         padding: 14px 70px 15px 15px;
     }
+    .content .table .select-holder .select-list,
     .select-holder .select-list{
         font-size:22px;
     }
@@ -1409,27 +1426,32 @@ p{
         padding: 0 0 10px;
         font-size:16px;
     }
-    .select-holder .select-button{
+    .select-holder .select-button,
+    .content .table .select-holder .select-button{
         font-size:16px;
         margin: 0 10px;
         padding: 6px 43px 7px 10px;
         text-align: left;
     }
+    .content .table .select-holder .select-button:after,
     .select-holder .select-button:after{
         background-position: -93px -110px;
         width: 17px;
         height: 10px;
         right: 10px;
     }
+    .content .table .select-holder.open .select-button:after,
     .select-holder.open .select-button:after{
         background-position: -93px -142px;
     }
+    .content .table .select-holder .select-list,
     .select-holder .select-list{
         left:10px;
         right:10px;
         text-align: left;
         font-size:14px;
     }
+    .content .table .select-holder .select-list li,
     .select-holder .select-list li{
         padding: 7px 5px;
     }

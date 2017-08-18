@@ -42,10 +42,10 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
-                <app-table-keyword :queryResult="queryResultStats"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResultStats" :title="title1"></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <p v-if="responseError">{{responseError}}</p>
-                <app-table-keyword :queryResult="queryResult"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResult" :title="title2"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix">
                     <a href="/target-locations" class="btn btn-prev">Back</a>
@@ -121,6 +121,8 @@
                 queryResultStats: [],
                 responseError:false,
                 responseErrorStats:false,
+                title1:'Your Selected Keywords',
+                title2:'More Suggested Keywords'
             }
         },
         methods: {

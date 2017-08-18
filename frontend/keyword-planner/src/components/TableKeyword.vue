@@ -4,9 +4,19 @@
             <table class="table result-table">
                 <thead>
                 <tr>
-                    <th class="width1">Suggested</th>
-                    <th class="width2">Average searches</th>
-                    <th class="width3">Add Keyword</th>
+                    <th class="width1">{{title}}</th>
+                    <th class="width2">
+                        <span class="text">Average searches</span>
+                        <span class="select-holder"  v-bind:class="{ open: selectInterval }" >
+                            <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">Month</button>
+                            <ul class="select-list">
+                                <li v-on:click=""><span>Month</span></li>
+                                <li v-on:click=""><span>Day</span></li>
+                                <li v-on:click=""><span>Year</span></li>
+                            </ul>
+                        </span>
+                    </th>
+                    <!--<th class="width3">Add Keyword</th>-->
                 </tr>
                 </thead>
 
@@ -14,7 +24,7 @@
                 <tr v-for="(item, index) in queryResultPage">
                     <td class="width1">{{item.keyword}}</td>
                     <td class="width2">{{item.searchVolume | formatNumber}}</td>
-                    <td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>
+                    <!--<td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>-->
                 </tr>
                 </tbody>
             </table>
@@ -46,7 +56,7 @@
 </template>
 <script>
 export default  {
-        props: ['queryResult'],
+        props: ['queryResult','title'],
         watch: {
             queryResult: function (newVal) {
                 this.queryResul = newVal;
@@ -62,7 +72,8 @@ export default  {
                 limitThisPage:30,
                 page:1,
                 queryResultPage: [],
-                selectList: false
+                selectList: false,
+                selectInterval: false
             }
         },
         directives: {
@@ -100,6 +111,9 @@ export default  {
         methods: {
             outside: function(e) {
                 this.selectList = false;
+            },
+            outsideInterval: function(e) {
+                this.selectInterval = false;
             },
             first(){
                 this.page = 1;
