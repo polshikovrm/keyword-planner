@@ -8,11 +8,11 @@
                     <th class="width2">
                         <span class="text">Average searches</span>
                         <span class="select-holder"  v-bind:class="{ open: selectInterval }" >
-                            <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">Month</button>
+                            <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">{{interval}}</button>
                             <ul class="select-list">
-                                <li v-on:click="interval=1"><span>Month</span></li>
-                                <li v-on:click="interval=2"><span>Day</span></li>
-                                <li v-on:click="interval=3"><span>Year</span></li>
+                                <li v-on:click="interval='Month'"><span>Month</span></li>
+                                <li v-on:click="interval='Day'"><span>Day</span></li>
+                                <li v-on:click="interval='Year'"><span>Year</span></li>
                             </ul>
                         </span>
                     </th>
@@ -23,9 +23,9 @@
                 <tbody>
                 <tr v-for="(item, index) in queryResultPage">
                     <td class="width1">{{item.keyword}}</td>
-                    <td class="width2" v-if="interval==1" >{{item.searchVolume | formatNumber}}</td>
-                    <td class="width2" v-if="interval==2">{{item.searchVolume / 30 | formatNumber}}</td>
-                    <td class="width2" v-if="interval==3">{{item.searchVolume * 12 | formatNumber}}</td>
+                    <td class="width2" v-if="interval=='Month'" >{{item.searchVolume | formatNumber}}</td>
+                    <td class="width2" v-if="interval=='Day'">{{item.searchVolume / 30 | formatNumber}}</td>
+                    <td class="width2" v-if="interval=='Year'">{{item.searchVolume * 12 | formatNumber}}</td>
                     <!--<td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>-->
                 </tr>
                 </tbody>
@@ -76,7 +76,7 @@ export default  {
                 queryResultPage: [],
                 selectList: false,
                 selectInterval: false,
-                interval: 1
+                interval: 'Month'
             }
         },
         directives: {
