@@ -3,9 +3,9 @@
         <div class="login-frame">
             <div class="text-holder">
                 <div class="text">
-                    <h1>Adwords ROI Calculator</h1>
-                    <p>Predictable Growth made easy.</p>
-                    <p>Calculate the return on investment you can expect from an Adwords campaign, based on keyword data from Google and conversion data from ClientFlo.</p>
+                    <h1>Demand Tool</h1>
+                    <p>Analytics made easy.</p>
+                    <p>Target locations with real time results on to see what Cynosure services people are searching for.</p>
                 </div>
                 <div class="copyright">
                     <p>powered by <a href="#" class="logo-copyright"><img src="src/assets/copyright-logo.png" alt="ClientFlo"></a></p>
