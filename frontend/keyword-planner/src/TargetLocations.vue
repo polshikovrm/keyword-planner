@@ -112,12 +112,19 @@
                 var center = {lat: 37.4737414, lng: -101.8170633};
                 var location = JSON.parse(localStorage.getItem('locations'));
                 if (location !== null && location[location.length - 1]) {
-                    center = location[location.length - 1].marker.position;
+                    var position = JSON.parse(JSON.stringify(location[location.length - 1].marker.position));
+                    center = position;
                 }
                 return center;
             },
             setCentre(index){
-               this.center = this.locations[index].marker.position;
+                var position = JSON.parse(JSON.stringify(this.locations[index].marker.position));
+                if (this.center.lat == this.locations[index].marker.position.lat && this.center.lng == this.locations[index].marker.position.lng) {
+                    this.center.lat = position.lat - 0.00000001;
+                    this.center.lng = position.lng - 0.00000001;
+                } else {
+                    this.center = position;
+                }
             },
             getLocations(){
                 var locations = [];
