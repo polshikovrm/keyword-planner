@@ -57,6 +57,15 @@ if (isset($_GET['action'])) {
         case 'GetKeywordIdeas':
             require_once 'GetKeywordIdeas.php';
             break;
+        case 'userManagement':
+            require_once 'userManagement.php';
+            break;
+        case 'addUser':
+            require_once 'addUser.php';
+            break;
+        case 'deleteUser':
+            require_once 'deleteUser.php';
+            break;
         case 'login':
             require_once 'login.php';
             break;

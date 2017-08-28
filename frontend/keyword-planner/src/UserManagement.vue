@@ -5,13 +5,13 @@
             <div class="title-block">
                 <h1>User management</h1>
             </div>
-            <form action="#" class="keyword-form add-form">
+            <form action="#" class="keyword-form add-form" >
                 <fieldset class="add-form-holder">
                     <div class="input-row">
-                        <input type="text" placeholder="Login">
+                        <input type="text" placeholder="Login" readonly onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="input-row">
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="submit-row buttons-holder">
                         <button class="btn" type="submit">Add</button>
@@ -23,11 +23,11 @@
     <div class="content-holder">
         <table class="table users-table">
             <thead>
-            <tr>
-                <th>Login</th>
-                <th>Password</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>Login</th>
+                    <th>Password</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
             <tr>
@@ -56,5 +56,42 @@
 </div>
 </template>
 <script>
+    import axios from 'axios';
+    import logout from './components/logout.vue';
+    export default {
+        components: {
+            'app-logout': logout
+        },
+        data(){
+            return {
+                loading: false,
+                responseError: false,
+                userList: [],
+            }
+        },
+        methods: {
+            getUserList(){
+                this.loading=true;
+                axios.get(this.$config.api + '?action=userManagement&token='+this.$cookie.get('PHPSESSID')                          ).then((response) => {
+                    if (response.status == 200 && Array.isArray(response.data) ) {
+                        this.queryResult = response.data;
 
+                    }else{
+                        this.responseError='There was a problem retrieving ideas, please try again.'
+                    }
+                    this.loading = false;
+                }).catch(e => {
+                    this.$cookie.delete('PHPSESSID');
+                    localStorage.removeItem('locations');
+                    localStorage.removeItem('addKeyword');
+                    window.location.href = '/';
+                    this.loading = false;
+                });
+
+            }
+        },
+        beforeMount(){
+            this.getUserList()
+        }
+    }
 </script>
