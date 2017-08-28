@@ -585,7 +585,7 @@ p{
     text-transform: uppercase;
     font-size:32px;
     cursor: pointer;
-    height: 108px;
+    height: 106px;
     width: 56.8%;
     text-align: center;
     padding: 20px 10px;
@@ -600,7 +600,8 @@ p{
 .keyword-form .search-field{
     overflow: hidden;
 }
-.keyword-form input[type="text"]{
+.keyword-form input[type="text"],
+.keyword-form input[type="password"]{
     width: 100%;
     background: #fff;
     color: #666;
@@ -847,6 +848,39 @@ p{
     display: block;
     margin: 0 auto;
 }
+/*---------- User management page styles --------------*/
+.add-form-holder{
+    display: flex;
+    justify-content: space-between;
+}
+.add-form .input-row{
+    width: 40%;
+    margin:0 0 0 10px;
+}
+.add-form .input-row:first-child{
+    margin: 0;
+}
+.add-form .buttons-holder{
+    float: none;
+    width: 20%;
+}
+.add-form .buttons-holder .btn{
+    width: 100%;
+}
+.users-table th,
+.users-table td{
+    width: 40%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.users-table th:last-child,
+.users-table td:last-child{
+    width: 20%;
+}
+.content-holder .table.users-table td:last-child{
+    text-align: center;
+    padding-right: 33px;
+}
 @media only screen and (max-width: 2060px){
     .content-holder{
         max-width: none;
@@ -855,6 +889,9 @@ p{
     /*----------------- find keywords page styles ----------*/
     .keyword-form .buttons-holder{
         width: 33%;
+    }
+    .add-form .buttons-holder{
+        width: 20%;
     }
 }
 @media only screen and (max-width: 1800px){
@@ -960,12 +997,16 @@ p{
     .keyword-form{
         padding: 4px 0 50px;
     }
-    .keyword-form input[type="text"] {
+    .keyword-form input[type="text"],
+    .keyword-form input[type="password"] {
         padding: 21px 22px 22px;
         font-size: 20px;
     }
     .keyword-form .buttons-holder{
         width: 36%;
+    }
+    .add-form .buttons-holder{
+        width: 20%;
     }
     .keyword-form .buttons-holder .btn {
         font-size: 20px;
@@ -1013,6 +1054,9 @@ p{
     }
     .content-holder .table td.width2{
         padding-right: 4%;
+    }
+    .content-holder .table.users-table td:last-child{
+        padding-right: 16px;
     }
 }
 @media only screen and (max-width: 1500px){
@@ -1362,7 +1406,8 @@ p{
     .keyword-form .buttons-holder .btn.reset{
         width: auto;
     }
-    .keyword-form input[type="text"]{
+    .keyword-form input[type="text"],
+    .keyword-form input[type="password"]{
         padding: 8px 10px 9px;
         font-size:11px;
     }
@@ -1463,6 +1508,29 @@ p{
     .select-holder .select-list li{
         padding: 7px 5px;
     }
+    /*----------- User management page styles -----------*/
+    .add-form .buttons-holder{
+        width: 20%;
+    }
+    .add-form .buttons-holder .btn{
+        width: 100%;
+    }
+    .users-table .btn{
+        padding: 6px 10px;
+    }
+    .users-table th,
+    .users-table td{
+        width: 33%;
+    }
+    .users-table th:last-child,
+    .users-table td:last-child{
+        padding: 15px 5px;
+        width: 33%;
+    }
+    .content-holder .table.users-table td:last-child{
+        padding-right: 5px;
+    }
+
 }
 @media only screen and (max-width: 600px){
     .content-holder .table.result-table .text{
