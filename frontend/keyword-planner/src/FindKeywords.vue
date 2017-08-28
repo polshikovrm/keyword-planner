@@ -21,9 +21,7 @@
                                 <span v-show="errors.has('form-1.keyword')" class="help is-danger">{{ errors.first('form-1.keyword') }}</span>
                             </p>
                         </div>
-
                     </form>
-
                 </div>
             </div>
             <div class="content-holder">

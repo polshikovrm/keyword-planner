@@ -1572,6 +1572,9 @@ p{
     .content-holder .table.users-table td:last-child{
         padding-right: 5px;
     }
+    .help{
+        font-size:10px;
+    }
 
 }
 @media only screen and (max-width: 600px){
