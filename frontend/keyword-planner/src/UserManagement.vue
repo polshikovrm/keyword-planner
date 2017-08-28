@@ -14,7 +14,7 @@
                         <input type="password" placeholder="Password" readonly onfocus="this.removeAttribute('readonly');">
                     </div>
                     <div class="submit-row buttons-holder">
-                        <button class="btn" type="submit">Add</button>
+                        <button class="btn no-active" type="submit">Add</button>
                     </div>
                 </fieldset>
             </form>
@@ -52,6 +52,7 @@
             </tr>
             </tbody>
         </table>
+        <p><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
     </div>
 </div>
 </template>
