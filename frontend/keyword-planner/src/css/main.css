@@ -168,10 +168,16 @@ p{
     clear: both;
 }
 .login-frame{
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
     min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 }
 .login-frame .text-holder{
     background: #515c63 url(../assets/login-bg.png) no-repeat 87% 75%;
@@ -180,9 +186,16 @@ p{
     padding: 52px 40px 98px 110px;
     position: relative;
     min-height: 100%;
-    display: flex;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .login-frame h1{
@@ -208,7 +221,11 @@ p{
     width: 33%;
     background: #fcce01;
     min-height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .login-form .input-group{
@@ -267,6 +284,14 @@ p{
 }
 .btn:hover .arrow-left{
     background-position: 0 -39px;
+}
+.btn.no-active{
+    background: #515c63;
+    border: 1px solid #515c63;
+    cursor:wait !important;
+}
+.btn.no-active:hover{
+    color: #fff;
 }
 .arrow-left{
     background: url(../assets/sprite.png) no-repeat;
@@ -396,8 +421,14 @@ p{
     padding: 20px 26px 29px;
 }
 .results-list li{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     border-bottom: 1px solid #f2f2f2;
     padding: 16px 25px 12px;
@@ -850,19 +881,29 @@ p{
 }
 /*---------- User management page styles --------------*/
 .add-form-holder{
+    /*display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;*/
+    clear: both;
+    display: block;
+    content: '';
 }
 .add-form .input-row{
+    float: left;
     width: 40%;
-    margin:0 0 0 10px;
+    padding:0 0 0 10px;
 }
 .add-form .input-row:first-child{
-    margin: 0;
+    padding: 0;
 }
 .add-form .buttons-holder{
-    float: none;
+    float: left;
     width: 20%;
+    padding:0 0 0 10px;
+    margin: 0;
 }
 .add-form .buttons-holder .btn{
     width: 100%;
@@ -1511,6 +1552,7 @@ p{
     /*----------- User management page styles -----------*/
     .add-form .buttons-holder{
         width: 20%;
+        margin: 0;
     }
     .add-form .buttons-holder .btn{
         width: 100%;

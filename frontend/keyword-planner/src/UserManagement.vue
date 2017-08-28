@@ -5,16 +5,16 @@
             <div class="title-block">
                 <h1>User management</h1>
             </div>
-            <form action="#" class="keyword-form add-form">
+            <form action="#" class="keyword-form add-form" autocomplete="off">
                 <fieldset class="add-form-holder">
                     <div class="input-row">
-                        <input type="text" placeholder="Login">
+                        <input type="text" placeholder="Login" autocomplete="off">
                     </div>
                     <div class="input-row">
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" autocomplete="off">
                     </div>
                     <div class="submit-row buttons-holder">
-                        <button class="btn" type="submit">Add</button>
+                        <button class="btn no-active" type="submit">Add</button>
                     </div>
                 </fieldset>
             </form>
@@ -52,6 +52,7 @@
             </tr>
             </tbody>
         </table>
+        <p><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
     </div>
 </div>
 </template>
