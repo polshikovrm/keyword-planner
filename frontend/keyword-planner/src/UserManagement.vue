@@ -96,7 +96,6 @@
         },
         methods: {
             validateForm(scope) {
-                 console.log(this.password);
                 this.$validator.validateAll(scope).then(result => {
                     if (result) {
                         this.addUser();
