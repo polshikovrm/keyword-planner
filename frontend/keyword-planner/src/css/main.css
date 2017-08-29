@@ -597,6 +597,7 @@ p{
 }
 /*----------------- find keywords page styles ----------*/
 .btn-logout{
+    margin:0 0 10px 10px;
     float: right;
 }
 .gray-bg{

@@ -2,6 +2,7 @@
 <div id="app">
     <div class="gray-bg">
         <div class="content-holder">
+            <app-logout></app-logout>
             <div class="title-block">
                 <h1>User management</h1>
             </div>

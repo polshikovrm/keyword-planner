@@ -43,7 +43,7 @@ try {
 
         $token = session_id();
         setcookie("PHPSESSID", $token, 0, "/", "localhost", 1);
-        $sql = "UPDATE user SET user.token = :token WHERE user.id = :id";
+        $sql = 'UPDATE user SET user.token = :token WHERE user.id = :id';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $row['id']);
         $stmt->bindParam(':token', $token, PDO::PARAM_STR);
