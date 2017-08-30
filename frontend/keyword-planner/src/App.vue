@@ -14,11 +14,11 @@
             <form class="login-form" v-on:submit.prevent="login()">
                 <div class="input-group">
                     <div class="input-row">
-                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" v-model="email" autofocus="autofocus" class="form-control form-control-lg"
+                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  v-model="email"  class="form-control form-control-lg"
                                placeholder="Username" required="required" type="email">
                     </div>
                     <div class="input-row">
-                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" v-model="password" autofocus="autofocus"
+                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" v-model="password"
                                class="form-control form-control-lg" placeholder="Password" required="required" type="password">
                         <div class="error">
 
