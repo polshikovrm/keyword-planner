@@ -14,11 +14,11 @@
             <form class="login-form" v-on:submit.prevent="login()">
                 <div class="input-group">
                     <div class="input-row">
-                        <input autocomplete="off" v-model="email" autofocus="autofocus" class="form-control form-control-lg"
+                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"  v-model="email"  class="form-control form-control-lg"
                                placeholder="Username" required="required" type="email">
                     </div>
                     <div class="input-row">
-                        <input autocomplete="off" v-model="password" autofocus="autofocus"
+                        <input autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" v-model="password"
                                class="form-control form-control-lg" placeholder="Password" required="required" type="password">
                         <div class="error">
 
@@ -37,6 +37,14 @@
     import axios from 'axios';
 
     export default {
+        watch: {
+            email: function (newVal) {
+                this.errorsLogin = [];
+            },
+            password: function (newVal) {
+                this.errorsLogin = [];
+            }
+        },
         data() {
             return {
                 loading: false,
@@ -64,7 +72,7 @@
                                 this.$cookie.set('user_email', this.email, 1);
                                 window.location.href = '/demand-tool/target-locations';
                             }else if(response.data.errors){
-                                this.errorsLogin.push(response.data.errors);
+                                this.errorsLogin =[response.data.errors];
                             }
                         }
                     }).catch(e => {

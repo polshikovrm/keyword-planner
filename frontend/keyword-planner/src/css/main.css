@@ -1197,19 +1197,19 @@ p{
         width: 133px;
     }
 }
-@media only screen and (max-width: 1100px) and (orientation: portrait){
+@media only screen and (max-width: 1100px) {
     p{
         margin: 0 0 14px;
     }
     .login-frame{
-        flex-direction: column;
-        height: 100vh;
+        flex-wrap: wrap;
+        height: 100%;
+        min-height:100vh;
         justify-content: flex-start;
     }
     .login-frame .text-holder{
         width: 100%;
-        flex-basis: 68.45%;
-        min-height:1px;
+        min-height: 68.45%;
         padding: 50px 34px 30px;
         -webkit-background-size: 446px 363px;
         background-size: 446px 363px;
@@ -1229,8 +1229,7 @@ p{
     }
     .login-form{
         width: 100%;
-        flex-basis: 31.55%;
-        min-height:1px;
+        min-height: 31.55%;
         padding: 20px 38px 20px 31px;
     }
     .login-frame h1{
@@ -1266,23 +1265,16 @@ p{
     }
 
 }
-@media only screen and (max-width: 767px) and (orientation: portrait){
+@media only screen and (max-width: 767px){
     .login-frame .text-holder{
-        flex-basis: 62.2%;
+        min-height: 62.2%;
+        -webkit-background-size: 270px 220px;
+        background-size: 270px 220px;
     }
     .login-frame .copyright{
         right: 10px;
         top: 11px;
-    }
-    .login-form{
-        flex-basis: 37.8%;
-        padding: 10px 20px;
-    }
-}
-@media only screen and (max-width: 767px){
-    .login-frame .text-holder{
-        -webkit-background-size: 270px 220px;
-        background-size: 270px 220px;
+        font-size:11px;
     }
     .login-frame h1{
         font-size:52px;
@@ -1292,12 +1284,13 @@ p{
         font-size:18px;
         line-height: 1.2;
     }
-    .login-frame .copyright{
-        font-size:11px;
-    }
     .logo-copyright img{
         width: 92px;
         height: 12px;
+    }
+    .login-form{
+        min-height: 37.8%;
+        padding: 10px 20px;
     }
     .login-form input{
         font-size:15px;
