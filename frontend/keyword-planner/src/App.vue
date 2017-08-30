@@ -62,7 +62,7 @@
                             if(response.data.successfully){
                                 this.$cookie.set('PHPSESSID', response.data.successfully.token, 1);
                                 this.$cookie.set('user_email', this.email, 1);
-                                window.location.href = '/target-locations';
+                                window.location.href = '/demand-tool/target-locations';
                             }else if(response.data.errors){
                                 this.errorsLogin.push(response.data.errors);
                             }

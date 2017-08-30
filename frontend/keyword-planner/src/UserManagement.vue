@@ -116,7 +116,7 @@
                     this.$cookie.delete('PHPSESSID');
                     localStorage.removeItem('locations');
                     localStorage.removeItem('addKeyword');
-                    window.location.href = '/';
+                    window.location.href = '/demand-tool/';
                     this.loadingUserList=false;
                 });
 
@@ -135,7 +135,7 @@
                     this.$cookie.delete('PHPSESSID');
                     localStorage.removeItem('locations');
                     localStorage.removeItem('addKeyword');
-                    window.location.href = '/';
+                    window.location.href = '/demand-tool/';
                 });
             },
             addUser(){
@@ -157,7 +157,7 @@
                     this.$cookie.delete('PHPSESSID');
                     localStorage.removeItem('locations');
                     localStorage.removeItem('addKeyword');
-                    window.location.href = '/';
+                    window.location.href = '/demand-tool/';
                 });
             }
         },

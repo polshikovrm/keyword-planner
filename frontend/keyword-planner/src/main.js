@@ -13,11 +13,11 @@ Vue.use(VueCookie);
 
 
 const routes = {
-    '/': App,
-    '/target-locations': TargetLocations,
-    '/find-keywords': FindKeywords,
-    '/roi-calculator': RoiCalculator,
-    '/user-management': UserManagement
+    '/demand-tool/': App,
+    '/demand-tool/target-locations': TargetLocations,
+    '/demand-tool/find-keywords': FindKeywords,
+    '/demand-tool/roi-calculator': RoiCalculator,
+    '/demand-tool/user-management': UserManagement
 }
 
 Vue.mixin({
@@ -28,7 +28,7 @@ Vue.mixin({
             }
         }else{
             this.$config = {
-                api: 'http://api.keywordplanner.sigmalion.com.ua/api/'
+                api: 'http://api.keyword-planner.clientflo.com/'
             }
         }
     }
@@ -42,13 +42,13 @@ new Vue({
     computed: {
         ViewComponent () {
            var token = this.$cookie.get('PHPSESSID');
-            if(this.currentRoute =='/' && token==null){
+            if(this.currentRoute =='/demand-tool/' && token==null){
                 return routes[this.currentRoute] || Page404
-            }else if(this.currentRoute =='/' && token!==null){
+            }else if(this.currentRoute =='/demand-tool/' && token!==null){
                 window.location.href = '/target-locations';
                 return;
             }
-             if(this.currentRoute !=='/' && token!==null){
+             if(this.currentRoute !=='/demand-tool/' && token!==null){
                  return routes[this.currentRoute] || Page404
              }
             return Page404

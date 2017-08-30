@@ -46,7 +46,7 @@
                 <app-table-keyword :queryResult="queryResult" :title="title2"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix">
-                    <a href="/target-locations" class="btn btn-prev">Back</a>
+                    <a href="/demand-tool/target-locations" class="btn btn-prev">Back</a>
                     <a href="#" class="btn btn-next">Coming soon...</a>
                 </div>
             </div>
@@ -167,7 +167,7 @@
                     this.$cookie.delete('PHPSESSID');
                     localStorage.removeItem('locations');
                     localStorage.removeItem('addKeyword');
-                    window.location.href = '/';
+                    window.location.href = '/demand-tool/';
                     this.loading = false;
                 });
                 this.loadingStats = true;
@@ -189,7 +189,7 @@
                     this.$cookie.delete('PHPSESSID');
                     localStorage.removeItem('locations');
                     localStorage.removeItem('addKeyword');
-                    window.location.href = '/';
+                    window.location.href = '/demand-tool/';
                     this.loadingStats = false;
                 });
             },
@@ -202,7 +202,7 @@
                 });
                 var allAddKeyword = addkeywordStats.concat(addkeyword);
                 localStorage.setItem('addKeyword', JSON.stringify(allAddKeyword));
-                window.location.href='/roi-calculator';
+                window.location.href='/demand-tool/roi-calculator';
             }
         }
     }

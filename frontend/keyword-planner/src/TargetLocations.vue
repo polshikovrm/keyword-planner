@@ -36,7 +36,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="clearfix"><a href="/find-keywords" class="btn btn-next">Next</a></div>
+                    <div class="clearfix"><a href="/demand-tool/find-keywords" class="btn btn-next">Next</a></div>
                 </div>
                 <div class="map-holder">
                     <gmap-map
