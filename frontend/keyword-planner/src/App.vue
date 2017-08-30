@@ -37,6 +37,14 @@
     import axios from 'axios';
 
     export default {
+        watch: {
+            email: function (newVal) {
+                this.errorsLogin = [];
+            },
+            password: function (newVal) {
+                this.errorsLogin = [];
+            }
+        },
         data() {
             return {
                 loading: false,
@@ -64,7 +72,7 @@
                                 this.$cookie.set('user_email', this.email, 1);
                                 window.location.href = '/target-locations';
                             }else if(response.data.errors){
-                                this.errorsLogin[0] =response.data.errors;
+                                this.errorsLogin =[response.data.errors];
                             }
                         }
                     }).catch(e => {
