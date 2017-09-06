@@ -47,7 +47,7 @@
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix">
                     <a href="/target-locations" class="btn btn-prev">Back</a>
-                    <a href="#" class="btn btn-next">Coming soon...</a>
+                    <!--<a href="#" class="btn btn-next">Coming soon...</a>-->
                 </div>
             </div>
         </div>
