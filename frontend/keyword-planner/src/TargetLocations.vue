@@ -7,7 +7,7 @@
             </div>
             <div class="clearfix location-content">
                 <div class="location-holder">
-                    <form action="#" class="search-form">
+                    <div class="search-form">
                         <fieldset>
                             <div class="search-input">
                                 <autocomplete class="input" ref="autocomplete" placeholder="Enter a location to target"
@@ -22,7 +22,7 @@
                             </div>
                             <input type="submit" value="Search">
                         </fieldset>
-                    </form>
+                    </div>
 
                     <ul class="results-list" v-if="locations.length!==0">
                         <li class="title">Locations</li>
