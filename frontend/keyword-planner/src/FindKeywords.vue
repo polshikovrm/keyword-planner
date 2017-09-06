@@ -46,8 +46,8 @@
                 <app-table-keyword :queryResult="queryResult" :title="title2"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix">
-                    <a href="/demand-tool/target-locations" class="btn btn-prev">Back</a>
-                    <a href="#" class="btn btn-next">Coming soon...</a>
+                    <a href="/target-locations" class="btn btn-prev">Back</a>
+                    <!--<a href="#" class="btn btn-next">Coming soon...</a>-->
                 </div>
             </div>
         </div>
