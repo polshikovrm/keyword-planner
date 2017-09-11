@@ -27,7 +27,7 @@
             <div class="content-holder">
                 <div v-if="columnChart.length">
                     <div class="title-block">
-                        <h1><span class="number">3</span>Results</h1>
+                        <h1><span class="number">3</span>Demand Data</h1>
                     </div>
                     <div class="chart-holder">
                         <column-chart :data="columnChart"  height="500px"></column-chart>
