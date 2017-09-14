@@ -152,7 +152,6 @@
             },
             setChart(queryResult){
                 var columnChart = [];
-                debugger;
                 queryResult.forEach(function (value) {
                     value.targetedMonthlySearches.forEach(function (val, ind) {
                         var month  = val.month.toString().length==1?'0'+val.month : val.month;
