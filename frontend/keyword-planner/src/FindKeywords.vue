@@ -172,9 +172,7 @@
                     return 0;
                 }
 
-               var return_var = columnChart.sort(compare);
-                 console.log(return_var);
-                this.columnChart = return_var;
+                this.columnChart = columnChart.sort(compare);
             },
             showDemand(){
                 this.loading = true;
