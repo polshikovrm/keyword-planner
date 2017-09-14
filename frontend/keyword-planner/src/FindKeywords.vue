@@ -122,6 +122,7 @@
         data(){
             return {
                 columnChart:[],
+                locations:this.getLocations(),
                 loading: false,
                 loadingStats: false,
                 keyword: '',
