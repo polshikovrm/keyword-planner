@@ -45,7 +45,7 @@ new Vue({
             if(this.currentRoute =='/demand-tool/' && token==null){
                 return routes[this.currentRoute] || Page404
             }else if(this.currentRoute =='/demand-tool/' && token!==null){
-                window.location.href = '/target-locations';
+                window.location.href = '/demand-tool/target-locations';
                 return;
             }
              if(this.currentRoute !=='/demand-tool/' && token!==null){
