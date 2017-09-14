@@ -414,6 +414,9 @@ p{
     font-size:33px;
     color: #00b3e3;
 }
+.find-keywords .results-list{
+    margin-bottom: 70px;
+}
 .results-list .title{
     background: #f2f2f2;
     color: #808080;
@@ -661,7 +664,7 @@ p{
 }
 .chart-holder{
     border: 2px solid #f2f2f2;
-    padding: 46px 58px 242px;
+    padding: 46px 58px 65px;
 }
 .download-block{
     padding: 78px 0 242px;

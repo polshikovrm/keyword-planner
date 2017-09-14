@@ -18,7 +18,9 @@
                                 <input v-model="keyword" v-validate="'required'"
                                        :class="{'input': true, 'is-danger': errors.has('form-1.keyword') }" name="keyword"
                                        type="text" placeholder="keyword">
+                                <sapn class="help">(for multiple keywords, please separate each keyword with a comma)</sapn>
                                 <span v-show="errors.has('form-1.keyword')" class="help is-danger">{{ errors.first('form-1.keyword') }}</span>
+
                             </p>
                         </div>
                     </form>
@@ -28,11 +30,19 @@
                 <div v-if="columnChart.length">
                     <div class="title-block">
                         <h1><span class="number">3</span>Demand Data</h1>
+                        <p>Demand Over Past 12 Months</p>
                     </div>
                     <div class="chart-holder">
                         <column-chart :data="columnChart"  height="500px"></column-chart>
-
                     </div>
+                    <ul class="results-list" v-if="locations.length!==0">
+                        <li class="title">Locations</li>
+                        <li v-for="(item, index) in locations">
+                            <div class="width1">
+                                <p>{{ item.canonical_name }} -{{ item.target_type }}</p>
+                            </div>
+                        </li>
+                    </ul>
 
                     <!--<div class="clearfix download-block">-->
                         <!--<a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>-->
@@ -124,6 +134,13 @@
             }
         },
         methods: {
+            getLocations(){
+                var locations = [];
+                if (JSON.parse(localStorage.getItem('locations'))) {
+                    locations = JSON.parse(localStorage.getItem('locations'));
+                }
+                return locations;
+            },
             validateForm(scope) {
                 this.$validator.validateAll(scope).then(result => {
                     if (result) {
@@ -137,15 +154,26 @@
                 queryResult.forEach(function (value) {
                     value.targetedMonthlySearches.forEach(function (val, ind) {
                         var month  = val.month.toString().length==1?'0'+val.month : val.month;
-                        var name = moment(val.year + '-' + month + '-01').format('MMMM YYYY');
+                        var name = moment(val.year + '-' + month + '-01').format('YYYY-MM');
+                        var data = moment(val.year + '-' + month + '-01').format('YYYY-MM');
                         if (columnChart[ind] == undefined) {
-                            columnChart.push([name, val.count]);
+                            columnChart.push([name, val.count,data]);
                         } else {
                             columnChart[ind][1] += val.count;
                         }
                     });
                 });
-                this.columnChart = columnChart;
+                function compare(a, b) {
+                    if (a[2] < b[2])
+                        return -1;
+                    if (a[2] > b[2])
+                        return 1;
+                    return 0;
+                }
+
+               var return_var = columnChart.sort(compare);
+                 console.log(return_var);
+                this.columnChart = return_var;
             },
             showDemand(){
                 this.loading = true;
