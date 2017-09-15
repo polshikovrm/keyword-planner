@@ -18,7 +18,7 @@
                                 <input v-model="keyword" v-validate="'required'"
                                        :class="{'input': true, 'is-danger': errors.has('form-1.keyword') }" name="keyword"
                                        type="text" placeholder="keyword">
-                                <sapn class="help">(for multiple keywords, please separate each keyword with a comma)</sapn>
+                                <span class="help">(for multiple keywords, please separate each keyword with a comma)</span>
                                 <span v-show="errors.has('form-1.keyword')" class="help is-danger">{{ errors.first('form-1.keyword') }}</span>
 
                             </p>
@@ -184,7 +184,8 @@
                     }
                 ).then((response) => {
                     if (response.status == 200 && Array.isArray(response.data) ) {
-                        this.queryResult = response.data;
+//                        this.queryResult = response.data;
+                        this.queryResult = response.data.slice(0, 9);
 
                     }else{
                         this.responseError='There was a problem retrieving ideas, please try again.'
