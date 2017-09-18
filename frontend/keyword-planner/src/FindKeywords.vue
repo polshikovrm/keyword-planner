@@ -30,7 +30,7 @@
                 <div v-if="columnChart.length">
                     <div class="title-block">
                         <h1><span class="number">3</span>Demand Data</h1>
-                        <p>Demand Over Past 12 Months</p>
+                        <p>Trend Over The Past 12 Months</p>
                     </div>
                     <div class="chart-holder">
                         <column-chart :data="columnChart"  height="500px"></column-chart>
