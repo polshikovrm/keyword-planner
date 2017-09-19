@@ -43,10 +43,6 @@
                             </div>
                         </li>
                     </ul>
-
-                    <!--<div class="clearfix download-block">-->
-                        <!--<a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>-->
-                    <!--</div>-->
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
@@ -55,9 +51,10 @@
                 <p v-if="responseError">{{responseError}}</p>
                 <app-table-keyword :queryResult="queryResult" :title="title2"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
-                <div class="clearfix">
+                <div class="clearfix download-block">
                     <a href="/target-locations" class="btn btn-prev">Back</a>
                     <!--<a href="#" class="btn btn-next">Coming soon...</a>-->
+                    <a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>
                 </div>
             </div>
         </div>
