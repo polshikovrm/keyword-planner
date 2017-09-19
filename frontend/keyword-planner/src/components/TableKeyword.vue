@@ -117,6 +117,7 @@ export default  {
             },
             outsideInterval: function(e) {
                 this.selectInterval = false;
+                this.$emit('interval',this.interval);
             },
             first(){
                 this.page = 1;
@@ -154,6 +155,7 @@ export default  {
                 this.offsetThisPage = offset;
                 this.limitThisPage = limit;
                 this.queryResultPage = this.queryResult.slice(offset, limit);
+                this.$emit('queryResultPage',this.queryResultPage);
             },
             toggleKeyword(item){
                 item.addkeyword = !item.addkeyword;

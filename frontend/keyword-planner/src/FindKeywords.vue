@@ -46,15 +46,31 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
-                <app-table-keyword :queryResult="queryResultStats" :title="title1"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResultStats" :title="title1" v-on:interval="changedIntervalResultStats" v-on:queryResultPage="changedResultStatsPage"></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <p v-if="responseError">{{responseError}}</p>
-                <app-table-keyword :queryResult="queryResult" :title="title2"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResult" :title="title2" v-on:interval="changedIntervalResult" v-on:queryResultPage="changedResultPage"></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix download-block">
                     <a href="/target-locations" class="btn btn-prev">Back</a>
                     <!--<a href="#" class="btn btn-next">Coming soon...</a>-->
-                    <a href="#" class="btn-simple"><span class="icon-download"></span>Download</a>
+                    <form v-bind:action="downloadAction" method="post" target="_blank" >
+                        <div  v-for="(item, index) in resultPage" >
+                            <input type="hidden" name="queryResult[keyword][]" v-model="item.keyword" >
+                            <input type="hidden" name="queryResult[searchVolume][]" v-model="item.searchVolume" >
+                        </div>
+                        <div  v-for="(item, index) in resultStatsPage" >
+                            <input type="hidden" name="queryResultStats[keyword][]" v-model="item.keyword" >
+                            <input type="hidden" name="queryResultStats[searchVolume][]" v-model="item.searchVolume" >
+                        </div>
+                        <div  v-for="(item, index) in locations" >
+                            <input type="hidden" name="locations[]" v-model="item.fullname" >
+                        </div>
+                        <input type="hidden" name="queryResultInterval" v-model="queryResultInterval" >
+                        <input type="hidden" name="queryResultStatsInterval"  v-model="queryResultStatsInterval">
+                        <button type="submit"  v-if="queryResultStats.length!==0 && queryResult.length!==0"  class="btn-simple"><span class="icon-download"></span>Download</button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -128,14 +144,34 @@
                 responseError:false,
                 responseErrorStats:false,
                 title1:'Your Selected Keywords',
-                title2:'More Suggested Keywords'
+                title2:'More Suggested Keywords',
+                downloadAction:"",
+                queryResultInterval:"Month",
+                queryResultStatsInterval:"Month",
+                resultPage:[],
+                resultStatsPage:[],
             }
         },
         methods: {
+            changedIntervalResult(a){
+               this.queryResultInterval=a;
+            },
+            changedIntervalResultStats(a){
+                this.queryResultStatsInterval=a;
+            },
+            changedResultPage(a){
+                this.resultPage=a;
+            },
+            changedResultStatsPage(a){
+                this.resultStatsPage=a;
+            },
             getLocations(){
                 var locations = [];
                 if (JSON.parse(localStorage.getItem('locations'))) {
                     locations = JSON.parse(localStorage.getItem('locations'));
+                    locations.forEach(function (item,index) {
+                        locations[index].fullname=item.canonical_name+' -'+item.target_type;
+                    });
                 }
                 return locations;
             },
@@ -172,6 +208,7 @@
                 this.columnChart = columnChart.sort(compare);
             },
             showDemand(){
+                this.downloadAction = this.$config.api+'download.php';
                 this.loading = true;
                 this.responseError=false;
                 axios.post(this.$config.api + '?action=GetKeywordIdeas&token='+this.$cookie.get('PHPSESSID'), {

@@ -250,7 +250,7 @@ ob_start();
 
             .content-holder .results-list.table .title {
                 background: #f2f2f2;
-                color: #808080;
+                color: #000;
                 font-family: "flamalight", Arial, Helvetica, sans-serif;
                 padding: 20px 26px 29px;
             }
@@ -424,6 +424,7 @@ ob_start();
             .content-holder .table.result-table th {
                 font-size: 32px;
                 border: 2px solid #f3f3f3;
+                color: #000;
             }
 
             .content-holder .table.result-table td:last-child {
@@ -446,10 +447,11 @@ ob_start();
             .content-holder .table.result-table .text {
                 display: inline-block;
                 vertical-align: middle;
+                color: #000;
             }
 
             .content-holder .table .select-holder {
-                text-align: left;
+                text-align: center;
                 vertical-align: middle;
             }
 
@@ -457,6 +459,7 @@ ob_start();
                 background: #e6e6e6;
                 border-color: #c8c8c8;
                 margin: 0 0 0 15px;
+                text-align: center;
             }
 
             .content-holder .table .select-holder .select-list {
@@ -519,64 +522,10 @@ ob_start();
                 position: relative;
                 display: inline-block;
                 vertical-align: top;
-                padding: 18px 88px 20px 20px;
+                padding: 18px 25px 20px;
                 margin: 0 40px;
                 cursor: pointer;
-            }
-
-            .select-holder .select-button:after {
-                content: "";
-                background: url(../assets/sprite.png) no-repeat -85px -176px;
-                width: 25px;
-                height: 13px;
-                position: absolute;
-                top: 50%;
-                right: 20px;
-                transform: translate(0, -50%);
-            }
-
-            .select-holder.open .select-button:after {
-                background-position: -85px -206px;
-            }
-
-            .select-holder .select-list {
-                position: absolute;
-                margin: 0;
-                padding: 0;
-                list-style: none;
-                font-size: 25px;
-                background: #f2f2f2;
-                border: 1px solid #ededed;
-                top: 100%;
-                left: 40px;
-                right: 40px;
-                max-height: 0;
-                opacity: 0;
-                transform: translate(0, -100%;
-            ) transition: all 0.3 s ease-out;
-            }
-
-            .select-holder.open .select-list {
-                max-height: 4000px;
-                opacity: 1;
-                transform: translate(0, 0;
-            )
-            }
-
-            .select-holder .select-list li {
-                padding: 10px 20px;
-                cursor: pointer;
-                transition: all 0.3s ease-out;
-            }
-
-            .select-holder .select-list li:hover {
-                background: #fcce01;
-                color: #fff;
-            }
-
-            .loading {
-                display: block;
-                margin: 0 auto;
+                text-align: center;
             }
 
             /*---------- User management page styles --------------*/
@@ -655,24 +604,12 @@ ob_start();
 
                 .select-holder .select-button {
                     font-size: 24px;
-                    padding: 14px 70px 15px 15px;
+                    padding: 14px 25px 15px;
                 }
 
                 .content-holder .table .select-holder .select-button {
-                    padding: 10px 50px 10px 10px;
+                    padding: 10px 25px 10px;
                     font-size: 18px;
-                }
-
-                .select-holder .select-list {
-                    font-size: 22px;
-                }
-
-                .content-holder .table .select-holder .select-list {
-                    font-size: 16px;
-                }
-
-                .content-holder .table .select-holder .select-list li {
-                    padding: 5px 10px;
                 }
 
                 .content-holder .table td.width2 {
@@ -717,18 +654,6 @@ ob_start();
             @media only screen and (max-width: 1100px) {
                 p {
                     margin: 0 0 14px;
-                }
-
-            }
-
-            @media only screen and (max-width: 992px) {
-
-                .select-holder .select-button {
-                    text-align: left;
-                }
-
-                .select-holder .select-list {
-                    text-align: left;
                 }
 
             }
@@ -839,34 +764,8 @@ ob_start();
                 .content-holder .table .select-holder .select-button {
                     font-size: 16px;
                     margin: 0 10px;
-                    padding: 6px 43px 7px 10px;
-                    text-align: left;
-                }
-
-                .content-holder .table .select-holder .select-button:after,
-                .select-holder .select-button:after {
-                    background-position: -93px -110px;
-                    width: 17px;
-                    height: 10px;
-                    right: 10px;
-                }
-
-                .content-holder .table .select-holder.open .select-button:after,
-                .select-holder.open .select-button:after {
-                    background-position: -93px -142px;
-                }
-
-                .content-holder .table .select-holder .select-list,
-                .select-holder .select-list {
-                    left: 10px;
-                    right: 10px;
-                    text-align: left;
-                    font-size: 14px;
-                }
-
-                .content-holder .table .select-holder .select-list li,
-                .select-holder .select-list li {
-                    padding: 7px 5px;
+                    padding: 6px 25px 7px;
+                    text-align: center;
                 }
 
                 /*----------- User management page styles -----------*/
@@ -915,6 +814,7 @@ ob_start();
     <div id="app">
         <div class="find-keywords">
             <div class="content-holder">
+                <?php if(isset($_POST['locations'])){ ?>
                 <div>
                     <table class="table result-table results-list">
                         <thead>
@@ -924,29 +824,30 @@ ob_start();
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Kiev,Kyiv city,Ukraine -City</td>
+                            <?php foreach ($_POST['locations'] as $value){ ?>
+                                <td><?php echo $value ?></td>
+                            <?php } ?>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+                <?php } ?>
                 <div>
                     <table class="table result-table">
                         <thead>
                         <tr>
                             <th class="width1">Your Selected Keywords</th>
-                            <th class="width2"><span class="text">Average searches</span> <span class="select-holder"><button
-                                        type="button" class="select-button">Month</button></span></th>
+                            <th class="width2" style="text-align: right;"><span class="text">Average searches</span> <span class="select-holder"><button
+                                        type="button" class="select-button" style="text-align: center;"><?php echo $_POST['queryResultStatsInterval']?></button></span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="width1">tattoo</td>
-                            <td class="width2">1,000</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">body</td>
-                            <td class="width2">390</td>
-                        </tr>
+                         <?php foreach ($_POST['queryResultStats']['keyword'] as $key=>$value){ ?>
+                             <tr>
+                                 <td class="width1"><?php echo $value ?></td>
+                                 <td class="width2" style="text-align: right; padding-right: 33px;"><?php echo $_POST['queryResultStats']['searchVolume'][$key] ?></td>
+                             </tr>
+                         <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -955,51 +856,17 @@ ob_start();
                         <thead>
                         <tr>
                             <th class="width1">More Suggested Keywords</th>
-                            <th class="width2"><span class="text">Average searches</span> <span class="select-holder"><button
-                                        type="button" class="select-button">Month</button> </span></th>
+                            <th class="width2" style="text-align: right;"><span class="text">Average searches</span> <span class="select-holder"><button
+                                        type="button" class="select-button" style="text-align: center;"><?php echo $_POST['queryResultInterval']?></button> </span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="width1">bodys</td>
-                            <td class="width2">10</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tattoo designs</td>
-                            <td class="width2">50</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tato</td>
-                            <td class="width2">40</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">bodies</td>
-                            <td class="width2">30</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tattoos for men</td>
-                            <td class="width2">50</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tattoo shops</td>
-                            <td class="width2">50</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tattoo designs for men</td>
-                            <td class="width2">10</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tattoos for women</td>
-                            <td class="width2">10</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">tribal tattoo</td>
-                            <td class="width2">50</td>
-                        </tr>
-                        <tr>
-                            <td class="width1">sleeve tattoos</td>
-                            <td class="width2">40</td>
-                        </tr>
+                        <?php foreach ($_POST['queryResult']['keyword'] as $key=>$value){ ?>
+                            <tr>
+                                <td class="width1"><?php echo $value ?></td>
+                                <td class="width2"  style="text-align: right; padding-right: 33px;"><?php echo $_POST['queryResult']['searchVolume'][$key] ?></td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -1011,7 +878,7 @@ ob_start();
 <?php
 $html = ob_get_clean();
 $options = new Options();
-$options->set('defaultFont', 'Times-Italic');
+//$options->set('defaultFont', 'Times-Italic');
 // instantiate and use the dompdf class
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
