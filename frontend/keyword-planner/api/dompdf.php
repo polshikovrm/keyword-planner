@@ -304,7 +304,7 @@ ob_start();
             .content-holder .table {
                 width: 100%;
                 font: 32px/1 "Times-Italic", Arial, Helvetica, sans-serif;
-                margin: 0 0 126px;
+                margin: 0 0 30px;
             }
 
             .content-holder .table th {
@@ -418,7 +418,7 @@ ob_start();
                 border: solid #f3f3f3;
                 border-width: 0 2px;
                 border-spacing: 0;
-                margin: 0 0 56px;
+                margin: 0 0 30px;
             }
 
             .content-holder .table.result-table th {
