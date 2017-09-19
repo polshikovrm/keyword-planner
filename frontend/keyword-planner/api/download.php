@@ -845,7 +845,16 @@ ob_start();
                          <?php foreach ($_POST['queryResultStats']['keyword'] as $key=>$value){ ?>
                              <tr>
                                  <td class="width1"><?php echo $value ?></td>
-                                 <td class="width2" style="text-align: right; padding-right: 33px;"><?php echo $_POST['queryResultStats']['searchVolume'][$key] ?></td>
+                                 <td class="width2" style="text-align: right; padding-right: 33px;">
+                                     <?php
+                                     if ($_POST['queryResultStatsInterval'] == 'Month') {
+                                         echo (int)$_POST['queryResultStats']['searchVolume'][$key];
+                                     } elseif ($_POST['queryResultStatsInterval'] == 'Day') {
+                                         echo round($_POST['queryResultStats']['searchVolume'][$key] / 30);
+                                     } elseif ($_POST['queryResultStatsInterval'] == 'Year') {
+                                         echo round($_POST['queryResultStats']['searchVolume'][$key] * 12);
+                                     }
+                                     ?></td>
                              </tr>
                          <?php } ?>
                         </tbody>
@@ -864,7 +873,17 @@ ob_start();
                         <?php foreach ($_POST['queryResult']['keyword'] as $key=>$value){ ?>
                             <tr>
                                 <td class="width1"><?php echo $value ?></td>
-                                <td class="width2"  style="text-align: right; padding-right: 33px;"><?php echo $_POST['queryResult']['searchVolume'][$key] ?></td>
+                                <td class="width2"  style="text-align: right; padding-right: 33px;">
+                                    <?php
+                                    if ($_POST['queryResultInterval'] == 'Month') {
+                                        echo $_POST['queryResult']['searchVolume'][$key];
+                                    } elseif ($_POST['queryResultInterval'] == 'Day') {
+                                        echo round($_POST['queryResult']['searchVolume'][$key] / 30);
+                                    } elseif ($_POST['queryResultInterval'] == 'Year') {
+                                        echo round($_POST['queryResult']['searchVolume'][$key] * 12);
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         <?php } ?>
                         </tbody>
