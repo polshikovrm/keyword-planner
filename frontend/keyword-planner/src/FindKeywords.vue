@@ -219,7 +219,7 @@
                 ).then((response) => {
                     if (response.status == 200 && Array.isArray(response.data) ) {
 //                        this.queryResult = response.data;
-                        this.queryResult = response.data.slice(0, 10);
+                        this.queryResult = response.data.slice(0, 5);
 
                     }else{
                         this.responseError='There was a problem retrieving ideas, please try again.'
