@@ -32,7 +32,7 @@
                             </div>
                             <div class="width2">
                                 <span v-on:click="remove(index)" class="func">Remove</span>
-                                <span v-on:click="setCentre(index)" class="func">Nearby</span>
+                                <!--<span v-on:click="setCentre(index)" class="func">Nearby</span>-->
                             </div>
                         </li>
                     </ul>

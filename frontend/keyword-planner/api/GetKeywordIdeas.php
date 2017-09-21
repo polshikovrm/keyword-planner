@@ -168,7 +168,7 @@ class GetKeywordIdeas {
               ? $categoryIds = '' : implode(', ', $data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
 
             $CPC = ($data[AttributeType::AVERAGE_CPC]->getValue() === null)
-                ? $categoryIds = '-' :  'CA$'.round($data[AttributeType::AVERAGE_CPC]->getValue()->getMicroAmount()/1000000,2);
+                ? $categoryIds = '-' :  '$'.round($data[AttributeType::AVERAGE_CPC]->getValue()->getMicroAmount()/1000000,2);
             $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume,'targetedMonthlySearches'=>$tms,'suggestedBid'=>$CPC];
         }
       }
