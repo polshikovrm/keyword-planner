@@ -915,7 +915,7 @@ ob_start();
                     </table>
                 </div>
                 <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%; margin-bottom: -40px"  >
-                <p style="font-size: 11px; text-align: center; margin-top: -150px; margin-left: 0px;" >www.ClientFlo.com</p>
+                <p style="font-size: 11px; text-align: left; margin-top: -150px; margin-left: 0px;" >www.ClientFlo.com</p>
             </div>
         </div>
     </div>

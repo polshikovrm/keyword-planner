@@ -1,19 +1,11 @@
-#RewriteEngine on
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule ^(.*)$ /demand-tool/frontend/keyword-planner/api/index.php?path=$1 [NC,L,QSA]
-
 RewriteEngine on
-RewriteBase /demand-tool/frontend/keyword-planner/api/
-RewriteRule ^index\.php$ – [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /demand-tool/frontend/keyword-planner/api/index.php [L]
-
-Header set Access-Control-Allow-Origin "*"
-Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-Header set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,OPTIONS"
-Header set Access-Control-Allow-Credentials "true"
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+#Header set Access-Control-Allow-Origin "*.*"
+#Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+#Header set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,OPTIONS"
+#Header set Access-Control-Allow-Credentials "true"
 #<Files *.*>
 #    Order Deny,Allow
 #    Deny from all
