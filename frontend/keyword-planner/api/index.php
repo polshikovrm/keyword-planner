@@ -1,5 +1,4 @@
 <?php
-die('index.php');
 /**
  * Created by PhpStorm.
  * User: spiritvoin
