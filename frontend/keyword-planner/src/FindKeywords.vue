@@ -58,13 +58,15 @@
                         <div  v-for="(item, index) in resultPage" >
                             <input type="hidden" name="queryResult[keyword][]" v-model="item.keyword" >
                             <input type="hidden" name="queryResult[searchVolume][]" v-model="item.searchVolume" >
+                            <input type="hidden" name="queryResult[suggestedBid][]" v-model="item.suggestedBid" >
                         </div>
                         <div  v-for="(item, index) in resultStatsPage" >
                             <input type="hidden" name="queryResultStats[keyword][]" v-model="item.keyword" >
                             <input type="hidden" name="queryResultStats[searchVolume][]" v-model="item.searchVolume" >
+                            <input type="hidden" name="queryResultStats[suggestedBid][]" v-model="item.suggestedBid" >
                         </div>
                         <div  v-for="(item, index) in locations" >
-                            <input type="hidden" name="locations[]" v-model="item.fullname" >
+                            <input type="hidden" name="locations[]" v-model="item.fullName" >
                         </div>
                         <input type="hidden" name="queryResultInterval" v-model="queryResultInterval" >
                         <input type="hidden" name="queryResultStatsInterval"  v-model="queryResultStatsInterval">
@@ -170,7 +172,7 @@
                 if (JSON.parse(localStorage.getItem('locations'))) {
                     locations = JSON.parse(localStorage.getItem('locations'));
                     locations.forEach(function (item,index) {
-                        locations[index].fullname=item.canonical_name+' -'+item.target_type;
+                        locations[index].fullName=item.canonical_name+' -'+item.target_type;
                     });
                 }
                 return locations;
@@ -219,7 +221,7 @@
                 ).then((response) => {
                     if (response.status == 200 && Array.isArray(response.data) ) {
 //                        this.queryResult = response.data;
-                        this.queryResult = response.data.slice(0, 5);
+                        this.queryResult = response.data.slice(0, 10);
 
                     }else{
                         this.responseError='There was a problem retrieving ideas, please try again.'

@@ -16,7 +16,7 @@
                             </ul>
                         </span>
                     </th>
-                    <!--<th class="width3">Add Keyword</th>-->
+                    <th class="width3">Suggested Bid</th>
                 </tr>
                 </thead>
 
@@ -26,6 +26,9 @@
                     <td class="width2" v-if="interval=='Month'" >{{item.searchVolume | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Day'">{{item.searchVolume / 30 | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Year'">{{item.searchVolume * 12 | formatNumber}}</td>
+                    <td class="width3"  >{{item.suggestedBid}}</td>
+
+
                     <!--<td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>-->
                 </tr>
                 </tbody>

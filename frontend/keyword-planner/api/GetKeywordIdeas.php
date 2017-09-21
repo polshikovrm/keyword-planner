@@ -26,10 +26,13 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201705\cm\Keyword;
 use Google\AdsApi\AdWords\v201705\cm\Language;
 use Google\AdsApi\AdWords\v201705\cm\Location;
+use Google\AdsApi\AdWords\v201705\cm\Money;
 use Google\AdsApi\AdWords\v201705\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201705\cm\Paging;
+use Google\AdsApi\AdWords\v201705\o\AdGroupEstimateRequest;
 use Google\AdsApi\AdWords\v201705\o\AttributeType;
 use Google\AdsApi\AdWords\v201705\o\IdeaType;
+use Google\AdsApi\AdWords\v201705\o\KeywordEstimateRequest;
 use Google\AdsApi\AdWords\v201705\o\LanguageSearchParameter;
 use Google\AdsApi\AdWords\v201705\o\LocationSearchParameter;
 use Google\AdsApi\AdWords\v201705\o\NetworkSearchParameter;
@@ -164,7 +167,9 @@ class GetKeywordIdeas {
               ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue() === null)
               ? $categoryIds = '' : implode(', ', $data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
 
-            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume,'targetedMonthlySearches'=>$tms];
+            $CPC = ($data[AttributeType::AVERAGE_CPC]->getValue() === null)
+                ? $categoryIds = '-' :  'CA$'.round($data[AttributeType::AVERAGE_CPC]->getValue()->getMicroAmount()/1000000,2);
+            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume,'targetedMonthlySearches'=>$tms,'suggestedBid'=>$CPC];
         }
       }
 
