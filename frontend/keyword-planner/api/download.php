@@ -855,7 +855,9 @@ ob_start();
 <!--                                        --><?php //echo $_POST['queryResultStatsInterval']?><!--</button>-->
 <!--                                </span>-->
                             </th>
-                            <th class="width3" style="text-align: right;">Suggested Bid</th>
+                            <?php if ($_POST['suggestedStatsHide']=='false') { ?>
+                                <th class="width3" style="text-align: right;">Suggested Bid</th>
+                            <?php } ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -872,7 +874,10 @@ ob_start();
                                          echo round($queryResultStatsSearchVolume[$key] * 12);
                                      }
                                      ?></td>
-                                 <td class="width3" style="text-align: right;"  ><?php echo $queryResultStatsSuggestedBid[$key]  ?></td>
+                                 <?php if ($_POST['suggestedStatsHide']=='false') { ?>
+                                     <td class="width3"
+                                         style="text-align: right;"><?php echo $queryResultStatsSuggestedBid[$key] ?></td>
+                                 <?php } ?>
                              </tr>
                          <?php } ?>
                         </tbody>
@@ -890,7 +895,9 @@ ob_start();
 <!--                                    <button type="button" class="select-button" style="text-align: center;">--><?php //echo $_POST['queryResultInterval']?><!--</button>-->
 <!--                                </span>-->
                             </th>
-                            <th class="width3" style="text-align: right;">Suggested Bid</th>
+                            <?php if($_POST['suggestedHide']=='false'){?>
+                                <th class="width3" style="text-align: right;">Suggested Bid</th>
+                            <?php } ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -908,14 +915,18 @@ ob_start();
                                     }
                                     ?>
                                 </td>
-                                <td class="width3" style="text-align: right;" ><?php echo $queryResultSuggestedBid[$key]  ?></td>
+                                <?php if ($_POST['suggestedHide']=='false') { ?>
+                                    <td class="width3"
+                                        style="text-align: right;"><?php echo $queryResultSuggestedBid[$key] ?></td>
+                                <?php } ?>
                             </tr>
                         <?php } ?>
                         </tbody>
                     </table>
                 </div>
-                <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%; margin-bottom: -40px"  >
-                <p style="font-size: 11px; text-align: center; margin-top: -150px; margin-right: 84px;" >www.ClientFlo.com</p>
+                <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%;"  >
+                <p style="text-align:center; font-size: 12px; border: 1px solid black; padding: 5px;" >For a detailed walkthrough of ClientFlo’s Google Adwords program for Cynosure customers, please visit
+                    <a href="http://www.clientflo.com/" target="_blank">ClientFlo.com</a> or call us at 1-888-986-7475 to schedule a demo.</p>
             </div>
         </div>
     </div>

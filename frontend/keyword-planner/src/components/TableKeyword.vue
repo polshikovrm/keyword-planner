@@ -6,7 +6,6 @@
                 <tr>
                     <th class="width1">{{title}}</th>
                     <th class="width2">
-                        <span class="text">Average searches</span>
                         <span class="select-holder"  v-bind:class="{ open: selectInterval }" >
                             <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">{{interval}}</button>
                             <ul class="select-list">
@@ -15,8 +14,12 @@
                                 <li v-on:click="interval='Year'"><span>Year</span></li>
                             </ul>
                         </span>
+                        <span class="text">Average searches</span>
                     </th>
-                    <th class="width3">Suggested Bid</th>
+                    <th class="width3"><span v-on:click="hideSuggested()" class="hide_column" >
+                        <span v-if="hideSuggestedBid">unhide</span>
+                        <span v-if="!hideSuggestedBid">hide</span>
+                    </span> Suggested Bid</th>
                 </tr>
                 </thead>
 
@@ -26,7 +29,7 @@
                     <td class="width2" v-if="interval=='Month'" >{{item.searchVolume | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Day'">{{item.searchVolume / 30 | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Year'">{{item.searchVolume * 12 | formatNumber}}</td>
-                    <td class="width3"  >{{item.suggestedBid}}</td>
+                    <td class="width3"  ><span v-if="!hideSuggestedBid"  >{{item.suggestedBid}}</span></td>
 
 
                     <!--<td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>-->
@@ -79,7 +82,9 @@ export default  {
                 queryResultPage: [],
                 selectList: false,
                 selectInterval: false,
-                interval: 'Month'
+                interval: 'Month',
+                hideSuggestedBid: false,
+                hideSuggestedBidText:'hide'
             }
         },
         directives: {
@@ -121,6 +126,10 @@ export default  {
             outsideInterval: function(e) {
                 this.selectInterval = false;
                 this.$emit('interval',this.interval);
+            },
+            hideSuggested:function () {
+                this.hideSuggestedBid=!this.hideSuggestedBid;
+                this.$emit('suggestedhide',this.hideSuggestedBid);
             },
             first(){
                 this.page = 1;

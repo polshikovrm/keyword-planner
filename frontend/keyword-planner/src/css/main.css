@@ -711,10 +711,14 @@ p{
     padding-right: 36px;
 }
 .content-holder .table .width1{
-     width: 45%;
+     width: 40%;
  }
 .content-holder .table .width2{
     width: 35%;
+    text-align: right;
+}
+.content-holder .table .width3{
+    padding-right: 10px;
     text-align: right;
 }
 .content-holder .table td.width2{
@@ -848,6 +852,18 @@ p{
 }
 .select-holder.open .select-button:after{
     background-position: -85px -206px;
+}
+.select-holder.open {
+    position: relative;
+    z-index: 1000;
+}
+.select-holder{
+    position: relative;
+    z-index: 1;
+}
+.hide_column{
+    color: #00b3e3;
+    cursor: pointer;
 }
 .select-holder .select-list{
     position: absolute;
