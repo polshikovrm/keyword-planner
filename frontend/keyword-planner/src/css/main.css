@@ -711,7 +711,7 @@ p{
     padding-right: 36px;
 }
 .content-holder .table .width1{
-     width: 45%;
+     width: 40%;
  }
 .content-holder .table .width2{
     width: 35%;
@@ -860,6 +860,10 @@ p{
 .select-holder{
     position: relative;
     z-index: 1;
+}
+.hide_column{
+    color: #00b3e3;
+    cursor: pointer;
 }
 .select-holder .select-list{
     position: absolute;

@@ -46,10 +46,18 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
-                <app-table-keyword :queryResult="queryResultStats" :title="title1" v-on:interval="changedIntervalResultStats" v-on:queryResultPage="changedResultStatsPage"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResultStats" :title="title1"
+                                   v-on:interval="changedIntervalResultStats"
+                                   v-on:queryResultPage="changedResultStatsPage"
+                                   v-on:suggestedhide="changedSuggestedStatsHide"
+                ></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <p v-if="responseError">{{responseError}}</p>
-                <app-table-keyword :queryResult="queryResult" :title="title2" v-on:interval="changedIntervalResult" v-on:queryResultPage="changedResultPage"></app-table-keyword>
+                <app-table-keyword :queryResult="queryResult" :title="title2"
+                                   v-on:interval="changedIntervalResult"
+                                   v-on:queryResultPage="changedResultPage"
+                                   v-on:suggestedhide="changedSuggestedHide"
+                ></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix download-block">
                     <a href="/target-locations" class="btn btn-prev">Back</a>
@@ -68,6 +76,8 @@
                         <div  v-for="(item, index) in locations" >
                             <input type="hidden" name="locations[]" v-model="item.fullName" >
                         </div>
+                        <input type="hidden" name="suggestedHide" v-model="suggestedHide" >
+                        <input type="hidden" name="suggestedStatsHide" v-model="suggestedStatsHide" >
                         <input type="hidden" name="queryResultInterval" v-model="queryResultInterval" >
                         <input type="hidden" name="queryResultStatsInterval"  v-model="queryResultStatsInterval">
                         <button type="submit"  v-if="queryResultStats.length!==0 && queryResult.length!==0"  class="btn-simple"><span class="icon-download"></span>Download</button>
@@ -152,6 +162,8 @@
                 queryResultStatsInterval:"Month",
                 resultPage:[],
                 resultStatsPage:[],
+                suggestedHide:false,
+                suggestedStatsHide:false,
             }
         },
         methods: {
@@ -160,6 +172,12 @@
             },
             changedIntervalResultStats(a){
                 this.queryResultStatsInterval=a;
+            },
+            changedSuggestedStatsHide(a){
+                this.suggestedStatsHide=a;
+            },
+            changedSuggestedHide(a){
+                this.suggestedHide=a;
             },
             changedResultPage(a){
                 this.resultPage=a;
