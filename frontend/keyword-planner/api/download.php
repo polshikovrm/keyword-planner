@@ -914,8 +914,8 @@ ob_start();
                         </tbody>
                     </table>
                 </div>
-                <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%; margin-bottom: -40px"  >
-                <p style="font-size: 11px; text-align: center; margin-top: -150px; margin-right: 84px;" >www.ClientFlo.com</p>
+                <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%;"  >
+                <p style="text-align:center; font-size: 12px; border: 1px solid black; padding: 5px;" >For a detailed walkthrough of ClientFlo’s Google Adwords program for Sculpsure customers, please visit clientflo.com or call us at 1-888-986-7475 to schedule a demo.</p>
             </div>
         </div>
     </div>
