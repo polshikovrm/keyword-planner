@@ -1505,9 +1505,8 @@ p{
     }
     .content-holder .table th{
         padding: 15px 0 18px;
-    }
-    .content-holder .table.result-table th{
         font-size:14px;
+        vertical-align: top;
     }
     .content-holder .table td{
         padding: 15px 10px 18px;
@@ -1601,6 +1600,10 @@ p{
     }
     .help{
         font-size:10px;
+    }
+    .hide_column{
+        display: inline-block;
+        margin: 4px 0 0 0;
     }
 
 }

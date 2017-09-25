@@ -6,6 +6,7 @@
                 <tr>
                     <th class="width1">{{title}}</th>
                     <th class="width2">
+                        <span class="text">Average searches</span>
                         <span class="select-holder"  v-bind:class="{ open: selectInterval }" >
                             <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">{{interval}}</button>
                             <ul class="select-list">
@@ -14,12 +15,13 @@
                                 <li v-on:click="interval='Year'"><span>Year</span></li>
                             </ul>
                         </span>
-                        <span class="text">Average searches</span>
                     </th>
-                    <th class="width3"><span v-on:click="hideSuggested()" class="hide_column" >
+                    <th class="width3"> Suggested Bid
+                    <span v-on:click="hideSuggested()" class="hide_column" >
                         <span v-if="hideSuggestedBid">unhide</span>
                         <span v-if="!hideSuggestedBid">hide</span>
-                    </span> Suggested Bid</th>
+                    </span>
+                    </th>
                 </tr>
                 </thead>
 
