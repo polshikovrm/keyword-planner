@@ -492,6 +492,7 @@ p{
 }
 .content-holder .table{
     width: 100%;
+    table-layout: fixed;
     font:32px/1 'flamabook', Arial, Helvetica, sans-serif;
     margin: 0 0 126px;
 }
@@ -501,6 +502,7 @@ p{
     text-align: left;
     font-family: 'flamabook', Arial, Helvetica, sans-serif;
     padding: 40px 36px 49px;
+    word-wrap: break-word;
 }
 .content-holder .table th,
 .content-holder .table td{
@@ -720,6 +722,7 @@ p{
 .content-holder .table .width3{
     padding-right: 10px;
     text-align: right;
+    width: 25%;
 }
 .content-holder .table td.width2{
     padding-right: 10%;
@@ -1440,7 +1443,8 @@ p{
 
     /*----------------- find keywords page styles ----------*/
     .btn-logout{
-        margin: 0 0 20px;
+        margin: 0 0 20px 5px;
+        padding: 11px 9px;
     }
     .gray-bg{
         padding: 10px 0 0;
@@ -1499,16 +1503,26 @@ p{
         width: 15px;
         height: 2px;
     }
-    .content-holder .table th,
+    .content-holder .table th{
+        padding: 15px 0 18px;
+    }
+    .content-holder .table.result-table th{
+        font-size:14px;
+    }
     .content-holder .table td{
         padding: 15px 10px 18px;
     }
     .content-holder .table.result-table td:last-child{
         padding-right: 10px;
     }
+    .content-holder .table .width2{
+        text-align: center;
+    }
     .content-holder .table td.width2{
         padding-right: 10px;
-        text-align: center;
+    }
+    .content-holder .table .select-holder{
+        margin: 0 5px 5px;
     }
     .info-holder .pagination{
         font-size:18px;
@@ -1537,7 +1551,7 @@ p{
     .content-holder .table .select-holder .select-button{
         font-size:16px;
         margin: 0 10px;
-        padding: 6px 43px 7px 10px;
+        padding: 6px 32px 7px 5px;
         text-align: left;
     }
     .content-holder .table .select-holder .select-button:after,
