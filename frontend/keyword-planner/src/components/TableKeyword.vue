@@ -38,7 +38,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="info-holder clearfix">
+            <div class="info-holder clearfix" v-if="paginationShow" >
                 <div class="pagination">
                     <span class="first-page" v-on:click="first()"> | <span class="arrow">&#8249;</span> </span>
                     <span v-on:click="prev()"> <span class="arrow">&#8249;</span>  </span>
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default  {
-        props: ['queryResult','title'],
+        props: ['queryResult','title','paginationShow'],
         watch: {
             queryResult: function (newVal) {
                 this.queryResul = newVal;
