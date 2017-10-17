@@ -46,14 +46,14 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
-                <app-table-keyword :queryResult="queryResultStats" :title="title1"
+                <app-table-keyword :queryResult="queryResultStats" :title="title1" :paginationShow="true"
                                    v-on:interval="changedIntervalResultStats"
                                    v-on:queryResultPage="changedResultStatsPage"
                                    v-on:suggestedhide="changedSuggestedStatsHide"
                 ></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <p v-if="responseError">{{responseError}}</p>
-                <app-table-keyword :queryResult="queryResult" :title="title2"
+                <app-table-keyword :queryResult="queryResult" :title="title2" :paginationShow="false"
                                    v-on:interval="changedIntervalResult"
                                    v-on:queryResultPage="changedResultPage"
                                    v-on:suggestedhide="changedSuggestedHide"
