@@ -46,7 +46,7 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
-                <app-table-keyword :queryResult="queryResultStats" :title="title1" :paginationShow="true"
+                <app-table-keyword :queryResult="queryResultStats" :title="title1" :paginationShow="false"
                                    v-on:interval="changedIntervalResultStats"
                                    v-on:queryResultPage="changedResultStatsPage"
                                    v-on:suggestedhide="changedSuggestedStatsHide"
