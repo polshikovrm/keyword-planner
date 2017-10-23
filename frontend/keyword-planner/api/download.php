@@ -822,7 +822,7 @@ ob_start();
         <div class="find-keywords">
             <div class="content-holder" style="    margin-bottom: -100px;">
 
-                <H1>Keyword Demand Data</H1>
+                <H1>Google Keywords Demand Data</H1>
 
                 <?php if(isset($_POST['locations'])){ ?>
                 <div>
@@ -833,11 +833,11 @@ ob_start();
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($_POST['locations'] as $value){ ?>
                         <tr>
-                            <?php foreach ($_POST['locations'] as $value){ ?>
                                 <td><?php echo $value ?></td>
-                            <?php } ?>
                         </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
