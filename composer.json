@@ -1,6 +1,6 @@
 {
     "require": {
         "googleads/googleads-php-lib": "^28.0",
-        "dompdf/dompdf": "^0.8.0"
+        "dompdf/dompdf": "=0.8.0"
     }
 }
