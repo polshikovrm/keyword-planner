@@ -46,17 +46,59 @@
                 </div>
                 <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
                 <p v-if="responseErrorStats">{{responseErrorStats}}</p>
+                <div v-if="queryResultStats.length!==0" >
+                    <table class="table result-table">
+                        <thead>
+                        <tr>
+                            <th class="width1">{{title0}}</th>
+                            <th class="width2">
+                                <span class="text">Average searches</span>
+                                <span class="select-holder" v-bind:class="{ open: selectInterval }">
+                            <button class="select-button" v-on:click="selectInterval=!selectInterval"
+                                    type="button" v-click-outside="outsideInterval">{{interval}}</button>
+                            <ul class="select-list">
+                                <li v-on:click="interval='Month'"><span>Month</span></li>
+                                <li v-on:click="interval='Day'"><span>Day</span></li>
+                                <li v-on:click="interval='Year'"><span>Year</span></li>
+                            </ul>
+                        </span>
+                            </th>
+                            <th class="width3"> Suggested Bid
+                                <span v-on:click="hideSuggested()" class="hide_column">
+                        <span v-if="hideSuggestedBid">unhide</span>
+                        <span v-if="!hideSuggestedBid">hide</span>
+                    </span>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr >
+                            <td class="width1">Your selected keywords</td>
+                            <td class="width2" v-if="interval=='Month'">{{averageVolume | formatNumber}}</td>
+                            <td class="width2" v-if="interval=='Day'">{{averageVolume / 30 | formatNumber}}</td>
+                            <td class="width2" v-if="interval=='Year'">{{averageVolume * 12 | formatNumber}}</td>
+                            <td class="width3" v-if="interval=='Month' &&!hideSuggestedBid" ><span >${{averageVolumeSuggestedBid |formatFloat}}</span></td>
+                            <td class="width3" v-if="interval=='Day' && !hideSuggestedBid"><span >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
+                            <td class="width3" v-if="interval=='Year' && !hideSuggestedBid"><span >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p v-if="loadingStats"><img src="src/assets/loading.gif" alt="image description" class="loading"></p>
+                <p v-if="responseErrorStats">{{responseErrorStats}}</p>
                 <app-table-keyword :queryResult="queryResultStats" :title="title1" :paginationShow="false"
-                                   v-on:interval="changedIntervalResultStats"
+                                   :interval="interval"
+                                   :hideSuggestedBid="hideSuggestedBid"
                                    v-on:queryResultPage="changedResultStatsPage"
-                                   v-on:suggestedhide="changedSuggestedStatsHide"
                 ></app-table-keyword>
                 <p v-if="loading"><img src="src/assets/loading.gif" width="" height="" alt="image description" class="loading"></p>
                 <p v-if="responseError">{{responseError}}</p>
                 <app-table-keyword :queryResult="queryResult" :title="title2" :paginationShow="false"
-                                   v-on:interval="changedIntervalResult"
+                                   :interval="interval"
+                                   :hideSuggestedBid="hideSuggestedBid"
                                    v-on:queryResultPage="changedResultPage"
-                                   v-on:suggestedhide="changedSuggestedHide"
                 ></app-table-keyword>
                 <!--to do:  v-on:click="step2()" - go to step 2-->
                 <div class="clearfix download-block">
@@ -76,13 +118,14 @@
                         <div  v-for="(item, index) in locations" >
                             <input type="hidden" name="locations[]" v-model="item.fullName" >
                         </div>
-                        <input type="hidden" name="suggestedHide" v-model="suggestedHide" >
-                        <input type="hidden" name="suggestedStatsHide" v-model="suggestedStatsHide" >
-                        <input type="hidden" name="queryResultInterval" v-model="queryResultInterval" >
-                        <input type="hidden" name="queryResultStatsInterval"  v-model="queryResultStatsInterval">
+                        <input type="hidden" name="averageVolume" v-model="averageVolume" >
+                        <input type="hidden" name="averageVolumeSuggestedBid" v-model="averageVolumeSuggestedBid" >
+                        <input type="hidden" name="suggestedHide" v-model="hideSuggestedBid" >
+                        <input type="hidden" name="suggestedStatsHide" v-model="hideSuggestedBid" >
+                        <input type="hidden" name="queryResultInterval" v-model="interval" >
+                        <input type="hidden" name="queryResultStatsInterval"  v-model="interval">
                         <button type="submit"  v-if="queryResultStats.length!==0 && queryResult.length!==0"  class="btn-simple"><span class="icon-download"></span>Download</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -116,6 +159,9 @@
     Vue.filter("formatNumber", function (value) {
         return numeral(value).format("0,0"); // displaying other groupings/separators is possible, look at the docs
     });
+    Vue.filter("formatFloat", function (value) {
+        return numeral(value).format("0,0.00"); // displaying other groupings/separators is possible, look at the docs
+    });
 
     const config = {
         errorBagName: 'errors', // change if property conflicts.
@@ -144,6 +190,38 @@
             'app-table-keyword': tableKeyword,
             'app-logout': logout,
         },
+        directives: {
+            'click-outside': {
+                bind: function(el, binding, vNode) {
+                    // Provided expression must evaluate to a function.
+                    if (typeof binding.value !== 'function') {
+                        const compName = vNode.context.name
+                        let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
+                        if (compName) { warn += `Found in component '${compName}'` }
+
+                        console.warn(warn)
+                    }
+                    // Define Handler and cache it on the element
+                    const bubble = binding.modifiers.bubble
+                    const handler = (e) => {
+                        if (bubble || (!el.contains(e.target) && el !== e.target)) {
+                            binding.value(e)
+                        }
+                    }
+                    el.__vueClickOutside__ = handler
+
+                    // add Event Listeners
+                    document.addEventListener('click', handler)
+                },
+
+                unbind: function(el, binding) {
+                    // Remove Event Listeners
+                    document.removeEventListener('click', el.__vueClickOutside__)
+                    el.__vueClickOutside__ = null
+
+                }
+            }
+        },
         data(){
             return {
                 columnChart:[],
@@ -155,7 +233,8 @@
                 queryResultStats: [],
                 responseError:false,
                 responseErrorStats:false,
-                title1:'Your Selected Keywords',
+                title0:'Search Demand',
+                title1:'Keyword Breakdown',
                 title2:'More Suggested Keywords',
                 downloadAction:"",
                 queryResultInterval:"Month",
@@ -164,14 +243,34 @@
                 resultStatsPage:[],
                 suggestedHide:false,
                 suggestedStatsHide:false,
+
+                selectList: false,
+                selectInterval: false,
+                interval: 'Month',
+                hideSuggestedBid: false,
+                hideSuggestedBidText:'hide',
+                averageVolume: 0,
+                averageVolumeSuggestedBid: 0
             }
         },
         methods: {
+            outsideInterval: function(e) {
+                this.selectInterval = false;
+//                this.$emit('interval',this.interval);
+            },
+            hideSuggested:function () {
+                this.hideSuggestedBid=!this.hideSuggestedBid;
+//                this.$emit('suggestedhide',this.hideSuggestedBid);
+            },
             changedIntervalResult(a){
                this.queryResultInterval=a;
             },
             changedIntervalResultStats(a){
                 this.queryResultStatsInterval=a;
+            },
+            changedSuggestedStatsHide1(a){
+                this.suggestedStatsHide=a;
+                this.suggestedHide=a;
             },
             changedSuggestedStatsHide(a){
                 this.suggestedStatsHide=a;
@@ -227,6 +326,16 @@
 
                 this.columnChart = columnChart.sort(compare);
             },
+            setAverage(queryResult){
+               let averageVolumeSuggestedBid = this.averageVolumeSuggestedBid;
+               let averageVolume = this.averageVolume;
+                queryResult.forEach(function (value) {
+                    averageVolumeSuggestedBid = averageVolumeSuggestedBid + parseFloat(value.suggestedBidWithOutDollarSign);
+                    averageVolume = averageVolume + parseFloat(value.searchVolume);
+                });
+                this.averageVolumeSuggestedBid = averageVolumeSuggestedBid;
+                this.averageVolume = averageVolume;
+            },
             showDemand(){
                 this.downloadAction = this.$config.api+'download.php';
                 this.loading = true;
@@ -238,9 +347,7 @@
                     }
                 ).then((response) => {
                     if (response.status == 200 && Array.isArray(response.data) ) {
-//                        this.queryResult = response.data;
                         this.queryResult = response.data.slice(0, 10);
-
                     }else{
                         this.responseError='There was a problem retrieving ideas, please try again.'
                     }
@@ -262,7 +369,10 @@
                 ).then((response) => {
                     if (response.status == 200 && Array.isArray(response.data) ) {
                         this.queryResultStats = response.data;
-                        this.setChart(this.queryResultStats)
+//                         console.log(this.queryResultStats);
+
+                        this.setChart(this.queryResultStats);
+                        this.setAverage(response.data);
                     }else{
                          this.responseErrorStats='There was a problem retrieving ideas, please try again.'
                     }

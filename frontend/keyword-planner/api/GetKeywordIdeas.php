@@ -169,7 +169,15 @@ class GetKeywordIdeas {
 
             $CPC = ($data[AttributeType::AVERAGE_CPC]->getValue() === null)
                 ? $categoryIds = '-' :  '$'.round($data[AttributeType::AVERAGE_CPC]->getValue()->getMicroAmount()/1000000,2);
-            $dataJson[]=['keyword'=>$keyword,'searchVolume'=>$searchVolume,'targetedMonthlySearches'=>$tms,'suggestedBid'=>$CPC];
+            $CPCWithoutDollarSign = ($data[AttributeType::AVERAGE_CPC]->getValue() === null)
+                ? $categoryIds = 0 :  ''.round($data[AttributeType::AVERAGE_CPC]->getValue()->getMicroAmount()/1000000,2);
+
+            $dataJson[]=['keyword'=>$keyword,
+                'searchVolume'=>$searchVolume,
+                'targetedMonthlySearches'=>$tms,
+                'suggestedBid'=>$CPC,
+                'suggestedBidWithOutDollarSign'=>$CPCWithoutDollarSign
+            ];
         }
       }
 
