@@ -7,20 +7,20 @@
                     <th class="width1">{{title}}</th>
                     <th class="width2">
                         <span class="text">Average searches</span>
-                        <span class="select-holder"  v-bind:class="{ open: selectInterval }" >
-                            <button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">{{interval}}</button>
-                            <ul class="select-list">
-                                <li v-on:click="interval='Month'"><span>Month</span></li>
-                                <li v-on:click="interval='Day'"><span>Day</span></li>
-                                <li v-on:click="interval='Year'"><span>Year</span></li>
-                            </ul>
-                        </span>
+                        <!--<span class="select-holder"  v-bind:class="{ open: selectInterval }" >-->
+                            <!--<button class="select-button" v-on:click="selectInterval=!selectInterval"  type="button" v-click-outside="outsideInterval">{{interval}}</button>-->
+                            <!--<ul class="select-list">-->
+                                <!--<li v-on:click="interval='Month'"><span>Month</span></li>-->
+                                <!--<li v-on:click="interval='Day'"><span>Day</span></li>-->
+                                <!--<li v-on:click="interval='Year'"><span>Year</span></li>-->
+                            <!--</ul>-->
+                        <!--</span>-->
                     </th>
                     <th class="width3"> Suggested Bid
-                    <span v-on:click="hideSuggested()" class="hide_column" >
-                        <span v-if="hideSuggestedBid">unhide</span>
-                        <span v-if="!hideSuggestedBid">hide</span>
-                    </span>
+                    <!--<span v-on:click="hideSuggested()" class="hide_column" >-->
+                        <!--<span v-if="hideSuggestedBid">unhide</span>-->
+                        <!--<span v-if="!hideSuggestedBid">hide</span>-->
+                    <!--</span>-->
                     </th>
                 </tr>
                 </thead>
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default  {
-        props: ['queryResult','title','paginationShow'],
+        props: ['queryResult','title','paginationShow','interval','hideSuggestedBid'],
         watch: {
             queryResult: function (newVal) {
                 this.queryResul = newVal;
@@ -84,8 +84,8 @@ export default  {
                 queryResultPage: [],
                 selectList: false,
                 selectInterval: false,
-                interval: 'Month',
-                hideSuggestedBid: false,
+//                interval: 'Month',
+//                hideSuggestedBid: false,
                 hideSuggestedBidText:'hide'
             }
         },

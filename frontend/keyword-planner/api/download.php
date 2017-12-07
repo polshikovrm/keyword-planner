@@ -8,6 +8,8 @@ require __DIR__ . '/../../../vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 $queryResultStatsKeyword = $_POST['queryResultStats']['keyword'];
+$averageVolumeSuggestedBid = $_POST['averageVolumeSuggestedBid'];
+$averageVolume = $_POST['averageVolume'];
 $queryResultStatsSearchVolume = $_POST['queryResultStats']['searchVolume'];
 $queryResultStatsSuggestedBid = $_POST['queryResultStats']['suggestedBid'];
 $queryResultKeyword = array_slice($_POST['queryResult']['keyword'], 0, 5);
@@ -846,7 +848,32 @@ ob_start();
                     <table class="table result-table">
                         <thead>
                         <tr>
-                            <th class="width1">Your Selected Keywords</th>
+                            <th class="width1">Search Demand</th>
+                            <th class="width2" >
+                                Average searches by <?php echo $_POST['queryResultStatsInterval']?>
+                            </th>
+                            <?php if ($_POST['suggestedStatsHide']=='false') { ?>
+                                <th class="width3" style="text-align: right;">Suggested Bid</th>
+                            <?php } ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="width1">Your selected keywords</td>
+                                <td class="width2" style="text-align: right;">
+                                    <?php echo round($averageVolume); ?>
+                                </td>
+                                <?php if ($_POST['suggestedStatsHide']=='false') { ?>
+                                    <td class="width3" style="text-align: right;">$<?php echo number_format($averageVolumeSuggestedBid, 2, '.', ' ')  ?></td>
+                                <?php } ?>
+                            </tr>
+                        </tbody>
+                    </table
+                <div>
+                    <table class="table result-table">
+                        <thead>
+                        <tr>
+                            <th class="width1">Keyword Breakdown</th>
                             <th class="width2" >
                                 Average searches by <?php echo $_POST['queryResultStatsInterval']?>
 <!--                                <span class="text" style="vertical-align:middle" >Average searches</span>-->
