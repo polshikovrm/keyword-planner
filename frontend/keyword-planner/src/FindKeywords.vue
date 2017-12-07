@@ -78,9 +78,9 @@
                             <td class="width2" v-if="interval=='Month'">{{averageVolume | formatNumber}}</td>
                             <td class="width2" v-if="interval=='Day'">{{averageVolume / 30 | formatNumber}}</td>
                             <td class="width2" v-if="interval=='Year'">{{averageVolume * 12 | formatNumber}}</td>
-                            <td class="width3" v-if="interval=='Month' &&!hideSuggestedBid" ><span >${{averageVolumeSuggestedBid |formatFloat}}</span></td>
-                            <td class="width3" v-if="interval=='Day' && !hideSuggestedBid"><span >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
-                            <td class="width3" v-if="interval=='Year' && !hideSuggestedBid"><span >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
+                            <td class="width3" v-if="interval=='Month'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid |formatFloat}}</span></td>
+                            <td class="width3" v-if="interval=='Day'"><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
+                            <td class="width3" v-if="interval=='Year'"><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
 
                         </tr>
                         </tbody>
