@@ -63,7 +63,7 @@
                             </ul>
                         </span>
                             </th>
-                            <th class="width3"> Suggested Bid
+                            <th class="width3">Average Suggested Bid
                                 <span v-on:click="hideSuggested()" class="hide_column">
                         <span v-if="hideSuggestedBid">unhide</span>
                         <span v-if="!hideSuggestedBid">hide</span>
@@ -79,8 +79,8 @@
                             <td class="width2" v-if="interval=='Day'">{{averageVolume / 30 | formatNumber}}</td>
                             <td class="width2" v-if="interval=='Year'">{{averageVolume * 12 | formatNumber}}</td>
                             <td class="width3" v-if="interval=='Month'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid |formatFloat}}</span></td>
-                            <td class="width3" v-if="interval=='Day'"><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
-                            <td class="width3" v-if="interval=='Year'"><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
+                            <td class="width3" v-if="interval=='Day'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
+                            <td class="width3" v-if="interval=='Year'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
 
                         </tr>
                         </tbody>
@@ -323,7 +323,6 @@
                         return 1;
                     return 0;
                 }
-                debugger;
                 this.columnChart = columnChart.sort(compare);
             },
             setAverage(queryResult){
@@ -333,8 +332,8 @@
                     averageVolumeSuggestedBid = averageVolumeSuggestedBid + parseFloat(value.suggestedBidWithOutDollarSign);
                     averageVolume = averageVolume + parseFloat(value.searchVolume);
                 });
-                this.averageVolumeSuggestedBid = averageVolumeSuggestedBid;
-                this.averageVolume = averageVolume;
+                this.averageVolumeSuggestedBid =   averageVolumeSuggestedBid /queryResult.length;
+                this.averageVolume =  averageVolume /queryResult.length;
             },
             showDemand(){
                 this.downloadAction = this.$config.api+'download.php';
