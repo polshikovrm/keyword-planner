@@ -333,7 +333,7 @@
                     averageVolume = averageVolume + parseFloat(value.searchVolume);
                 });
                 this.averageVolumeSuggestedBid =   averageVolumeSuggestedBid /queryResult.length;
-                this.averageVolume =  averageVolume /queryResult.length;
+                this.averageVolume =  averageVolume;
             },
             showDemand(){
                 this.downloadAction = this.$config.api+'download.php';
