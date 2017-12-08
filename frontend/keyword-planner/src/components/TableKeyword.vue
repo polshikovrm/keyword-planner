@@ -31,7 +31,9 @@
                     <td class="width2" v-if="interval=='Month'" >{{item.searchVolume | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Day'">{{item.searchVolume / 30 | formatNumber}}</td>
                     <td class="width2" v-if="interval=='Year'">{{item.searchVolume * 12 | formatNumber}}</td>
-                    <td class="width3"  ><span v-if="!hideSuggestedBid"  >{{item.suggestedBid}}</span></td>
+                    <td class="width3" v-if="interval=='Month'" ><span v-if="!hideSuggestedBid"  >${{item.suggestedBidWithOutDollarSign | formatFloat}}</span></td>
+                    <td class="width3" v-if="interval=='Day'" ><span v-if="!hideSuggestedBid"  >${{item.suggestedBidWithOutDollarSign / 30 | formatFloat}}</span></td>
+                    <td class="width3" v-if="interval=='Year'" ><span v-if="!hideSuggestedBid"  >${{item.suggestedBidWithOutDollarSign * 12 | formatFloat}}</span></td>
 
 
                     <!--<td class="width3"><span  class="add-btn" v-on:click="toggleKeyword(item)" v-bind:class="{ plus: item.addkeyword }" >+</span></td>-->

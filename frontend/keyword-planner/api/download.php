@@ -853,7 +853,7 @@ ob_start();
                                 Average searches by <?php echo $_POST['queryResultStatsInterval']?>
                             </th>
                             <?php if ($_POST['suggestedStatsHide']=='false') { ?>
-                                <th class="width3" style="text-align: right;">Suggested Bid</th>
+                                <th class="width3" style="text-align: right;">Average Suggested Bid</th>
                             <?php } ?>
                         </tr>
                         </thead>
