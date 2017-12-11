@@ -859,12 +859,12 @@ ob_start();
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="width1">Your selected keywords</td>
+                                <td class="width1"><strong>Your selected keywords</strong></td>
                                 <td class="width2" style="text-align: right;">
-                                    <?php echo round($averageVolume); ?>
+                                    <strong><?php echo round($averageVolume); ?></strong>
                                 </td>
                                 <?php if ($_POST['suggestedStatsHide']=='false') { ?>
-                                    <td class="width3" style="text-align: right;">$<?php echo number_format($averageVolumeSuggestedBid, 2, '.', ' ')  ?></td>
+                                    <td class="width3" style="text-align: right;"><strong>$<?php echo number_format($averageVolumeSuggestedBid, 2, '.', ' ')  ?></strong></td>
                                 <?php } ?>
                             </tr>
                         </tbody>
