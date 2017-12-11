@@ -74,13 +74,13 @@
 
                         <tbody>
                         <tr >
-                            <td class="width1">Your selected keywords</td>
-                            <td class="width2" v-if="interval=='Month'">{{averageVolume | formatNumber}}</td>
-                            <td class="width2" v-if="interval=='Day'">{{averageVolume / 30 | formatNumber}}</td>
-                            <td class="width2" v-if="interval=='Year'">{{averageVolume * 12 | formatNumber}}</td>
-                            <td class="width3" v-if="interval=='Month'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid |formatFloat}}</span></td>
-                            <td class="width3" v-if="interval=='Day'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid / 30 |formatFloat }}</span></td>
-                            <td class="width3" v-if="interval=='Year'" ><span v-if="!hideSuggestedBid" >${{averageVolumeSuggestedBid * 12  |formatFloat}}</span></td>
+                            <td class="width1"><strong>Your selected keywords</strong></td>
+                            <td class="width2" v-if="interval=='Month'"><strong>{{averageVolume | formatNumber}}</strong></td>
+                            <td class="width2" v-if="interval=='Day'"><strong>{{averageVolume / 30 | formatNumber}}</strong></td>
+                            <td class="width2" v-if="interval=='Year'"><strong>{{averageVolume * 12 | formatNumber}}</strong></td>
+                            <td class="width3" v-if="interval=='Month'" ><span v-if="!hideSuggestedBid" ><strong>${{averageVolumeSuggestedBid |formatFloat}}</strong></span></td>
+                            <td class="width3" v-if="interval=='Day'" ><span v-if="!hideSuggestedBid" ><strong>${{averageVolumeSuggestedBid / 30 |formatFloat }}</strong></span></td>
+                            <td class="width3" v-if="interval=='Year'" ><span v-if="!hideSuggestedBid" ><strong>${{averageVolumeSuggestedBid * 12  |formatFloat}}</strong></span></td>
 
                         </tr>
                         </tbody>
