@@ -848,7 +848,7 @@ ob_start();
                 </div>
                 <?php } ?>
                 <div>
-                    <H1>Total Search Demand</H1>
+                    <H2>Total Search Demand</H2>
                     <table class="table result-table">
                         <thead>
                         <tr>
@@ -874,7 +874,7 @@ ob_start();
                         </tbody>
                     </table
                 <div>
-                    <H1>Keyword Breakdown</H1>
+                    <H2>Keyword Breakdown</H2>
                     <table class="table result-table">
                         <thead>
                         <tr>
@@ -911,7 +911,7 @@ ob_start();
                     </table>
                 </div>
                 <div>
-                    <H1>More Suggested Keywords</H1>
+                    <H2>More Suggested Keywords</H2>
                     <table class="table result-table">
                         <thead>
                         <tr>
