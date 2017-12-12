@@ -139,9 +139,14 @@ input[type=url], input[type=search], input[type=tel], input[type=email], input[t
     background: transparent;
 }
 input[type="search"]::-webkit-search-cancel-button{-webkit-appearance: none;}
-input:-webkit-autofill {
+.login-form input:-webkit-autofill{
     background: #fcce01 !important;
     -webkit-box-shadow:  0 0 0 50px #fcce01 inset !important;
+    -webkit-text-fill-color: #666;
+}
+input:-webkit-autofill{
+    background: #fff !important;
+    -webkit-box-shadow:  0 0 0 60px #fff inset !important;
     -webkit-text-fill-color: #666;
 }
 input:focus::-moz-placeholder,
