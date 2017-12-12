@@ -302,7 +302,6 @@ ob_start();
 
             .content-holder h2 {
                 margin: 0 0 20px;
-                color: #ffce00;
                 font: 44px/1.2 "flamabasic", Arial, Helvetica, sans-serif;
             }
 
@@ -682,7 +681,11 @@ ob_start();
                     font-size: 25px;
                     margin: 0 0 26px;
                 }
-
+                .content-holder h2{
+                    font-size:22px;
+                    margin:0 0 20px;
+                    color:#333;
+                }
                 .location-content {
                     margin: 0 0 15px;
                 }
