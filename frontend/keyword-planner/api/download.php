@@ -845,10 +845,11 @@ ob_start();
                 </div>
                 <?php } ?>
                 <div>
+                    <H1>Total Search Demand</H1>
                     <table class="table result-table">
                         <thead>
                         <tr>
-                            <th class="width1">Search Demand</th>
+                            <th class="width1"></th>
                             <th class="width2" >
                                 Average searches by <?php echo $_POST['queryResultStatsInterval']?>
                             </th>
@@ -870,17 +871,13 @@ ob_start();
                         </tbody>
                     </table
                 <div>
+                    <H1>Keyword Breakdown</H1>
                     <table class="table result-table">
                         <thead>
                         <tr>
-                            <th class="width1">Keyword Breakdown</th>
+                            <th class="width1"></th>
                             <th class="width2" >
                                 Average searches by <?php echo $_POST['queryResultStatsInterval']?>
-<!--                                <span class="text" style="vertical-align:middle" >Average searches</span>-->
-<!--                                <span class="select-holder">-->
-<!--                                    <button type="button" class="select-button" style="text-align: center;">-->
-<!--                                        --><?php //echo $_POST['queryResultStatsInterval']?><!--</button>-->
-<!--                                </span>-->
                             </th>
                             <?php if ($_POST['suggestedStatsHide']=='false') { ?>
                                 <th class="width3" style="text-align: right;">Suggested Bid</th>
@@ -911,16 +908,13 @@ ob_start();
                     </table>
                 </div>
                 <div>
+                    <H1>More Suggested Keywords</H1>
                     <table class="table result-table">
                         <thead>
                         <tr>
-                            <th class="width1">More Suggested Keywords</th>
+                            <th class="width1"></th>
                             <th class="width2" style="">
                                 Average searches by <?php echo $_POST['queryResultInterval']?>
-<!--                                <span class="text" style="text-align: center;vertical-align: middle;">Average searches</span>-->
-<!--                                <span class="select-holder">-->
-<!--                                    <button type="button" class="select-button" style="text-align: center;">--><?php //echo $_POST['queryResultInterval']?><!--</button>-->
-<!--                                </span>-->
                             </th>
                             <?php if($_POST['suggestedHide']=='false'){?>
                                 <th class="width3" style="text-align: right;">Suggested Bid</th>

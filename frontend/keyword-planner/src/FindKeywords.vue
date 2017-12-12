@@ -233,7 +233,7 @@
                 queryResultStats: [],
                 responseError:false,
                 responseErrorStats:false,
-                title0:'Search Demand',
+                title0:'Total Search Demand',
                 title1:'Keyword Breakdown',
                 title2:'More Suggested Keywords',
                 downloadAction:"",
@@ -323,7 +323,6 @@
                         return 1;
                     return 0;
                 }
-
                 this.columnChart = columnChart.sort(compare);
             },
             setAverage(queryResult){
