@@ -371,6 +371,7 @@
 //                         console.log(this.queryResultStats);
 
                         this.setChart(this.queryResultStats);
+                        this.averageVolume=0;
                         this.setAverage(response.data);
                     }else{
                          this.responseErrorStats='There was a problem retrieving ideas, please try again.'
