@@ -24,7 +24,7 @@ Vue.mixin({
     created: function () {
         if(window.location.hostname == 'localhost' || window.location.hostname.indexOf('dev') !== -1){
             this.$config = {
-                api: 'http://kp.dev/api/'
+                api: 'http://kp.localhost/api/'
             }
         }else{
             this.$config = {
