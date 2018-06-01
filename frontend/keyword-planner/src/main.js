@@ -28,7 +28,7 @@ Vue.mixin({
             }
         }else{
             this.$config = {
-                api: 'http://api.keyword-planner.clientflo.com/'
+                api: 'https://api.keyword-planner.clientflo.com/'
             }
         }
     }
