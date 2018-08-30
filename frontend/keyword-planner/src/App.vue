@@ -5,7 +5,7 @@
                 <div class="text">
                     <h1>Demand Tool</h1>
                     <p>Analytics made easy.</p>
-                    <p>Target locations with real time results on to see what Cynosure services people are searching for.</p>
+                    <p>Target locations with real time results on to see which services and products people are searching for.</p>
                 </div>
                 <div class="copyright">
                     <p>powered by <a href="#" class="logo-copyright"><img src="src/assets/copyright-logo.png" alt="ClientFlo"></a></p>

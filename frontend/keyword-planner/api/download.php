@@ -949,8 +949,8 @@ ob_start();
                     </table>
                 </div>
                 <img src="<?php echo $img ?>" alt="" style="width: 40%; height: 40%;text-align: center; margin-left: 30%;"  >
-                <p style="text-align:center; font-size: 12px; border: 1px solid black; padding: 5px;" >For a detailed walkthrough of ClientFlo’s Google Adwords program for Cynosure customers, please visit
-                    <a href="http://www.clientflo.com/" target="_blank">ClientFlo.com</a> or call us at 1-888-986-7475 to schedule a demo.</p>
+                <p style="text-align:center; font-size: 12px; border: 1px solid black; padding: 5px;" >For a detailed walkthrough of ClientFlo’s Google Ads management services, please visit
+                    <a href="http://www.clientflo.com/" target="_blank">ClientFlo.com</a> or call us at 1-888-986-7475 to schedule a meeting.</p>
             </div>
         </div>
     </div>
