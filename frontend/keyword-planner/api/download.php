@@ -1,4 +1,5 @@
 <?php
+define("DOMPDF_ENABLE_HTML5PARSER", true);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
