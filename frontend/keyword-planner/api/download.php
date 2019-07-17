@@ -960,8 +960,7 @@ ob_start();
 <?php
 $html = ob_get_clean();
 $options = new Options();
-//$options->set('defaultFont', 'Times-Italic');
-// instantiate and use the dompdf class
+$options->set('isHtml5ParserEnabled', false);
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
 
