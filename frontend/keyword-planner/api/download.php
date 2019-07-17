@@ -960,7 +960,7 @@ ob_start();
 <?php
 $html = ob_get_clean();
 $options = new Options();
-$options->set('isHtml5ParserEnabled', false);
+$options->set('isHtml5ParserEnabled', true);
 $dompdf = new Dompdf($options);
 $dompdf->loadHtml($html);
 
